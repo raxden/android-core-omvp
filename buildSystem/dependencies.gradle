@@ -1,0 +1,278 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+ext {
+
+    // Android dependencies
+    supportLibraryVersion = '27.0.2'
+    servicesVersion = '11.8.0'
+    multidexVersion = '1.0.1'
+
+    androidCommonsVersion = '3.0.13'        // https://github.com/raxden/commons
+    androidResourcesVersion = '3.0.3'       // https://github.com/raxden/resources
+    androidMVPVersion = '3.0.15'            // https://github.com/raxden/android-mvp
+    androidPreferencesVersion = '3.0.3'     // https://github.com/raxden/android-preferences
+    androidRecyclerVersion = '3.0.7'        // https://github.com/raxden/android-recycler
+    androidSquareVersion = '3.0.83'         // https://github.com/raxden/square
+    androidCronsVersion = '3.0.8'           // https://github.com/raxden/android-crons
+
+    // Libraries
+    reactiveAndroidVersion = '2.0.1'        // https://github.com/ReactiveX/RxAndroid
+    reactiveJavaVersion = '2.1.7'           // https://github.com/ReactiveX/RxAndroid
+    retrofitVersion = '2.3.0'               // https://github.com/square/retrofit
+    okHttpVersion = '3.9.1'                 // https://github.com/square/okhttp
+    timberVersion = '4.6.0'                 // https://github.com/JakeWharton/timber
+    butterknifeVersion = '8.8.1'            // https://github.com/JakeWharton/butterknife
+    glideVersion = '4.4.0'                  // https://github.com/bumptech/glide
+    lombokVersion = '1.16.10'               // https://projectlombok.org/setup/android.html
+    parcelerVersion = '1.1.9'               // https://github.com/johncarl81/parceler
+    crashlyticsVersion = '2.8.0'
+    calligraphyVersion = '2.3.0'            // https://github.com/chrisjenx/Calligraphy
+    daggerVersion = '2.14.1'                // https://github.com/square/dagger
+    androidThreeTenVersion = '1.0.5'        // https://github.com/JakeWharton/ThreeTenABP
+    autoFitTextViewVersion = '0.2.+'        // https://github.com/grantland/android-autofittextview
+    viewPagerIndicatorVersion = '0.2.0'     // https://github.com/romandanylyk/PageIndicatorView
+    calendarViewVersion = '1.4.3'           // https://github.com/prolificinteractive/material-calendarview
+    mapsVersion = '0.5+'
+    modelmapperVersion = '1.1.0'            // https://github.com/modelmapper/modelmapper
+    constraintsLayoutVersion = '1.0.2'      // https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html
+    advrecyclerviewVersion = '0.10.6'       // https://github.com/h6ah4i/android-advancedrecyclerview
+    jodaVersion = '2.9.9.1'
+    jmustacheVersion = '1.13'
+
+    // Testing
+    jUnitVersion = '4.12'
+    assertJVersion = '1.7.0'
+    robolectricVersion = '3.6.1'
+    mockitoVersion = '1.10.19'
+
+    // dependencies
+
+    deps = [
+            app : [
+                    implementation: [
+                            "com.android.support:multidex:${multidexVersion}",
+
+                            "com.android.support:support-compat:${supportLibraryVersion}",
+                            "com.android.support:support-v13:${supportLibraryVersion}",
+                            "com.android.support:appcompat-v7:${supportLibraryVersion}",
+                            "com.android.support:design:${supportLibraryVersion}",
+                            "com.android.support:percent:${supportLibraryVersion}",
+                            "com.android.support:recyclerview-v7:${supportLibraryVersion}",
+                            "com.android.support:cardview-v7:${supportLibraryVersion}",
+                            "com.android.support.constraint:constraint-layout:${constraintsLayoutVersion}",
+
+                            "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
+                            "com.github.raxden:android-resources:${androidResourcesVersion}@aar",
+                            "com.github.raxden:android-mvp:${androidMVPVersion}@aar",
+                            "com.github.raxden:android-recycler:${androidRecyclerVersion}@aar",
+                            "com.github.raxden:android-preferences:${androidPreferencesVersion}@aar",
+                            "com.github.raxden.android-crons:crons:${androidCronsVersion}@aar",
+                            "com.github.raxden.square:square:${androidSquareVersion}@aar",
+                            "com.github.raxden.square:square-commons:${androidSquareVersion}@aar",
+                            "com.github.raxden.square:square-reactive:${androidSquareVersion}@aar",
+
+                            "com.google.dagger:dagger:${daggerVersion}",
+                            "com.google.maps.android:android-maps-utils:${mapsVersion}",
+                            "com.google.android.gms:play-services-base:${servicesVersion}",
+                            "com.google.android.gms:play-services-analytics:${servicesVersion}",
+                            "com.google.android.gms:play-services-maps:${servicesVersion}",
+                            "com.google.android.gms:play-services-location:${servicesVersion}",
+                            "com.google.android.gms:play-services-auth:${servicesVersion}",
+                            "com.google.android.gms:play-services-places:${servicesVersion}",
+                            "com.google.android.gms:play-services-gcm:${servicesVersion}",
+                            "com.google.android.gms:play-services-tagmanager:${servicesVersion}",
+                            "com.google.firebase:firebase-core:${servicesVersion}",
+                            "com.google.firebase:firebase-messaging:${servicesVersion}",
+
+                            "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+                            "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+                            "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+                            "com.squareup.retrofit2:converter-scalars:${retrofitVersion}",
+                            "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+
+                            "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",
+                            "io.reactivex.rxjava2:rxjava:${reactiveJavaVersion}",
+
+                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
+                            "com.jakewharton.timber:timber:${timberVersion}",
+                            "com.jakewharton:butterknife:${butterknifeVersion}",
+
+                            "org.modelmapper:modelmapper:${modelmapperVersion}",
+                            "com.prolificinteractive:material-calendarview:${calendarViewVersion}",
+                            "com.romandanylyk:pageindicatorview:${viewPagerIndicatorVersion}@aar",
+                            "org.parceler:parceler-api:${parcelerVersion}",
+                            "com.github.bumptech.glide:glide:${glideVersion}",
+                            "uk.co.chrisjenx:calligraphy:${calligraphyVersion}",
+                            "me.grantland:autofittextview:${autoFitTextViewVersion}",
+
+                            "net.danlew:android.joda:${jodaVersion}",
+                            "com.samskivert:jmustache:${jmustacheVersion}"
+                    ],
+                    annotationProcessor : [
+                            "com.jakewharton:butterknife-compiler:${butterknifeVersion}",
+                            "org.projectlombok:lombok:${lombokVersion}",
+                            "com.github.bumptech.glide:compiler:${glideVersion}",
+                            "org.parceler:parceler:${parcelerVersion}",
+                            "com.google.dagger:dagger-compiler:${daggerVersion}"
+                    ],
+                    compileOnly : [
+                            "org.projectlombok:lombok:${lombokVersion}"
+                    ],
+                    testImplementation : [
+                            "junit:junit:${jUnitVersion}",
+                            "org.assertj:assertj-core:${assertJVersion}",
+                            "org.mockito:mockito-core:${mockitoVersion}",
+                            "org.robolectric:robolectric:${robolectricVersion}",
+                            "org.robolectric:shadows-multidex:${robolectricVersion}"
+                    ],
+                    testAnnotationProcessor : [
+                            "com.google.dagger:dagger-compiler:${daggerVersion}"
+                    ]
+            ],
+            domain : [
+                    implementation: [
+                            "org.parceler:parceler-api:${parcelerVersion}",
+                            "com.jakewharton.timber:timber:${timberVersion}",
+                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
+
+                            "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
+
+                            "com.google.android.gms:play-services-maps:${servicesVersion}",
+
+                            "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",
+                            "io.reactivex.rxjava2:rxjava:${reactiveJavaVersion}"
+                    ],
+                    implementationTransitive : [
+
+                    ],
+                    annotationProcessor : [
+                            "com.google.dagger:dagger-compiler:${daggerVersion}",
+                            "org.projectlombok:lombok:${lombokVersion}",
+                            "org.parceler:parceler:${parcelerVersion}"
+                    ],
+                    compileOnly : [
+                            "org.projectlombok:lombok:${lombokVersion}"
+                    ],
+                    testImplementation : [
+
+                    ]
+            ],
+            data : [
+                    implementation: [
+                            "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
+                            "com.github.raxden:android-preferences:${androidPreferencesVersion}@aar",
+                            "com.github.raxden.android-crons:crons:${androidCronsVersion}@aar",
+
+                            "com.google.android.gms:play-services-maps:${servicesVersion}",
+                            "com.google.android.gms:play-services-location:${servicesVersion}",
+                            "com.google.android.gms:play-services-gcm:${servicesVersion}",
+                            "com.google.android.gms:play-services-places:${servicesVersion}",
+
+                            "com.google.firebase:firebase-messaging:${servicesVersion}",
+                            "com.google.dagger:dagger:${daggerVersion}",
+                            "com.google.maps.android:android-maps-utils:${mapsVersion}",
+
+                            "com.jakewharton.timber:timber:${timberVersion}",
+                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
+
+                            "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+                            "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+                            "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+                            "com.squareup.retrofit2:converter-scalars:${retrofitVersion}",
+                            "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+                            "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+                            "org.modelmapper:modelmapper:${modelmapperVersion}",
+
+                            "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",
+                            "io.reactivex.rxjava2:rxjava:${reactiveJavaVersion}"
+                    ],
+                    implementationTransitive : [
+
+                    ],
+                    annotationProcessor : [
+                            "com.google.dagger:dagger-compiler:${daggerVersion}",
+                            "org.projectlombok:lombok:${lombokVersion}"
+                    ],
+                    compileOnly : [
+                            "org.projectlombok:lombok:${lombokVersion}"
+                    ],
+                    testImplementation : [
+
+                    ]
+            ],
+            components : [
+                    implementation: [
+                            "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
+                            "com.jakewharton:butterknife:${butterknifeVersion}",
+                            "me.grantland:autofittextview:${autoFitTextViewVersion}",
+                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
+                            "com.jakewharton.timber:timber:${timberVersion}",
+                            "com.prolificinteractive:material-calendarview:${calendarViewVersion}",
+                            "uk.co.chrisjenx:calligraphy:${calligraphyVersion}",
+                            "com.android.support:cardview-v7:${supportLibraryVersion}",
+                            "com.android.support:design:${supportLibraryVersion}",
+                            "com.android.support.constraint:constraint-layout:${constraintsLayoutVersion}"
+                    ],
+                    implementationTransitive : [
+
+                    ],
+                    annotationProcessor : [
+                            "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
+                    ],
+                    compileOnly : [
+
+                    ],
+                    testImplementation : [
+
+                    ]
+            ],
+            commons : [
+                    implementation: [
+                            "com.android.support:cardview-v7:${supportLibraryVersion}",
+                            "com.android.support:design:${supportLibraryVersion}",
+
+                            "com.android.support.constraint:constraint-layout:${constraintsLayoutVersion}",
+                            "com.prolificinteractive:material-calendarview:${calendarViewVersion}",
+                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
+
+                            "com.github.raxden:android-resources:${androidResourcesVersion}@aar",
+                            "me.grantland:autofittextview:${autoFitTextViewVersion}",
+                            "uk.co.chrisjenx:calligraphy:${calligraphyVersion}"
+                    ],
+                    implementationTransitive : [
+
+                    ],
+                    annotationProcessor : [
+
+                    ],
+                    compileOnly : [
+
+                    ],
+                    testImplementation : [
+
+                    ]
+            ],
+            resources : [
+                    implementation: [
+                            "com.android.support:support-compat:${supportLibraryVersion}",
+                            "com.android.support:appcompat-v7:${supportLibraryVersion}",
+                            "com.android.support:design:${supportLibraryVersion}",
+
+                            "uk.co.chrisjenx:calligraphy:${calligraphyVersion}"
+                    ],
+                    implementationTransitive : [
+
+                    ],
+                    annotationProcessor : [
+
+                    ],
+                    compileOnly : [
+
+                    ],
+                    testImplementation : [
+
+                    ]
+            ]
+    ]
+
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="status_bar_color">#000000</color>
+    <color name="navigation_bar_color">#000000</color>
+    <color name="color_control_normal">#000000</color>
+    <color name="color_control_activated">#000000</color>
+    <color name="color_switch_thumb_normal">#000000</color>
+    <color name="color_foreground">#000000</color>
+
+    <color name="content_bg">#FFFFFF</color>
+
+</resources>

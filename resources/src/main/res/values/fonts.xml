@@ -1,0 +1,218 @@
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix">
+
+    <style name="CodeFont">
+        <item name="android:textColor">#ffffff</item>
+        <item name="fontPath">fonts/AvenirNextLTPro-Regular.otf</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- CodeFont.Smallest -->
+
+    <style name="CodeFont.Smallest">
+        <item name="android:textSize">10sp</item>
+        <item name="minTextSize">8sp</item>
+    </style>
+
+    <style name="CodeFont.Smallest.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CodeFont.Smallest.Black">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="CodeFont.Smallest.White.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <style name="CodeFont.Smallest.Black.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <!-- CodeFont.Smaller -->
+
+    <style name="CodeFont.Smaller">
+        <item name="android:textSize">12sp</item>
+        <item name="minTextSize">10sp</item>
+    </style>
+
+    <style name="CodeFont.Smaller.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CodeFont.Smaller.Black">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="CodeFont.Smaller.White.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <style name="CodeFont.Smaller.Black.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <!-- CodeFont.Small -->
+
+    <style name="CodeFont.Small">
+        <item name="android:textSize">14sp</item>
+        <item name="minTextSize">12sp</item>
+    </style>
+
+    <style name="CodeFont.Small.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CodeFont.Small.Black">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="CodeFont.Small.White.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <style name="CodeFont.Small.Black.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <!-- CodeFont.Medium -->
+
+    <style name="CodeFont.Medium">
+        <item name="android:textSize">16sp</item>
+        <item name="minTextSize">14sp</item>
+    </style>
+
+    <style name="CodeFont.Medium.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CodeFont.Medium.Black">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="CodeFont.Medium.White.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <style name="CodeFont.Medium.Black.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <!-- CodeFont.Large -->
+
+    <style name="CodeFont.Large">
+        <item name="android:textSize">18sp</item>
+        <item name="minTextSize">16sp</item>
+    </style>
+
+    <style name="CodeFont.Large.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CodeFont.Large.Black">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="CodeFont.Large.White.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <style name="CodeFont.Large.Black.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <!-- CodeFont.Largest -->
+
+    <style name="CodeFont.Largest">
+        <item name="android:textSize">20sp</item>
+        <item name="minTextSize">18sp</item>
+    </style>
+
+    <style name="CodeFont.Largest.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CodeFont.Largest.Black">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="CodeFont.Largest.White.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <style name="CodeFont.Largest.Black.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <!-- CodeFont.Big -->
+
+    <style name="CodeFont.Big">
+        <item name="android:textSize">22sp</item>
+        <item name="minTextSize">20sp</item>
+    </style>
+
+    <style name="CodeFont.Big.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CodeFont.Big.Black">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="CodeFont.Big.White.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <style name="CodeFont.Big.Black.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <!-- CodeFont.Bigger -->
+
+    <style name="CodeFont.Bigger">
+        <item name="android:textSize">34sp</item>
+        <item name="minTextSize">30sp</item>
+    </style>
+
+    <style name="CodeFont.Bigger.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CodeFont.Bigger.Black">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="CodeFont.Bigger.White.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <style name="CodeFont.Bigger.Black.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <!-- CodeFont.Biggest -->
+
+    <style name="CodeFont.Biggest">
+        <item name="android:textSize">38sp</item>
+        <item name="minTextSize">34sp</item>
+    </style>
+
+    <style name="CodeFont.Biggest.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CodeFont.Biggest.Black">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="CodeFont.Biggest.White.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+    <style name="CodeFont.Biggest.Black.Bold">
+        <item name="fontPath">fonts/AvenirNextLTPro-Bold.otf</item>
+    </style>
+
+</resources>

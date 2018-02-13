@@ -1,0 +1,167 @@
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: "org.sonarqube"
+
+android {
+
+    dexOptions {
+        preDexLibraries true
+        maxProcessCount 8
+        javaMaxHeapSize "4g"
+    }
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        applicationId rootProject.ext.androidApplicationId
+        versionCode rootProject.ext.androidVersionCode
+        versionName rootProject.ext.androidVersionName
+        testInstrumentationRunner rootProject.ext.testInstrumentationRunner
+        testApplicationId rootProject.ext.testApplicationId
+
+        Properties properties = new Properties()
+        if (project.rootProject.file('local.properties').exists()) {
+            properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        }
+        if (!properties.containsKey("dev.username")) {
+            properties.setProperty("dev.username", "")
+        }
+        if (!properties.containsKey("dev.password")) {
+            properties.setProperty("dev.password", "")
+        }
+
+        resValue "string", "dev_username", properties.getProperty("dev.username")
+        resValue "string", "dev_password", properties.getProperty("dev.password")
+
+        setProperty("archivesBaseName", "sample")
+
+        vectorDrawables.useSupportLibrary = true
+
+        ext.betaDistributionReleaseNotesFilePath = rootProject.ext.betaDistributionReleaseNotesFilePath
+        ext.betaDistributionGroupAliasesFilePath = rootProject.ext.betaDistributionGroupAliasesFilePath
+        ext.betaDistributionNotifications = rootProject.ext.betaDistributionNotifications
+
+        multiDexEnabled true
+    }
+
+    sonarqube {
+        properties {
+            property "sonar.projectName", rootProject.ext.sonarProjectName
+            property "sonar.projectVersion", rootProject.ext.androidVersionName
+            property "sonar.sources", "src/main/java"
+            property "sonar.host.url", rootProject.ext.sonarHostUrl
+            property "sonar.login", rootProject.ext.sonarLogin
+            property "sonar.organization", rootProject.ext.sonarOrganization
+            property "sonar.language", "java"
+            property "sonar.sourceEncoding", "UTF-8"
+        }
+    }
+
+    flavorDimensions "tier"
+
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
+                            'src/main/res/layouts/sample',
+                            'src/main/res/layouts',
+                            'src/main/res'
+                    ]
+        }
+    }
+
+    signingConfigs {
+        debug {
+            ext.enableCrashlytics = false
+            storeFile file('../buildSystem/debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+        release {
+            storeFile file('../buildSystem/release.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'androiddebugkey'
+        }
+    }
+
+    productFlavors {
+        dev {
+            dimension "tier"
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
+            resValue "string", "app_name", "Sample Dev"
+            resConfigs "xxhdpi"
+        }
+        prod {
+            dimension "tier"
+            resValue "string", "app_name", "Sample"
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'LICENSE.txt'
+    }
+}
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+    maven { url "https://clojars.org/repo/" }
+}
+
+dependencies {
+    implementation fileTree(include: '*.jar', dir: 'libs')
+
+//    implementation project(':commons')
+//    implementation project(':components')
+//    implementation project(':domain')
+//    implementation project(':data')
+
+    implementation deps.app.implementation
+    annotationProcessor deps.app.annotationProcessor
+    compileOnly deps.app.compileOnly
+    testImplementation deps.app.testImplementation
+    testAnnotationProcessor deps.app.testAnnotationProcessor
+    androidTestAnnotationProcessor deps.app.testAnnotationProcessor
+
+    implementation("com.crashlytics.sdk.android:crashlytics:${crashlyticsVersion}@aar") {
+        transitive = true
+    }
+
+}
+
+apply plugin: 'com.google.gms.google-services'

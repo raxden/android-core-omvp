@@ -1,0 +1,60 @@
+import java.util.regex.Pattern
+
+task addToGit(type: Exec) {
+    description 'Add git.'
+    commandLine "git", "add", "-A"
+}
+
+task commitToGit(type: Exec) {
+    description 'Commit git.'
+    commandLine "git", "commit", "-a"
+}
+
+task pushToGit(type: Exec) {
+    description 'Push git.'
+    commandLine "git", "push"
+}
+
+task increaseBuildVersion {
+    doFirst {
+        println(":increaseBuildVersion - Incrementing build version...")
+        println(":increaseBuildVersion - Upload new build version to repository...")
+        def versionName = increaseBuildVersion()
+        tasks.addToGit.execute()
+        createCommitToGitWithMessageTask("Build version increased")
+        tasks.commitToGitWithMessage.execute()
+        tasks.pushToGit.execute()
+        println(":increaseBuildVersion - Build version incremented to " + versionName)
+    }
+}
+
+def createCommitToGitWithMessageTask(message) {
+    return tasks.create(name: 'commitToGitWithMessage', type: Exec) {
+        description 'Commit git.'
+        commandLine "git", "commit", "-m", message
+    }
+}
+
+String increaseBuildVersion() {
+    def versionName
+    def gradlePropsFile = file('gradle.properties')
+    if (gradlePropsFile.isFile() && gradlePropsFile.canRead()) {
+        Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(gradlePropsFile))
+        versionName = versionProps['VERSION_NAME']
+        def patternVersionNumber = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)")
+        def matcherVersionNumber = patternVersionNumber.matcher(versionName)
+        if (matcherVersionNumber.find()) {
+            def majorVersion = Integer.parseInt(matcherVersionNumber.group(1))
+            def minorVersion = Integer.parseInt(matcherVersionNumber.group(2))
+            def buildVersion = Integer.parseInt(matcherVersionNumber.group(3)) + 1
+            versionName = majorVersion + "." + minorVersion + "." + buildVersion
+            versionProps['VERSION_NAME'] = matcherVersionNumber.replaceAll(versionName)
+            versionProps['VERSION_CODE'] = buildVersion.toString()
+        }
+        versionProps.store(gradlePropsFile.newWriter(), null)
+    } else {
+        throw new GradleException(":increaseBuildVersion - Could not read gradle.properties!")
+    }
+    return versionName
+}

@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="NewApi">
+
+    <!-- Content styles -->
+
+    <style name="BaseContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/content_bg</item>
+    </style>
+
+    <!-- ========================================================================= -->
+
+    <style name="Content" parent="BaseContent">
+
+    </style>
+
+    <style name="Content.Sample">
+
+    </style>
+
+</resources>

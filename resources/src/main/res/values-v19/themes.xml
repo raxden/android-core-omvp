@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BaseTheme.Transparent">
+        <item name="android:windowTranslucentStatus">true</item>
+        <!-- colorControlNormal is used for example in hamburger -->
+        <item name="colorControlNormal">@color/color_control_normal</item>
+    </style>
+
+
+</resources>

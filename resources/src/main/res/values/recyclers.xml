@@ -1,0 +1,24 @@
+
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="NewApi">
+
+    <!-- Content styles -->
+
+    <style name="BaseRecyclerView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <!-- ========================================================================= -->
+
+    <style name="RecyclerView" parent="BaseRecyclerView">
+
+    </style>
+
+    <style name="RecyclerView.Sample">
+
+    </style>
+
+</resources>

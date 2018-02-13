@@ -1,0 +1,24 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="NewApi">
+
+    <style name="SeparatorView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+    </style>
+
+    <style name="VerticalSeparatorView">
+        <item name="android:layout_width">0.5dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- ========================================================================= -->
+
+    <style name="SeparatorView.Black">
+        <item name="android:background">@android:color/black</item>
+    </style>
+
+
+    <style name="VerticalSeparatorView.Black">
+        <item name="android:background">@android:color/black</item>
+    </style>
+
+</resources>

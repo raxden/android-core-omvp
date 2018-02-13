@@ -1,0 +1,26 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="BaseTheme" parent="Theme.AppCompat.NoActionBar">
+
+    </style>
+
+    <style name="BaseTheme.Transparent">
+        <!-- colorControlNormal is used for example in hamburger -->
+        <item name="colorControlNormal">@color/color_control_normal</item>
+    </style>
+
+    <style name="BaseThemeDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <!-- ========================================================================= -->
+
+    <style name="AppTheme" parent="BaseTheme" />
+
+    <style name="AppTheme.Transparent" parent="BaseTheme.Transparent" />
+
+    <style name="Dialog" parent="BaseThemeDialog" />
+
+</resources>

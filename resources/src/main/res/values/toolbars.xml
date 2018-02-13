@@ -1,0 +1,22 @@
+
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="NewApi">
+
+    <!-- Content styles -->
+
+    <style name="BaseToolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@android:color/red</item>
+    </style>
+
+    <!-- ========================================================================= -->
+
+    <style name="Toolbar" parent="BaseToolbar">
+
+    </style>
+
+    <style name="Toolbar.Sample">
+        <item name="navigationIcon">@mipmap/ic_launcher_round</item>
+    </style>
+
+</resources>
