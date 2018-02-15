@@ -14,12 +14,12 @@ import io.reactivex.Single;
 
 public interface SampleRepository extends Repository {
 
-    Single<SampleDomain> retrieve();
+    Single<SampleDomain> retrieve(final long id);
 
     Maybe<List<SampleDomain>> retrieveList();
 
     Completable persist(final SampleDomain sampleDomain);
 
-    Completable remove(final SampleDomain sampleDomain);
+    Completable remove(final long id);
 
 }

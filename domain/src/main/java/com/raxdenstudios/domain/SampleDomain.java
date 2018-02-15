@@ -21,7 +21,6 @@ public class SampleDomain {
     int order;
 
     public SampleDomain() {
-        super();
     }
 
 }

@@ -1,0 +1,5 @@
+<resources>
+    <string name="unespected_error_title">¡Oh, vaya!</string>
+    <string name="unespected_error_message">Se ha producido un error inesperado, inténtalo más tarde.</string>
+    <string name="unespected_timeout_message">Ha ocurrido un problema en la conexión, inténtalo más tarde.</string>
+</resources>

@@ -195,6 +195,7 @@ ext {
             components : [
                     implementation: [
                             "com.android.support:design:${supportLibraryVersion}",
+                            "me.grantland:autofittextview:${autoFitTextViewVersion}",
                             "com.jakewharton.timber:timber:${timberVersion}"
                     ],
                     api : [],
@@ -204,6 +205,7 @@ ext {
             ],
             commons : [
                     implementation: [
+                            "org.modelmapper:modelmapper:${modelmapperVersion}",
                             "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}"
                     ],
                     api : [],

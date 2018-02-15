@@ -1,0 +1,26 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        vectorDrawables.useSupportLibrary = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':commons')
+    implementation project(':domain')
+
+    implementation deps.data.implementation
+    api deps.data.api
+    annotationProcessor deps.data.annotationProcessor
+    compileOnly deps.data.compileOnly
+    testImplementation deps.data.testImplementation
+
+}
