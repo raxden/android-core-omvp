@@ -1,0 +1,38 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="NewApi">
+
+    <style name="Input" parent="CodeFont.Small">
+
+    </style>
+
+    <!-- EditText -->
+
+    <style name="Input.EditText">
+        <item name="android:inputType">text|textCapSentences</item>
+        <item name="android:gravity">top|left</item>
+    </style>
+
+    <style name="Input.EditText.Email">
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:maxLength">35</item>
+    </style>
+
+    <style name="Input.EditText.Password">
+        <item name="android:inputType">textPassword</item>
+        <item name="android:maxLength">15</item>
+    </style>
+
+    <style name="Input.EditText.PostalCode">
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">5</item>
+    </style>
+
+    <style name="Input.EditText.Code">
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">10</item>
+    </style>
+
+    <style name="Input.EditText.Text">
+        <item name="android:inputType">text|textCapSentences|textMultiLine</item>
+    </style>
+
+</resources>

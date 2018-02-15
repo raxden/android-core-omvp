@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.seat.mobile.components.TextAdvancedInputLayout
+        android:id="@+id/input_layout"
+        style="@style/Input.TextInputLayout"
+        android:layout_marginBottom="-14dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/input_text"
+            style="@style/Input.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp" />
+
+    </com.seat.mobile.components.TextAdvancedInputLayout>
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/hint_fixed_to_left"
+        style="@style/CodeFont.Small.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:maxLines="1"
+        android:paddingLeft="12dp"
+        android:paddingRight="6dp" />
+
+</RelativeLayout>

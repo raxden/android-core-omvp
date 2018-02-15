@@ -1,0 +1,35 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="NewApi">
+
+    <style name="BaseTextInputLayout" parent="Theme.Design.Light">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@color/text_color_hint</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorControlNormal">@color/color_control_normal</item>
+        <item name="colorControlActivated">@color/color_control_activated</item>
+    </style>
+
+    <!-- TextInputLayout -->
+
+    <style name="Input.TextInputLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">90dp</item>
+        <item name="android:theme">@style/BaseTextInputLayout</item>
+    </style>
+
+    <style name="Input.TextInputLayout.Password">
+        <item name="passwordToggleEnabled">false</item>
+        <item name="counterEnabled">false</item>
+        <item name="counterMaxLength">15</item>
+    </style>
+
+    <style name="Input.TextInputLayout.Password.ToggleEnabled">
+        <item name="passwordToggleEnabled">true</item>
+    </style>
+
+    <style name="Input.TextInputLayout.PostalCode">
+        <item name="counterEnabled">false</item>
+        <item name="counterMaxLength">5</item>
+    </style>
+
+</resources>

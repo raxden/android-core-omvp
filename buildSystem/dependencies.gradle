@@ -142,9 +142,7 @@ ext {
                             "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",
                             "io.reactivex.rxjava2:rxjava:${reactiveJavaVersion}"
                     ],
-                    implementationTransitive : [
-
-                    ],
+                    api : [],
                     annotationProcessor : [
                             "com.google.dagger:dagger-compiler:${daggerVersion}",
                             "org.projectlombok:lombok:${lombokVersion}",
@@ -153,9 +151,7 @@ ext {
                     compileOnly : [
                             "org.projectlombok:lombok:${lombokVersion}"
                     ],
-                    testImplementation : [
-
-                    ]
+                    testImplementation : []
             ],
             data : [
                     implementation: [
@@ -186,9 +182,7 @@ ext {
                             "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",
                             "io.reactivex.rxjava2:rxjava:${reactiveJavaVersion}"
                     ],
-                    implementationTransitive : [
-
-                    ],
+                    api : [],
                     annotationProcessor : [
                             "com.google.dagger:dagger-compiler:${daggerVersion}",
                             "org.projectlombok:lombok:${lombokVersion}"
@@ -196,82 +190,37 @@ ext {
                     compileOnly : [
                             "org.projectlombok:lombok:${lombokVersion}"
                     ],
-                    testImplementation : [
-
-                    ]
+                    testImplementation : []
             ],
             components : [
                     implementation: [
-                            "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
-                            "com.jakewharton:butterknife:${butterknifeVersion}",
-                            "me.grantland:autofittextview:${autoFitTextViewVersion}",
-                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
-                            "com.jakewharton.timber:timber:${timberVersion}",
-                            "com.prolificinteractive:material-calendarview:${calendarViewVersion}",
-                            "uk.co.chrisjenx:calligraphy:${calligraphyVersion}",
-                            "com.android.support:cardview-v7:${supportLibraryVersion}",
                             "com.android.support:design:${supportLibraryVersion}",
-                            "com.android.support.constraint:constraint-layout:${constraintsLayoutVersion}"
+                            "com.jakewharton.timber:timber:${timberVersion}"
                     ],
-                    implementationTransitive : [
-
-                    ],
-                    annotationProcessor : [
-                            "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
-                    ],
-                    compileOnly : [
-
-                    ],
-                    testImplementation : [
-
-                    ]
+                    api : [],
+                    annotationProcessor : [],
+                    compileOnly : [],
+                    testImplementation : []
             ],
             commons : [
                     implementation: [
-                            "com.android.support:cardview-v7:${supportLibraryVersion}",
-                            "com.android.support:design:${supportLibraryVersion}",
-
-                            "com.android.support.constraint:constraint-layout:${constraintsLayoutVersion}",
-                            "com.prolificinteractive:material-calendarview:${calendarViewVersion}",
-                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
-
-                            "com.github.raxden:android-resources:${androidResourcesVersion}@aar",
-                            "me.grantland:autofittextview:${autoFitTextViewVersion}",
-                            "uk.co.chrisjenx:calligraphy:${calligraphyVersion}"
+                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}"
                     ],
-                    implementationTransitive : [
-
-                    ],
-                    annotationProcessor : [
-
-                    ],
-                    compileOnly : [
-
-                    ],
-                    testImplementation : [
-
-                    ]
+                    api : [],
+                    annotationProcessor : [],
+                    compileOnly : [],
+                    testImplementation : []
             ],
             resources : [
                     implementation: [
-                            "com.android.support:support-compat:${supportLibraryVersion}",
-                            "com.android.support:appcompat-v7:${supportLibraryVersion}",
                             "com.android.support:design:${supportLibraryVersion}",
-
+                            "me.grantland:autofittextview:${autoFitTextViewVersion}",
                             "uk.co.chrisjenx:calligraphy:${calligraphyVersion}"
                     ],
-                    implementationTransitive : [
-
-                    ],
-                    annotationProcessor : [
-
-                    ],
-                    compileOnly : [
-
-                    ],
-                    testImplementation : [
-
-                    ]
+                    api : [],
+                    annotationProcessor : [],
+                    compileOnly : [],
+                    testImplementation : []
             ]
     ]
 

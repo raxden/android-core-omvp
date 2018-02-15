@@ -14,11 +14,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':resources')
 
-    implementation deps.resources.implementation
-    api deps.resources.api
-    annotationProcessor deps.resources.annotationProcessor
-    compileOnly deps.resources.compileOnly
-    testImplementation deps.resources.testImplementation
+    implementation deps.commons.implementation
+    api deps.commons.api
+    annotationProcessor deps.commons.annotationProcessor
+    compileOnly deps.commons.compileOnly
+    testImplementation deps.commons.testImplementation
 
 }

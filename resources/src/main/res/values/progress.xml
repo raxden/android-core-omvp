@@ -3,13 +3,13 @@
     <!-- Content styles -->
 
     <style name="BaseProgressBar" parent="Widget.AppCompat.ProgressBar">
-        <item name="android:progressTint">@android:color/red</item>
+        <item name="android:progressTint">@color/progress_tint_color</item>
         <item name="android:theme">@style/Theme.AppCompat.Light</item>
     </style>
 
     <style name="BaseProgressHorizontalBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressTint">@color/progress_tint_color</item>
         <item name="android:theme">@style/Theme.AppCompat.Light</item>
-        <item name="android:progressTint">@android:color/red</item>
     </style>
 
     <!-- ========================================================================= -->
