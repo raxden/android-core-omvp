@@ -1,2 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.raxdenstudios.data" />
+    package="com.omvp.data" />

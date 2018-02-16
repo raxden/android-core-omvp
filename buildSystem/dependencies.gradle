@@ -8,12 +8,10 @@ ext {
     multidexVersion = '1.0.1'
 
     androidCommonsVersion = '3.0.13'        // https://github.com/raxden/commons
-    androidResourcesVersion = '3.0.3'       // https://github.com/raxden/resources
     androidMVPVersion = '3.0.15'            // https://github.com/raxden/android-mvp
     androidPreferencesVersion = '3.0.3'     // https://github.com/raxden/android-preferences
     androidRecyclerVersion = '3.0.7'        // https://github.com/raxden/android-recycler
     androidSquareVersion = '3.0.83'         // https://github.com/raxden/square
-    androidCronsVersion = '3.0.8'           // https://github.com/raxden/android-crons
 
     // Libraries
     reactiveAndroidVersion = '2.0.1'        // https://github.com/ReactiveX/RxAndroid
@@ -30,14 +28,8 @@ ext {
     daggerVersion = '2.14.1'                // https://github.com/square/dagger
     androidThreeTenVersion = '1.0.5'        // https://github.com/JakeWharton/ThreeTenABP
     autoFitTextViewVersion = '0.2.+'        // https://github.com/grantland/android-autofittextview
-    viewPagerIndicatorVersion = '0.2.0'     // https://github.com/romandanylyk/PageIndicatorView
-    calendarViewVersion = '1.4.3'           // https://github.com/prolificinteractive/material-calendarview
-    mapsVersion = '0.5+'
     modelmapperVersion = '1.1.0'            // https://github.com/modelmapper/modelmapper
     constraintsLayoutVersion = '1.0.2'      // https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html
-    advrecyclerviewVersion = '0.10.6'       // https://github.com/h6ah4i/android-advancedrecyclerview
-    jodaVersion = '2.9.9.1'
-    jmustacheVersion = '1.13'
 
     // Testing
     jUnitVersion = '4.12'
@@ -62,32 +54,26 @@ ext {
                             "com.android.support.constraint:constraint-layout:${constraintsLayoutVersion}",
 
                             "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
-                            "com.github.raxden:android-resources:${androidResourcesVersion}@aar",
                             "com.github.raxden:android-mvp:${androidMVPVersion}@aar",
                             "com.github.raxden:android-recycler:${androidRecyclerVersion}@aar",
                             "com.github.raxden:android-preferences:${androidPreferencesVersion}@aar",
-                            "com.github.raxden.android-crons:crons:${androidCronsVersion}@aar",
                             "com.github.raxden.square:square:${androidSquareVersion}@aar",
                             "com.github.raxden.square:square-commons:${androidSquareVersion}@aar",
                             "com.github.raxden.square:square-reactive:${androidSquareVersion}@aar",
 
-                            "com.google.dagger:dagger:${daggerVersion}",
-                            "com.google.maps.android:android-maps-utils:${mapsVersion}",
                             "com.google.android.gms:play-services-base:${servicesVersion}",
                             "com.google.android.gms:play-services-analytics:${servicesVersion}",
-                            "com.google.android.gms:play-services-maps:${servicesVersion}",
-                            "com.google.android.gms:play-services-location:${servicesVersion}",
-                            "com.google.android.gms:play-services-auth:${servicesVersion}",
-                            "com.google.android.gms:play-services-places:${servicesVersion}",
-                            "com.google.android.gms:play-services-gcm:${servicesVersion}",
-                            "com.google.android.gms:play-services-tagmanager:${servicesVersion}",
+
                             "com.google.firebase:firebase-core:${servicesVersion}",
                             "com.google.firebase:firebase-messaging:${servicesVersion}",
+
+                            "com.google.dagger:dagger:${daggerVersion}",
 
                             "com.squareup.retrofit2:retrofit:${retrofitVersion}",
                             "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
                             "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
                             "com.squareup.retrofit2:converter-scalars:${retrofitVersion}",
+
                             "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
 
                             "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",
@@ -98,15 +84,10 @@ ext {
                             "com.jakewharton:butterknife:${butterknifeVersion}",
 
                             "org.modelmapper:modelmapper:${modelmapperVersion}",
-                            "com.prolificinteractive:material-calendarview:${calendarViewVersion}",
-                            "com.romandanylyk:pageindicatorview:${viewPagerIndicatorVersion}@aar",
                             "org.parceler:parceler-api:${parcelerVersion}",
                             "com.github.bumptech.glide:glide:${glideVersion}",
                             "uk.co.chrisjenx:calligraphy:${calligraphyVersion}",
-                            "me.grantland:autofittextview:${autoFitTextViewVersion}",
-
-                            "net.danlew:android.joda:${jodaVersion}",
-                            "com.samskivert:jmustache:${jmustacheVersion}"
+                            "me.grantland:autofittextview:${autoFitTextViewVersion}"
                     ],
                     annotationProcessor : [
                             "com.jakewharton:butterknife-compiler:${butterknifeVersion}",
@@ -131,13 +112,12 @@ ext {
             ],
             domain : [
                     implementation: [
-                            "org.parceler:parceler-api:${parcelerVersion}",
-                            "com.jakewharton.timber:timber:${timberVersion}",
-                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
-
                             "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
 
-                            "com.google.android.gms:play-services-maps:${servicesVersion}",
+                            "org.parceler:parceler-api:${parcelerVersion}",
+
+                            "com.jakewharton.timber:timber:${timberVersion}",
+                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
 
                             "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",
                             "io.reactivex.rxjava2:rxjava:${reactiveJavaVersion}"
@@ -157,16 +137,10 @@ ext {
                     implementation: [
                             "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
                             "com.github.raxden:android-preferences:${androidPreferencesVersion}@aar",
-                            "com.github.raxden.android-crons:crons:${androidCronsVersion}@aar",
-
-                            "com.google.android.gms:play-services-maps:${servicesVersion}",
-                            "com.google.android.gms:play-services-location:${servicesVersion}",
-                            "com.google.android.gms:play-services-gcm:${servicesVersion}",
-                            "com.google.android.gms:play-services-places:${servicesVersion}",
 
                             "com.google.firebase:firebase-messaging:${servicesVersion}",
+
                             "com.google.dagger:dagger:${daggerVersion}",
-                            "com.google.maps.android:android-maps-utils:${mapsVersion}",
 
                             "com.jakewharton.timber:timber:${timberVersion}",
                             "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
@@ -177,6 +151,7 @@ ext {
                             "com.squareup.retrofit2:converter-scalars:${retrofitVersion}",
                             "com.squareup.okhttp3:okhttp:${okHttpVersion}",
                             "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+
                             "org.modelmapper:modelmapper:${modelmapperVersion}",
 
                             "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",

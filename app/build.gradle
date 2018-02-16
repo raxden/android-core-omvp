@@ -145,11 +145,10 @@ repositories {
 
 dependencies {
     implementation fileTree(include: '*.jar', dir: 'libs')
-
-//    implementation project(':commons')
-//    implementation project(':components')
-//    implementation project(':domain')
-//    implementation project(':data')
+    implementation project(':commons')
+    implementation project(':components')
+    implementation project(':domain')
+    implementation project(':data')
 
     implementation deps.app.implementation
     annotationProcessor deps.app.annotationProcessor

@@ -1,0 +1,6 @@
+<resources>
+    <string-array name="available_locale_list">
+        <item>es_ES</item>
+        <item>en_EN</item>
+    </string-array>
+</resources>
