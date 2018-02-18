@@ -6,4 +6,6 @@ package com.omvp.commons;
 
 public class Constants {
 
+    public static final String DEFAULT_FONT = "fonts/AvenirNextLTPro-Regular.otf";
+
 }

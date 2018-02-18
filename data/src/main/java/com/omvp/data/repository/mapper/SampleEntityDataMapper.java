@@ -2,23 +2,20 @@ package com.omvp.data.repository.mapper;
 
 import android.content.Context;
 
-import com.omvp.data.entity.SampleEntity;
 import com.omvp.commons.ModelDataMapper;
+import com.omvp.data.entity.SampleEntity;
 import com.omvp.domain.SampleDomain;
 
 import org.modelmapper.ModelMapper;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 /**
  * Created by Angel on 27/09/2017.
  */
 
-@Singleton
+//@Singleton
 public class SampleEntityDataMapper extends ModelDataMapper<SampleEntity, SampleDomain> {
 
-    @Inject
+//    @Inject
     public SampleEntityDataMapper(Context context, ModelMapper modelMapper) {
         super(context, modelMapper);
     }

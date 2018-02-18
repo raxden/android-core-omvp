@@ -23,4 +23,8 @@
 
     <style name="Dialog" parent="BaseThemeDialog" />
 
+    <!-- ========================================================================= -->
+
+    <style name="AppTheme.Splash" parent="AppTheme.Transparent"></style>
+
 </resources>

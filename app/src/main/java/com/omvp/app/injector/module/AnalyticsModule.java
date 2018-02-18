@@ -1,6 +1,6 @@
 package com.omvp.app.injector.module;
 
-import android.content.Context;
+import android.app.Application;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
@@ -13,18 +13,18 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class AnalyticsModule {
+public abstract class AnalyticsModule {
 
     @Provides
     @Singleton
-    FirebaseAnalytics provideFirebaseAnalytics(Context context) {
-        return FirebaseAnalytics.getInstance(context);
+    static FirebaseAnalytics firebaseAnalytics(Application application) {
+        return FirebaseAnalytics.getInstance(application);
     }
 
     @Provides
     @Singleton
-    Tracker provideTracker(Context context) {
-        GoogleAnalytics analytics = GoogleAnalytics.getInstance(context);
+    static Tracker tracker(Application application) {
+        GoogleAnalytics analytics = GoogleAnalytics.getInstance(application);
         return analytics.newTracker(R.xml.app_tracker);
     }
 

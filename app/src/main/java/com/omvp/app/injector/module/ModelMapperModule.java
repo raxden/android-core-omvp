@@ -21,11 +21,11 @@ import dagger.Provides;
 import timber.log.Timber;
 
 @Module
-public class ModelMapperModule {
+public abstract class ModelMapperModule {
 
     @Provides
     @Singleton
-    ModelMapper provideModelMapper() {
+    static ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
 
         addLocalDateConverter(modelMapper);
@@ -35,7 +35,7 @@ public class ModelMapperModule {
         return modelMapper;
     }
 
-    private void addLocalDateConverter(ModelMapper modelMapper) {
+    private static void addLocalDateConverter(ModelMapper modelMapper) {
         modelMapper.createTypeMap(Long.class, LocalDate.class);
         modelMapper.addConverter(new AbstractConverter<Long, LocalDate>() {
             @Override
@@ -70,7 +70,7 @@ public class ModelMapperModule {
         });
     }
 
-    private void addLocalDateTimeConverter(ModelMapper modelMapper) {
+    private static void addLocalDateTimeConverter(ModelMapper modelMapper) {
         modelMapper.createTypeMap(Long.class, LocalDateTime.class);
         modelMapper.addConverter(new AbstractConverter<Long, LocalDateTime>() {
             @Override
@@ -105,7 +105,7 @@ public class ModelMapperModule {
         });
     }
 
-    private void addBigDecimalConverter(ModelMapper modelMapper) {
+    private static void addBigDecimalConverter(ModelMapper modelMapper) {
         modelMapper.createTypeMap(String.class, BigDecimal.class);
         modelMapper.addConverter(new AbstractConverter<String, BigDecimal>() {
             @Override

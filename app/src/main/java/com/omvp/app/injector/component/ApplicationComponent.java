@@ -1,22 +1,18 @@
 package com.omvp.app.injector.component;
 
-import android.content.Context;
-
+import com.omvp.app.AppApplication;
 import com.omvp.app.injector.module.AnalyticsModule;
 import com.omvp.app.injector.module.ApplicationModule;
+import com.omvp.app.injector.module.GsonModule;
+import com.omvp.app.injector.module.InjectorsModule;
 import com.omvp.app.injector.module.ModelMapperModule;
 import com.omvp.app.injector.module.NetworkModule;
-import com.omvp.app.utils.TrackerManager;
-import com.omvp.data.manager.CredentialsManager;
-import com.omvp.data.manager.LocaleManager;
-import com.omvp.data.network.gateway.AppGateway;
-import com.raxdenstudios.preferences.AdvancedPreferences;
-
-import org.modelmapper.ModelMapper;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
+import dagger.android.AndroidInjector;
+import dagger.android.support.AndroidSupportInjectionModule;
 
 /**
  * Created by Ángel Gómez on 16/02/2018.
@@ -25,28 +21,20 @@ import dagger.Component;
 @Singleton
 @Component(
         modules = {
+                AndroidSupportInjectionModule.class,
                 ApplicationModule.class,
-                NetworkModule.class,
+                GsonModule.class,
+                ModelMapperModule.class,
                 AnalyticsModule.class,
-                ModelMapperModule.class
+                NetworkModule.class,
+                InjectorsModule.class
         }
 )
-public interface ApplicationComponent {
+public interface ApplicationComponent extends AndroidInjector<AppApplication> {
 
-        // To continuation exposed to sub-graphs.
+        @Component.Builder
+        abstract class Builder extends AndroidInjector.Builder<AppApplication> {
 
-        Context getContext();
-
-        ModelMapper getModelMapper();
-
-        CredentialsManager getCredentialsManager();
-
-        LocaleManager getLocaleManager();
-
-        TrackerManager getTrackerManager();
-
-        AdvancedPreferences getAdvancedPreferences();
-
-        AppGateway getAppGateway();
+        }
 
 }

@@ -67,7 +67,7 @@ ext {
                             "com.google.firebase:firebase-core:${servicesVersion}",
                             "com.google.firebase:firebase-messaging:${servicesVersion}",
 
-                            "com.google.dagger:dagger:${daggerVersion}",
+                            "com.google.dagger:dagger-android-support:${daggerVersion}",
 
                             "com.squareup.retrofit2:retrofit:${retrofitVersion}",
                             "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
@@ -90,11 +90,12 @@ ext {
                             "me.grantland:autofittextview:${autoFitTextViewVersion}"
                     ],
                     annotationProcessor : [
+                            "com.google.dagger:dagger-compiler:${daggerVersion}",
+                            "com.google.dagger:dagger-android-processor:${daggerVersion}",
                             "com.jakewharton:butterknife-compiler:${butterknifeVersion}",
                             "org.projectlombok:lombok:${lombokVersion}",
                             "com.github.bumptech.glide:compiler:${glideVersion}",
-                            "org.parceler:parceler:${parcelerVersion}",
-                            "com.google.dagger:dagger-compiler:${daggerVersion}"
+                            "org.parceler:parceler:${parcelerVersion}"
                     ],
                     compileOnly : [
                             "org.projectlombok:lombok:${lombokVersion}"
@@ -106,9 +107,7 @@ ext {
                             "org.robolectric:robolectric:${robolectricVersion}",
                             "org.robolectric:shadows-multidex:${robolectricVersion}"
                     ],
-                    testAnnotationProcessor : [
-                            "com.google.dagger:dagger-compiler:${daggerVersion}"
-                    ]
+                    testAnnotationProcessor : []
             ],
             domain : [
                     implementation: [
@@ -124,7 +123,6 @@ ext {
                     ],
                     api : [],
                     annotationProcessor : [
-                            "com.google.dagger:dagger-compiler:${daggerVersion}",
                             "org.projectlombok:lombok:${lombokVersion}",
                             "org.parceler:parceler:${parcelerVersion}"
                     ],
@@ -139,8 +137,6 @@ ext {
                             "com.github.raxden:android-preferences:${androidPreferencesVersion}@aar",
 
                             "com.google.firebase:firebase-messaging:${servicesVersion}",
-
-                            "com.google.dagger:dagger:${daggerVersion}",
 
                             "com.jakewharton.timber:timber:${timberVersion}",
                             "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
@@ -159,7 +155,6 @@ ext {
                     ],
                     api : [],
                     annotationProcessor : [
-                            "com.google.dagger:dagger-compiler:${daggerVersion}",
                             "org.projectlombok:lombok:${lombokVersion}"
                     ],
                     compileOnly : [

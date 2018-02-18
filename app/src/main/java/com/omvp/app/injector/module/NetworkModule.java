@@ -31,7 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 @Module
-public class NetworkModule {
+public abstract class NetworkModule {
 
     private static final int CACHE_MAX_AGE = 60 * 10;               // read from cache for 10 minutes
     private static final int CACHE_MAX_STALE = 60 * 60 * 24 * 28;   // tolerate 4-weeks stale
@@ -40,7 +40,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    HttpLoggingInterceptor.Level provideHttpLogginInterceptorLevel() {
+    static HttpLoggingInterceptor.Level httpLoggingInterceptorLevel() {
         if (BuildConfig.DEBUG) {
             return HttpLoggingInterceptor.Level.BODY;
         } else {
@@ -52,7 +52,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    CacheInterceptor provideCacheInterceptor(Context context) {
+    static CacheInterceptor cacheInterceptor(Context context) {
         CacheInterceptor cacheInterceptor = new CacheInterceptor(context);
         cacheInterceptor.setCacheMaxAge(CACHE_MAX_AGE);
         cacheInterceptor.setCacheMaxStale(CACHE_MAX_STALE);
@@ -61,13 +61,13 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    LocaleInterceptor provideLocaleInterceptor(LocaleManager localeManager) {
+    static LocaleInterceptor localeInterceptor(LocaleManager localeManager) {
         return new LocaleInterceptor(localeManager);
     }
 
     @Provides
     @Singleton
-    HttpLoggingInterceptor provideHttpLoggingInterceptor(HttpLoggingInterceptor.Level level) {
+    static HttpLoggingInterceptor httpLoggingInterceptor(HttpLoggingInterceptor.Level level) {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(level);
         return loggingInterceptor;
@@ -75,7 +75,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    CredentialsInterceptor provideCredentialsInterceptor(CredentialsManager credentialsManager) {
+    static CredentialsInterceptor credentialsInterceptor(CredentialsManager credentialsManager) {
         return new CredentialsInterceptor(credentialsManager);
     }
 
@@ -83,7 +83,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    OkHttpClient provideHttpClient(HttpLoggingInterceptor loggingInterceptor, LocaleInterceptor localeInterceptor, Cache cache, CacheInterceptor cacheInterceptor) {
+    static OkHttpClient httpClient(HttpLoggingInterceptor loggingInterceptor, LocaleInterceptor localeInterceptor, Cache cache, CacheInterceptor cacheInterceptor) {
         return new OkHttpClient.Builder()
                 .addNetworkInterceptor(loggingInterceptor)
                 .addNetworkInterceptor(cacheInterceptor)
@@ -99,7 +99,7 @@ public class NetworkModule {
     @Provides
     @Singleton
     @Named("credentials")
-    OkHttpClient provideCredentialsHttpClient(HttpLoggingInterceptor loggingInterceptor, CredentialsInterceptor credentialsInterceptor, LocaleInterceptor localeInterceptor) {
+    static OkHttpClient credentialsHttpClient(HttpLoggingInterceptor loggingInterceptor, CredentialsInterceptor credentialsInterceptor, LocaleInterceptor localeInterceptor) {
         return new OkHttpClient.Builder()
                 .addNetworkInterceptor(loggingInterceptor)
                 .addInterceptor(credentialsInterceptor)
@@ -115,7 +115,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit(Context context, OkHttpClient httpClient, @Named("excludeFieldsWithoutExposeAnnotation") Gson gson) {
+    static Retrofit retrofit(Context context, OkHttpClient httpClient, @Named("excludeFieldsWithoutExposeAnnotation") Gson gson) {
         return new Retrofit.Builder()
                 .baseUrl(context.getString(R.string.api_domain))
                 .client(httpClient)
@@ -128,8 +128,8 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    @Named("oauth")
-    Retrofit provideOauthRetrofit(Context context, @Named("credentials") OkHttpClient httpClient, @Named("excludeFieldsWithoutExposeAnnotation") Gson gson) {
+    @Named("credentials")
+    static Retrofit credentialsRetrofit(Context context, @Named("credentials") OkHttpClient httpClient, @Named("excludeFieldsWithoutExposeAnnotation") Gson gson) {
         return new Retrofit.Builder()
                 .baseUrl(context.getString(R.string.api_domain))
                 .client(httpClient)
@@ -144,7 +144,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    AppRetrofitService provideAppRetrofitService(Retrofit retrofit) {
+    static AppRetrofitService appRetrofitService(Retrofit retrofit) {
         return retrofit.create(AppRetrofitService.class);
     }
 
@@ -152,7 +152,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    AppGateway provideAppGateway(Context context, AppRetrofitService service) {
+    static AppGateway appGateway(Context context, AppRetrofitService service) {
         return new AppRetrofitGatewayImpl(context, service);
     }
 
