@@ -45,7 +45,7 @@ public abstract class BaseActivityModule {
 
     @Provides
     @PerActivity
-    static FragmentManager fragmentManager(Activity activity) {
+    static FragmentManager activityFragmentManager(Activity activity) {
         return activity.getFragmentManager();
     }
 

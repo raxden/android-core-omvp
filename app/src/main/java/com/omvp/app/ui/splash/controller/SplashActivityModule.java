@@ -15,7 +15,9 @@ import dagger.android.ContributesAndroidInjector;
 /**
  * Provides splash activity dependencies
  */
-@Module(includes = BaseActivityModule.class)
+@Module(includes = {
+        BaseActivityModule.class
+})
 public abstract class SplashActivityModule {
 
     /**
@@ -31,6 +33,8 @@ public abstract class SplashActivityModule {
     @Binds
     @PerActivity
     abstract Activity activity(SplashActivity activity);
+
+    // =============================================================================================
 
     /**
      * Provides the injector for the {@link SplashFragment}, which has access to the dependencies

@@ -11,8 +11,8 @@ import com.omvp.app.injector.module.NetworkModule;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import dagger.android.AndroidInjectionModule;
 import dagger.android.AndroidInjector;
-import dagger.android.support.AndroidSupportInjectionModule;
 
 /**
  * Created by Ángel Gómez on 16/02/2018.
@@ -21,7 +21,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Singleton
 @Component(
         modules = {
-                AndroidSupportInjectionModule.class,
+                AndroidInjectionModule.class,
                 ApplicationModule.class,
                 GsonModule.class,
                 ModelMapperModule.class,

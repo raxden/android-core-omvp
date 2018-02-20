@@ -29,31 +29,31 @@ public abstract class BasePresenter<TView extends BaseView> extends Presenter<TV
 
     // Methods to override by presenter childs. ====================================================
 
-    protected void showError(int title, int description) {
-        showError(getResources().getString(title), getResources().getString(description));
+    protected void showError(int code, int title, int description) {
+        showError(code, getResources().getString(title), getResources().getString(description));
     }
 
-    protected void showError(String title, String description) {
+    protected void showError(int code, String title, String description) {
         if (mView != null) {
-            mView.showError(title, description);
+            mView.showError(code, title, description);
         }
     }
 
-    protected void showLoading() {
-        showLoading("");
+    protected void showProgress() {
+        showProgress(0, "");
     }
 
-    protected void showLoading(int message) {
-        showLoading(getResources().getString(message));
+    protected void showProgress(float progress, int message) {
+        showProgress(progress, getResources().getString(message));
     }
 
-    protected void showLoading(String message) {
+    protected void showProgress(float progress, String message) {
         if (mView != null) {
-            mView.showProgress(message);
+            mView.showProgress(progress, message);
         }
     }
 
-    protected void hideLoading() {
+    protected void hideProgress() {
         if (mView != null) {
             mView.hideProgress();
         }

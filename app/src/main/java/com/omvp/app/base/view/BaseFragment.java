@@ -2,8 +2,6 @@ package com.omvp.app.base.view;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,14 +12,10 @@ import com.raxdenstudios.mvp.presenter.IPresenter;
 import com.raxdenstudios.square.SquareMVPDialogFragment;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasFragmentInjector;
 
 /**
  * Abstract (Dialog)Fragment for all (Dialog)Fragments and child (Dialog)Fragments to extend.
@@ -48,7 +42,7 @@ import dagger.android.HasFragmentInjector;
  */
 public abstract class BaseFragment<TPresenter extends IPresenter, TCallback extends BaseFragmentCallback>
         extends SquareMVPDialogFragment<TPresenter>
-        implements BaseView, HasFragmentInjector {
+        implements BaseView {
 
     /**
      * A reference to the activity Context is injected and used instead of the getter method. This
@@ -68,20 +62,6 @@ public abstract class BaseFragment<TPresenter extends IPresenter, TCallback exte
      */
     @Inject
     protected TrackerManager mTrackManager;
-
-    /**
-     * A reference to the FragmentManager is injected and used instead of the getter method. This
-     * enables ease of mocking and verification in tests (in case Fragment needs testing).
-     * <p>
-     * For more details, see https://github.com/vestrel00/android-dagger-butterknife-mvp/pull/52
-     */
-    // Note that this should not be used within a child fragment.
-    @Inject
-    @Named(BaseFragmentModule.CHILD_FRAGMENT_MANAGER)
-    protected FragmentManager mChildFragmentManager;
-
-    @Inject
-    DispatchingAndroidInjector<Fragment> mChildFragmentInjector;
 
     @Nullable
     private Unbinder mUnbinder;
@@ -193,11 +173,6 @@ public abstract class BaseFragment<TPresenter extends IPresenter, TCallback exte
     @Override
     public void trackView() {
         mTrackManager.trackScreen(this);
-    }
-
-    @Override
-    public AndroidInjector<Fragment> fragmentInjector() {
-        return mChildFragmentInjector;
     }
 
     private void initFragmentCallback(Activity activity) {
