@@ -67,7 +67,8 @@ android {
         main {
             res.srcDirs =
                     [
-                            'src/main/res/layouts/sample',
+                            'src/main/res/layouts/commons',
+                            'src/main/res/layouts/splash',
                             'src/main/res/layouts',
                             'src/main/res'
                     ]
