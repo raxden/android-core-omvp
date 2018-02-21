@@ -1,9 +1,9 @@
-package com.omvp.app.base.view;
+package com.omvp.app.base.mvp.view;
 
 /**
  * Don´t modify this class under no circumstances, it's a joke modify it if force is with you.
  */
-public interface BaseFragmentCallback {
+public interface BaseView extends IView {
 
     void showProgress(float progress, String message);
 
@@ -12,5 +12,7 @@ public interface BaseFragmentCallback {
     void showError(int code, String title, String message);
 
     void showMessage(int code, String title, String message);
+
+    void trackView();
 
 }

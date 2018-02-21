@@ -1,12 +1,8 @@
 package com.omvp.app.injector.component;
 
-import com.omvp.app.AppApplication;
-import com.omvp.app.injector.module.AnalyticsModule;
-import com.omvp.app.injector.module.ApplicationModule;
-import com.omvp.app.injector.module.GsonModule;
+import com.omvp.app.base.BaseApplication;
+import com.omvp.app.base.BaseApplicationModule;
 import com.omvp.app.injector.module.InjectorsModule;
-import com.omvp.app.injector.module.ModelMapperModule;
-import com.omvp.app.injector.module.NetworkModule;
 
 import javax.inject.Singleton;
 
@@ -22,18 +18,14 @@ import dagger.android.AndroidInjector;
 @Component(
         modules = {
                 AndroidInjectionModule.class,
-                ApplicationModule.class,
-                GsonModule.class,
-                ModelMapperModule.class,
-                AnalyticsModule.class,
-                NetworkModule.class,
+                BaseApplicationModule.class,
                 InjectorsModule.class
         }
 )
-public interface ApplicationComponent extends AndroidInjector<AppApplication> {
+public interface ApplicationComponent extends AndroidInjector<BaseApplication> {
 
         @Component.Builder
-        abstract class Builder extends AndroidInjector.Builder<AppApplication> {
+        abstract class Builder extends AndroidInjector.Builder<BaseApplication> {
 
         }
 

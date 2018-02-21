@@ -1,26 +1,11 @@
 package com.omvp.app.ui.splash.view;
 
-import android.content.Context;
-
-import com.omvp.app.base.view.BaseFragment;
-import com.raxdenstudios.mvp.presenter.IPresenter;
-
-import java.util.List;
+import com.omvp.app.base.mvp.view.BaseViewFragment;
+import com.omvp.app.ui.splash.presenter.SplashPresenter;
 
 /**
  * Created by Ángel Gómez on 18/02/2018.
  */
-
-public class SplashFragment extends BaseFragment {
-
-    @Override
-    protected void setupInterceptors(List list) {
-
-    }
-
-    @Override
-    public IPresenter initializePresenter(Context context) {
-        return null;
-    }
+public class SplashFragment extends BaseViewFragment<SplashPresenter> implements SplashView {
 
 }

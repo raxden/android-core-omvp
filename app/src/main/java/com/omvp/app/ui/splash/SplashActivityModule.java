@@ -1,8 +1,9 @@
-package com.omvp.app.ui.splash.controller;
+package com.omvp.app.ui.splash;
 
 import android.app.Activity;
 
-import com.omvp.app.base.controller.BaseActivityModule;
+import com.omvp.app.base.BaseActivity;
+import com.omvp.app.base.BaseActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.injector.scope.PerFragment;
 import com.omvp.app.ui.splash.view.SplashFragment;
@@ -25,7 +26,7 @@ public abstract class SplashActivityModule {
      * activity modules, which must provide a concrete implementation of {@link Activity}."
      * <p>
      * This provides the activity required to inject the dependencies into the
-     * {@link com.omvp.app.base.controller.BaseActivity}.
+     * {@link BaseActivity}.
      *
      * @param activity the SplashActivity
      * @return the activity

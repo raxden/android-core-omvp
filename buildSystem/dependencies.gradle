@@ -8,7 +8,6 @@ ext {
     multidexVersion = '1.0.1'
 
     androidCommonsVersion = '3.0.13'        // https://github.com/raxden/commons
-    androidMVPVersion = '3.0.15'            // https://github.com/raxden/android-mvp
     androidPreferencesVersion = '3.0.3'     // https://github.com/raxden/android-preferences
     androidRecyclerVersion = '3.0.7'        // https://github.com/raxden/android-recycler
     androidSquareVersion = '3.0.83'         // https://github.com/raxden/square
@@ -54,7 +53,6 @@ ext {
                             "com.android.support.constraint:constraint-layout:${constraintsLayoutVersion}",
 
                             "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
-                            "com.github.raxden:android-mvp:${androidMVPVersion}@aar",
                             "com.github.raxden:android-recycler:${androidRecyclerVersion}@aar",
                             "com.github.raxden:android-preferences:${androidPreferencesVersion}@aar",
                             "com.github.raxden.square:square:${androidSquareVersion}@aar",

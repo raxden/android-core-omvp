@@ -3,7 +3,7 @@ package com.omvp.app.utils;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.omvp.app.ui.splash.controller.SplashActivity;
+import com.omvp.app.ui.splash.SplashActivity;
 import com.raxdenstudios.commons.manager.NavigationManager;
 
 public class NavigationHelper {

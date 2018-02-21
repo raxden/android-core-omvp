@@ -1,8 +1,8 @@
 package com.omvp.app.injector.module;
 
 import com.omvp.app.injector.scope.PerActivity;
-import com.omvp.app.ui.splash.controller.SplashActivityModule;
-import com.omvp.app.ui.splash.controller.SplashActivity;
+import com.omvp.app.ui.splash.SplashActivityModule;
+import com.omvp.app.ui.splash.SplashActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

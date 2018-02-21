@@ -1,4 +1,4 @@
-package com.omvp.app.injector.module;
+package com.omvp.app.base;
 
 import android.app.Application;
 import android.content.ContentResolver;
@@ -6,8 +6,11 @@ import android.content.Context;
 
 import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.omvp.app.AppApplication;
 import com.omvp.app.R;
+import com.omvp.app.injector.module.AnalyticsModule;
+import com.omvp.app.injector.module.GsonModule;
+import com.omvp.app.injector.module.ModelMapperModule;
+import com.omvp.app.injector.module.NetworkModule;
 import com.omvp.app.utils.TrackerManager;
 import com.omvp.data.manager.CredentialsManager;
 import com.omvp.data.manager.LocaleManager;
@@ -27,8 +30,15 @@ import dagger.Provides;
 /**
  * Provides application-wide dependencies.
  */
-@Module
-public abstract class ApplicationModule {
+@Module(
+        includes = {
+                GsonModule.class,
+                ModelMapperModule.class,
+                AnalyticsModule.class,
+                NetworkModule.class
+        }
+)
+public abstract class BaseApplicationModule {
 
     @Binds
     @Singleton
@@ -40,7 +50,7 @@ public abstract class ApplicationModule {
      * However, having a scope annotation makes the module easier to read. We wouldn't have to look
      * at what is being provided in order to understand its scope.
      */
-    abstract Application application(AppApplication application);
+    abstract Application application(BaseApplication application);
 
     // =============================================================================================
 

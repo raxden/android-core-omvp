@@ -1,30 +1,74 @@
-package com.omvp.app.base.presenter;
+package com.omvp.app.base.mvp.presenter;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Bundle;
 
-import com.omvp.app.base.view.BaseView;
-import com.raxdenstudios.mvp.presenter.Presenter;
+import com.omvp.app.base.mvp.view.BaseView;
 
 
 /**
- * Don´t modify this class under no circumstances, it's a joke modify it if force is with you.
+ * The presenter is responsible to act as the middle man between view and model. It retrieves data
+ * from the model and returns it formatted to the view. But unlike the typical MVC, it also decides
+ * what happens when you interact with the view. To access view, use mView.
  */
-public abstract class BasePresenter<TView extends BaseView> extends Presenter<TView> {
+public abstract class BasePresenter<TView extends BaseView> implements Presenter<TView> {
 
-    public BasePresenter(Context context) {
-        super(context);
+    public final Context mContext;
+    public final TView mView;
+
+    public BasePresenter(Context context, TView view) {
+        mContext = context;
+        mView = view;
     }
 
     // Presenter life cycle methods ================================================================
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onCreate(Bundle savedInstanceState) {
 
+    }
+
+    @Override
+    public void onViewLoaded() {
+
+    }
+
+    @Override
+    public void onStart() {
+
+    }
+
+    @Override
+    public void onResume() {
         if (mView != null) {
             mView.trackView();
         }
+    }
+
+    @Override
+    public void onPause() {
+
+    }
+
+    @Override
+    public void onStop() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+
+    }
+
+    @Override
+    public void onDropView() {
+
+    }
+
+    @Override
+    public void onSave(Bundle outState) {
+
     }
 
     // Methods to override by presenter childs. ====================================================

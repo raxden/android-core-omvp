@@ -1,4 +1,4 @@
-package com.omvp.app.base.controller;
+package com.omvp.app.base;
 
 import android.app.Activity;
 import android.app.FragmentManager;

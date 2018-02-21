@@ -2,8 +2,9 @@ package com.omvp.app.ui.splash.view;
 
 import android.app.Fragment;
 
-import com.omvp.app.base.view.BaseFragmentModule;
+import com.omvp.app.base.BaseFragmentModule;
 import com.omvp.app.injector.scope.PerFragment;
+import com.omvp.app.ui.splash.presenter.SplashPresenterModule;
 
 import dagger.Binds;
 import dagger.Module;
@@ -12,7 +13,8 @@ import dagger.Module;
  * Provides SplashFragment fragment dependencies.
  */
 @Module(includes = {
-        BaseFragmentModule.class
+        BaseFragmentModule.class,
+        SplashPresenterModule.class
 })
 public abstract class SplashFragmentModule {
 
@@ -27,5 +29,8 @@ public abstract class SplashFragmentModule {
     @PerFragment
     abstract Fragment fragment(SplashFragment fragment);
 
+    @Binds
+    @PerFragment
+    abstract SplashView splashView(SplashFragment fragment);
 
 }

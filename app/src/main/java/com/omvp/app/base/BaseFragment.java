@@ -1,21 +1,29 @@
-package com.omvp.app.base.view;
+package com.omvp.app.base;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 
-import com.omvp.app.utils.TrackerManager;
 import com.raxdenstudios.commons.util.SDKUtils;
-import com.raxdenstudios.mvp.presenter.IPresenter;
-import com.raxdenstudios.square.SquareMVPDialogFragment;
+import com.raxdenstudios.square.SquareDialogFragment;
+import com.raxdenstudios.square.interceptor.Interceptor;
+
+import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasFragmentInjector;
 
 /**
  * Abstract (Dialog)Fragment for all (Dialog)Fragments and child (Dialog)Fragments to extend.
@@ -40,9 +48,7 @@ import dagger.android.AndroidInjection;
  * <b>VIEW BINDING</b>
  * This fragment handles view bind and unbinding.
  */
-public abstract class BaseFragment<TPresenter extends IPresenter, TCallback extends BaseFragmentCallback>
-        extends SquareMVPDialogFragment<TPresenter>
-        implements BaseView {
+public abstract class BaseFragment extends SquareDialogFragment implements HasFragmentInjector {
 
     /**
      * A reference to the activity Context is injected and used instead of the getter method. This
@@ -58,18 +64,21 @@ public abstract class BaseFragment<TPresenter extends IPresenter, TCallback exte
     protected Context mContext;
 
     /**
-     * TrackerManager is used to track fragment like a view through analytics tools.
+     * A reference to the FragmentManager is injected and used instead of the getter method. This
+     * enables ease of mocking and verification in tests (in case Fragment needs testing).
+     * <p>
+     * For more details, see https://github.com/vestrel00/android-dagger-butterknife-mvp/pull/52
      */
+    // Note that this should not be used within a child fragment.
     @Inject
-    protected TrackerManager mTrackManager;
+    @Named(BaseFragmentModule.CHILD_FRAGMENT_MANAGER)
+    protected FragmentManager mChildFragmentManager;
+
+    @Inject
+    DispatchingAndroidInjector<Fragment> mChildFragmentInjector;
 
     @Nullable
     private Unbinder mUnbinder;
-
-    /**
-     * A reference to the callbacks. This leaves the fragment to communicate with the Activity.
-     */
-    protected TCallback mCallbacks;
 
     @Override
     public void onAttach(Activity activity) {
@@ -79,7 +88,6 @@ public abstract class BaseFragment<TPresenter extends IPresenter, TCallback exte
             AndroidInjection.inject(this);
         }
         super.onAttach(activity);
-        initFragmentCallback(activity);
     }
 
     @Override
@@ -89,7 +97,6 @@ public abstract class BaseFragment<TPresenter extends IPresenter, TCallback exte
             AndroidInjection.inject(this);
         }
         super.onAttach(context);
-        initFragmentCallback((Activity) context);
     }
 
     @Override
@@ -145,42 +152,19 @@ public abstract class BaseFragment<TPresenter extends IPresenter, TCallback exte
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-        mCallbacks = null;
+    public AndroidInjector<Fragment> fragmentInjector() {
+        return mChildFragmentInjector;
     }
 
     @Override
-    public void showProgress(float progress, String message) {
-        mCallbacks.showProgress(progress, message);
+    protected void setupInterceptors(List<Interceptor> interceptorList) {
+
     }
 
-    @Override
-    public void hideProgress() {
-        mCallbacks.hideProgress();
-    }
-
-    @Override
-    public void showError(int code, String title, String message) {
-        mCallbacks.showError(code, title, message);
-    }
-
-    @Override
-    public void showMessage(int code, String title, String message) {
-        mCallbacks.showMessage(code, title, message);
-    }
-
-    @Override
-    public void trackView() {
-        mTrackManager.trackScreen(this);
-    }
-
-    private void initFragmentCallback(Activity activity) {
-        if (activity instanceof BaseFragmentCallback) {
-            mCallbacks = (TCallback) activity;
-        } else {
-            throw new IllegalStateException(activity.getClass().getSimpleName() + " must implements " + BaseFragmentCallback.class.getSimpleName());
-        }
+    protected final void addChildFragment(@IdRes int containerViewId, Fragment fragment) {
+        mChildFragmentManager.beginTransaction()
+                .add(containerViewId, fragment)
+                .commit();
     }
 
 }

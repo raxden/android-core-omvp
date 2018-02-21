@@ -1,8 +1,9 @@
-package com.omvp.app.base.controller;
+package com.omvp.app.base;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 
 import com.omvp.app.utils.AnimationHelper;
@@ -10,6 +11,9 @@ import com.omvp.app.utils.DialogHelper;
 import com.omvp.app.utils.NavigationHelper;
 import com.omvp.app.utils.SnackBarHelper;
 import com.raxdenstudios.square.SquareActivity;
+import com.raxdenstudios.square.interceptor.Interceptor;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -58,4 +62,16 @@ public abstract class BaseActivity extends SquareActivity implements HasFragment
     public AndroidInjector<Fragment> fragmentInjector() {
         return mFragmentInjector;
     }
+
+    @Override
+    protected void setupInterceptors(List<Interceptor> interceptorList) {
+
+    }
+
+    protected final void addFragment(@IdRes int containerViewId, Fragment fragment) {
+        mFragmentManager.beginTransaction()
+                .add(containerViewId, fragment)
+                .commit();
+    }
+
 }
