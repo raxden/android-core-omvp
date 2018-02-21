@@ -10,7 +10,7 @@ import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 
 import com.raxdenstudios.commons.util.SDKUtils;
-import com.raxdenstudios.square.SquareDialogFragment;
+import com.raxdenstudios.square.SquareFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewInterceptorCallback;
@@ -50,7 +50,7 @@ import dagger.android.HasFragmentInjector;
  * <b>VIEW BINDING</b>
  * This fragment handles view bind and unbinding.
  */
-public abstract class BaseFragment extends SquareDialogFragment implements
+public abstract class BaseFragment extends SquareFragment implements
         AutoInflateViewInterceptorCallback,
         HasFragmentInjector {
 

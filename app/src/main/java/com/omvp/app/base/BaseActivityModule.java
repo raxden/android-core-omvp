@@ -4,14 +4,13 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.res.Resources;
-import android.os.Bundle;
 
-import com.omvp.app.injector.module.InterceptorActivityModule;
-import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.helper.AnimationHelper;
 import com.omvp.app.helper.DialogHelper;
 import com.omvp.app.helper.NavigationHelper;
 import com.omvp.app.helper.SnackBarHelper;
+import com.omvp.app.injector.module.InterceptorActivityModule;
+import com.omvp.app.injector.scope.PerActivity;
 
 import dagger.Binds;
 import dagger.Module;
@@ -45,12 +44,12 @@ public abstract class BaseActivityModule {
         return activity.getResources();
     }
 
-    @Provides
-    @PerActivity
-    static Bundle activityExtras(Activity activity) {
-        Bundle extras = activity.getIntent() != null ? activity.getIntent().getExtras() : new Bundle();
-        return extras;
-    }
+//    @Provides
+//    @PerActivity
+//    static Bundle activityExtras(Activity activity) {
+//        Bundle extras = activity.getIntent() != null ? activity.getIntent().getExtras() : new Bundle();
+//        return extras;
+//    }
 
     @Provides
     @PerActivity

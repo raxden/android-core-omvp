@@ -20,6 +20,8 @@ public class SplashActivity extends BaseActivity implements InjectFragmentInterc
     @Inject
     InjectFragmentInterceptor mInjectFragmentInterceptor;
 
+    private SplashFragment mSplashFragment;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,12 +34,12 @@ public class SplashActivity extends BaseActivity implements InjectFragmentInterc
 
     @Override
     public SplashFragment onCreateFragment() {
-        return SplashFragment.newInstance(mExtras);
+        return SplashFragment.newInstance(getIntent().getExtras());
     }
 
     @Override
     public void onFragmentLoaded(SplashFragment fragment) {
-
+        mSplashFragment = fragment;
     }
 
     @Override
