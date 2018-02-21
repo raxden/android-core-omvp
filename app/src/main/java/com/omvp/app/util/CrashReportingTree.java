@@ -1,4 +1,4 @@
-package com.omvp.app.utils;
+package com.omvp.app.util;
 
 import android.util.Log;
 

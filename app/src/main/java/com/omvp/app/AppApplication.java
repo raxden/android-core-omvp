@@ -3,7 +3,7 @@ package com.omvp.app;
 import com.crashlytics.android.Crashlytics;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.omvp.app.base.BaseApplication;
-import com.omvp.app.utils.CrashReportingTree;
+import com.omvp.app.util.CrashReportingTree;
 import com.omvp.commons.Constants;
 
 import io.fabric.sdk.android.Fabric;

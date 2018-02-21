@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.omvp.app.utils;
+package com.omvp.app.util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -46,7 +46,7 @@ import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 /**
  *
  */
-public class ImagePickerHelper {
+public class ImagePickerUtil {
 
     private static final String TEMP_IMAGE_NAME = "tempImage";
 

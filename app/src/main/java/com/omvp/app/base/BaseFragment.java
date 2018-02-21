@@ -12,6 +12,8 @@ import android.support.annotation.Nullable;
 import com.raxdenstudios.commons.util.SDKUtils;
 import com.raxdenstudios.square.SquareDialogFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
+import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewInterceptor;
+import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewInterceptorCallback;
 
 import java.util.List;
 
@@ -48,7 +50,9 @@ import dagger.android.HasFragmentInjector;
  * <b>VIEW BINDING</b>
  * This fragment handles view bind and unbinding.
  */
-public abstract class BaseFragment extends SquareDialogFragment implements HasFragmentInjector {
+public abstract class BaseFragment extends SquareDialogFragment implements
+        AutoInflateViewInterceptorCallback,
+        HasFragmentInjector {
 
     /**
      * A reference to the activity Context is injected and used instead of the getter method. This
@@ -73,6 +77,9 @@ public abstract class BaseFragment extends SquareDialogFragment implements HasFr
     @Inject
     @Named(BaseFragmentModule.CHILD_FRAGMENT_MANAGER)
     protected FragmentManager mChildFragmentManager;
+
+    @Inject
+    AutoInflateViewInterceptor mAutoInflateViewInterceptor;
 
     @Inject
     DispatchingAndroidInjector<Fragment> mChildFragmentInjector;
@@ -158,7 +165,7 @@ public abstract class BaseFragment extends SquareDialogFragment implements HasFr
 
     @Override
     protected void setupInterceptors(List<Interceptor> interceptorList) {
-
+        interceptorList.add(mAutoInflateViewInterceptor);
     }
 
     protected final void addChildFragment(@IdRes int containerViewId, Fragment fragment) {

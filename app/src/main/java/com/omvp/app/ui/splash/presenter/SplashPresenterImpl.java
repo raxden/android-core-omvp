@@ -20,4 +20,9 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
         super(context, splashView);
     }
 
+    @Override
+    public void onViewLoaded() {
+        super.onViewLoaded();
+    }
+
 }

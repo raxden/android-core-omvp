@@ -17,7 +17,6 @@ import javax.inject.Inject;
  *         <p>
  *         Lifecycle    MVPFragment             ->      Presenter
  *         onSaveInstanceState     ->      onSave
- *         onAttach                ->      onTakeView
  *         onCreate                ->      onCreate
  *         onActivityCreated       ->      onViewLoaded
  *         onResume                ->      onResume

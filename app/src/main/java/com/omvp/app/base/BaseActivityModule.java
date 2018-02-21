@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Bundle;
 
+import com.omvp.app.injector.module.InterceptorActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
-import com.omvp.app.utils.AnimationHelper;
-import com.omvp.app.utils.DialogHelper;
-import com.omvp.app.utils.NavigationHelper;
-import com.omvp.app.utils.SnackBarHelper;
+import com.omvp.app.helper.AnimationHelper;
+import com.omvp.app.helper.DialogHelper;
+import com.omvp.app.helper.NavigationHelper;
+import com.omvp.app.helper.SnackBarHelper;
 
 import dagger.Binds;
 import dagger.Module;
@@ -19,7 +21,7 @@ import dagger.Provides;
  * Provides base activity dependencies. This must be included in all activity modules, which must
  * provide a concrete implementation of {@link Activity}.
  */
-@Module
+@Module(includes = InterceptorActivityModule.class)
 public abstract class BaseActivityModule {
 
     @Binds
@@ -41,6 +43,13 @@ public abstract class BaseActivityModule {
     @PerActivity
     static Resources resources(Activity activity) {
         return activity.getResources();
+    }
+
+    @Provides
+    @PerActivity
+    static Bundle activityExtras(Activity activity) {
+        Bundle extras = activity.getIntent() != null ? activity.getIntent().getExtras() : new Bundle();
+        return extras;
     }
 
     @Provides

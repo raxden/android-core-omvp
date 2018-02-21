@@ -11,7 +11,7 @@ import com.omvp.app.injector.module.AnalyticsModule;
 import com.omvp.app.injector.module.GsonModule;
 import com.omvp.app.injector.module.ModelMapperModule;
 import com.omvp.app.injector.module.NetworkModule;
-import com.omvp.app.utils.TrackerManager;
+import com.omvp.app.util.TrackerManager;
 import com.omvp.data.manager.CredentialsManager;
 import com.omvp.data.manager.LocaleManager;
 import com.raxdenstudios.commons.util.Utils;

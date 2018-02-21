@@ -6,9 +6,9 @@ import com.omvp.app.injector.scope.PerActivity;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
-import com.raxdenstudios.square.interceptor.commons.handleextras.HandleExtrasActivityInterceptor;
-import com.raxdenstudios.square.interceptor.commons.handleextras.HandleExtrasInterceptor;
-import com.raxdenstudios.square.interceptor.commons.handleextras.HandleExtrasInterceptorCallback;
+import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentActivityInterceptor;
+import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
+import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;
 import com.raxdenstudios.square.interceptor.commons.network.NetworkActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.network.NetworkInterceptor;
 import com.raxdenstudios.square.interceptor.commons.network.NetworkInterceptorCallback;
@@ -23,7 +23,7 @@ import dagger.Provides;
  * A module to wrap the Activity state and expose it to the graph.
  */
 @Module
-public abstract class ActivityInterceptorModule {
+public abstract class InterceptorActivityModule {
 
     @Provides
     @PerActivity
@@ -36,9 +36,9 @@ public abstract class ActivityInterceptorModule {
 
     @Provides
     @PerActivity
-    static HandleExtrasInterceptor handleExtrasInterceptor(Activity activity) {
-        if (activity instanceof HandleExtrasInterceptorCallback) {
-            return new HandleExtrasActivityInterceptor(activity, (HandleExtrasInterceptorCallback) activity);
+    static InjectFragmentInterceptor injectFragmentInterceptor(Activity activity) {
+        if (activity instanceof InjectFragmentInterceptorCallback) {
+            return new InjectFragmentActivityInterceptor(activity, (InjectFragmentInterceptorCallback) activity);
         }
         return null;
     }
