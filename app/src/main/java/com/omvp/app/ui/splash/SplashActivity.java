@@ -34,7 +34,7 @@ public class SplashActivity extends BaseActivity implements InjectFragmentInterc
 
     @Override
     public SplashFragment onCreateFragment() {
-        return SplashFragment.newInstance(getIntent().getExtras());
+        return SplashFragment.newInstance(mExtras);
     }
 
     @Override

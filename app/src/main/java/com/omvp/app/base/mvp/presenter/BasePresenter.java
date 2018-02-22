@@ -30,6 +30,11 @@ public abstract class BasePresenter<TView extends BaseView> implements Presenter
     }
 
     @Override
+    public void onViewStateRestored(Bundle savedState) {
+
+    }
+
+    @Override
     public void onViewLoaded() {
 
     }

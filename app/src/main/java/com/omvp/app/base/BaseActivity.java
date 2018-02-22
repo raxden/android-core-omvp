@@ -40,8 +40,8 @@ public abstract class BaseActivity extends SquareActivity implements
 
     @Inject
     protected Resources mResources;
-//    @Inject
-//    protected Bundle mExtras;
+    @Inject
+    protected Bundle mExtras;
     /**
      * A reference to the FragmentManager is injected and used instead of the getter method. This
      * enables ease of mocking and verification in tests (in case Activity needs testing).

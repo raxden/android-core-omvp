@@ -15,10 +15,13 @@ import javax.inject.Inject;
  *         that the view will do is calling a method from the presenter every time there is an interface
  *         action (a button click for example).</p>
  *         <p>
- *         Lifecycle    MVPFragment             ->      Presenter
+ *
+ *         Lifecycle.MVPFragment   ->      Presenter
+ *
  *         onSaveInstanceState     ->      onSave
  *         onCreate                ->      onCreate
  *         onActivityCreated       ->      onViewLoaded
+ *         onViewStateRestored     ->      onViewLoaded
  *         onResume                ->      onResume
  *         onPause                 ->      onPause
  *         onDestroyView           ->      onDropView
@@ -54,13 +57,14 @@ public abstract class BaseViewFragment<TPresenter extends Presenter> extends Bas
          * occurs if the Presenter calls an MVPView method that uses a bound view.
          *
          * Furthermore, Fragments that do not return a non-null View in onCreateView will result in
-         * onViewStateRestored not being called. This results in Presenter.onStart not being
+         * onViewStateRestored not being called. This results in Presenter.onViewLoaded not being
          * invoked. Therefore, no-UI Fragments do not support Presenter-View pairs. We could modify
          * our code to support Presenter-View pairs in no-UI Fragments if needed. However, I will
          * keep things as is since I do not consider it appropriate to have a Presenter-View pair
          * in a no-UI Fragment. Do feel free to disagree and refactor.
          */
         if (mPresenter != null) {
+            mPresenter.onViewStateRestored(savedInstanceState);
             mPresenter.onViewLoaded();
         }
     }

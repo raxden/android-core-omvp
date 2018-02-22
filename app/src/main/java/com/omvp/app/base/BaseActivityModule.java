@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Bundle;
 
 import com.omvp.app.helper.AnimationHelper;
 import com.omvp.app.helper.DialogHelper;
@@ -44,12 +45,12 @@ public abstract class BaseActivityModule {
         return activity.getResources();
     }
 
-//    @Provides
-//    @PerActivity
-//    static Bundle activityExtras(Activity activity) {
-//        Bundle extras = activity.getIntent() != null ? activity.getIntent().getExtras() : new Bundle();
-//        return extras;
-//    }
+    @Provides
+    @PerActivity
+    static Bundle activityExtras(Activity activity) {
+        Bundle extras = activity.getIntent() != null && activity.getIntent().getExtras() != null ? activity.getIntent().getExtras() : new Bundle();
+        return extras;
+    }
 
     @Provides
     @PerActivity

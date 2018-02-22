@@ -24,6 +24,8 @@ public interface Presenter<TView extends IView> {
 
     void onStop();
 
+    void onViewStateRestored(Bundle savedState);
+
     /**
      * Called when view has been loaded.
      *
