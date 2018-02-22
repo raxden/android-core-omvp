@@ -6,10 +6,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 
-import com.omvp.app.helper.AnimationHelper;
-import com.omvp.app.helper.DialogHelper;
-import com.omvp.app.helper.NavigationHelper;
-import com.omvp.app.helper.SnackBarHelper;
+import com.omvp.app.injector.module.HelperModule;
 import com.omvp.app.injector.module.InterceptorActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
 
@@ -21,7 +18,10 @@ import dagger.Provides;
  * Provides base activity dependencies. This must be included in all activity modules, which must
  * provide a concrete implementation of {@link Activity}.
  */
-@Module(includes = InterceptorActivityModule.class)
+@Module(includes = {
+        InterceptorActivityModule.class,
+        HelperModule.class
+})
 public abstract class BaseActivityModule {
 
     @Binds
@@ -48,38 +48,13 @@ public abstract class BaseActivityModule {
     @Provides
     @PerActivity
     static Bundle activityExtras(Activity activity) {
-        Bundle extras = activity.getIntent() != null && activity.getIntent().getExtras() != null ? activity.getIntent().getExtras() : new Bundle();
-        return extras;
+        return activity.getIntent() != null && activity.getIntent().getExtras() != null ? activity.getIntent().getExtras() : new Bundle();
     }
 
     @Provides
     @PerActivity
     static FragmentManager activityFragmentManager(Activity activity) {
         return activity.getFragmentManager();
-    }
-
-    @Provides
-    @PerActivity
-    static NavigationHelper navigationHelper(Activity activity) {
-        return new NavigationHelper(activity);
-    }
-
-    @Provides
-    @PerActivity
-    static DialogHelper dialogHelper(Activity activity, FragmentManager fragmentManager) {
-        return new DialogHelper(activity, fragmentManager);
-    }
-
-    @Provides
-    @PerActivity
-    static SnackBarHelper snackBarHelper(Activity activity) {
-        return new SnackBarHelper(activity);
-    }
-
-    @Provides
-    @PerActivity
-    static AnimationHelper animationHelper(Activity activity) {
-        return new AnimationHelper(activity);
     }
 
 }

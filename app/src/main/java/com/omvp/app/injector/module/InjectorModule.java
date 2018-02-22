@@ -11,7 +11,7 @@ import dagger.android.ContributesAndroidInjector;
  * Created by rakshakhegde on 26/04/17.
  */
 @Module
-public abstract class InjectorsModule {
+public abstract class InjectorModule {
 
 	/**
 	 * Provides the injector for the {@link SplashActivity}, which has access to the dependencies

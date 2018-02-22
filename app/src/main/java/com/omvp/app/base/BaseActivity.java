@@ -8,6 +8,7 @@ import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.omvp.app.base.mvp.view.BaseViewFragmentCallback;
 import com.omvp.app.helper.AnimationHelper;
 import com.omvp.app.helper.DialogHelper;
 import com.omvp.app.helper.NavigationHelper;
@@ -36,6 +37,7 @@ import dagger.android.HasFragmentInjector;
  */
 public abstract class BaseActivity extends SquareActivity implements
         AutoInflateLayoutInterceptorCallback,
+        BaseViewFragmentCallback,
         HasFragmentInjector {
 
     @Inject
@@ -73,10 +75,36 @@ public abstract class BaseActivity extends SquareActivity implements
         super.onCreate(savedInstanceState);
     }
 
+    // ========= AutoInflateLayoutInterceptorCallback ==============================================
+
     @Override
     public void onContentViewCreated(View view, Bundle savedInstanceState) {
         mContentView = view;
     }
+
+    // =============== BaseViewFragmentCallback ====================================================
+
+    @Override
+    public void showProgress(float progress, String message) {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void showError(int code, String title, String message) {
+
+    }
+
+    @Override
+    public void showMessage(int code, String title, String message) {
+
+    }
+
+    // =============== Support methods =============================================================
 
     @Override
     public AndroidInjector<Fragment> fragmentInjector() {

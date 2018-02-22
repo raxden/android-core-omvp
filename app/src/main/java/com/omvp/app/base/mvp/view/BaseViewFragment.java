@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.omvp.app.base.BaseFragment;
 import com.omvp.app.base.mvp.presenter.Presenter;
+import com.omvp.app.util.TrackerManager;
 
 import javax.inject.Inject;
 
@@ -20,32 +21,32 @@ import javax.inject.Inject;
  *
  *         onSaveInstanceState     ->      onSave
  *         onCreate                ->      onCreate
- *         onActivityCreated       ->      onViewLoaded
  *         onViewStateRestored     ->      onViewLoaded
  *         onResume                ->      onResume
  *         onPause                 ->      onPause
  *         onDestroyView           ->      onDropView
  *         onDestroy               ->      onDestroy
  */
-public abstract class BaseViewFragment<TPresenter extends Presenter> extends BaseFragment implements BaseView {
+public abstract class BaseViewFragment<TPresenter extends Presenter, TCallback extends BaseViewFragmentCallback>
+        extends BaseFragment implements BaseView {
 
     @Inject
-    public TPresenter mPresenter;
+    protected TPresenter mPresenter;
+    @Inject
+    protected TCallback mCallback;
+    @Inject
+    protected TrackerManager mTrackerManager;
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (mPresenter != null) {
-            mPresenter.onSave(outState);
-        }
+        mPresenter.onSave(outState);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (mPresenter != null) {
-            mPresenter.onCreate(savedInstanceState);
-        }
+        mPresenter.onCreate(savedInstanceState);
     }
 
     @Override
@@ -63,85 +64,53 @@ public abstract class BaseViewFragment<TPresenter extends Presenter> extends Bas
          * keep things as is since I do not consider it appropriate to have a Presenter-View pair
          * in a no-UI Fragment. Do feel free to disagree and refactor.
          */
-        if (mPresenter != null) {
-            mPresenter.onViewStateRestored(savedInstanceState);
-            mPresenter.onViewLoaded();
-        }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (mPresenter != null) {
-            mPresenter.onStart();
-        }
+        mPresenter.onViewStateRestored(savedInstanceState);
+        mPresenter.onViewLoaded();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (mPresenter != null) {
-            mPresenter.onResume();
-        }
+        mPresenter.onResume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (mPresenter != null) {
-            mPresenter.onPause();
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mPresenter != null) {
-            mPresenter.onStop();
-        }
+        mPresenter.onPause();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (mPresenter != null) {
-            mPresenter.onDropView();
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mPresenter != null) {
-            mPresenter.onDestroy();
-        }
+        mPresenter.onDropView();
     }
 
     // =============================================================================================
 
     @Override
     public void showProgress(float progress, String message) {
-
+        mCallback.showProgress(progress, message);
     }
 
     @Override
     public void hideProgress() {
-
+        mCallback.hideProgress();
     }
 
     @Override
     public void showError(int code, String title, String message) {
-
+        mCallback.showError(code, title, message);
     }
 
     @Override
     public void showMessage(int code, String title, String message) {
-
+        mCallback.showMessage(code, title, message);
     }
 
     @Override
     public void trackView() {
-
+        mTrackerManager.trackScreen(this);
     }
 
 }

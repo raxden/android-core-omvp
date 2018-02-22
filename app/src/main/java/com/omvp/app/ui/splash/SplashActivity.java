@@ -15,7 +15,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class SplashActivity extends BaseActivity implements InjectFragmentInterceptorCallback<SplashFragment> {
+public class SplashActivity extends BaseActivity implements
+        SplashFragment.FragmentCallback,
+        InjectFragmentInterceptorCallback<SplashFragment> {
 
     @Inject
     InjectFragmentInterceptor mInjectFragmentInterceptor;

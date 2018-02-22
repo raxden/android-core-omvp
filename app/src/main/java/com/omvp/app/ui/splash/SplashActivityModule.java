@@ -35,6 +35,16 @@ public abstract class SplashActivityModule {
     @PerActivity
     abstract Activity activity(SplashActivity activity);
 
+    /**
+     * The main activity listens to the events in the {@link SplashFragment}.
+     *
+     * @param activity the activity
+     * @return the main fragment callback
+     */
+    @Binds
+    @PerActivity
+    abstract SplashFragment.FragmentCallback fragmentCallback(SplashActivity activity);
+
     // =============================================================================================
 
     /**

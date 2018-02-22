@@ -2,7 +2,7 @@ package com.omvp.app.injector.component;
 
 import com.omvp.app.base.BaseApplication;
 import com.omvp.app.base.BaseApplicationModule;
-import com.omvp.app.injector.module.InjectorsModule;
+import com.omvp.app.injector.module.InjectorModule;
 
 import javax.inject.Singleton;
 
@@ -19,7 +19,7 @@ import dagger.android.AndroidInjector;
         modules = {
                 AndroidInjectionModule.class,
                 BaseApplicationModule.class,
-                InjectorsModule.class
+                InjectorModule.class
         }
 )
 public interface ApplicationComponent extends AndroidInjector<BaseApplication> {
