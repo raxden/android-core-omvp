@@ -61,6 +61,14 @@ public abstract class BasePresenter<TView extends BaseView> implements Presenter
 
     // Methods to override by presenter childs. ====================================================
 
+    protected void showError(int title, int description) {
+        showError(0, title, description);
+    }
+
+    protected void showError(String title, String description) {
+        showError(0, title, description);
+    }
+
     protected void showError(int code, int title, int description) {
         showError(code, getResources().getString(title), getResources().getString(description));
     }
@@ -73,6 +81,14 @@ public abstract class BasePresenter<TView extends BaseView> implements Presenter
 
     protected void showProgress() {
         showProgress(0, "");
+    }
+
+    protected void showProgress(int message) {
+        showProgress(0, message);
+    }
+
+    protected void showProgress(String message) {
+        showProgress(0, message);
     }
 
     protected void showProgress(float progress, int message) {
@@ -91,11 +107,10 @@ public abstract class BasePresenter<TView extends BaseView> implements Presenter
         }
     }
 
-    protected Resources getResources() {
-        return mContext.getResources();
-    }
-
     // Support BasePresenter methods ===============================================================
 
+    public Resources getResources() {
+        return mContext.getResources();
+    }
 
 }

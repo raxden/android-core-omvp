@@ -2,18 +2,41 @@
 package com.omvp.app.ui.splash.presenter;
 
 import android.content.Context;
+import android.os.Handler;
 
 import com.omvp.app.base.mvp.presenter.BasePresenter;
+import com.omvp.app.base.reactivex.BaseDisposableCompletableObserver;
 import com.omvp.app.injector.scope.PerFragment;
 import com.omvp.app.ui.splash.view.SplashView;
+import com.omvp.commons.Constants;
+
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
+
+import io.reactivex.Completable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Angel on 21/02/2018.
  */
 @PerFragment
 public class SplashPresenterImpl extends BasePresenter<SplashView> implements SplashPresenter {
+
+    private int mProgress;
+    private Handler mHandler;
+    private Runnable mProgressRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mProgress < 100) {
+                showProgress(mProgress++);
+                mHandler.postDelayed(mProgressRunnable, 50);
+            } else {
+                mHandler.removeCallbacks(mProgressRunnable);
+            }
+        }
+    };
 
     @Inject
     SplashPresenterImpl(Context context, SplashView splashView) {
@@ -23,6 +46,50 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
     @Override
     public void onViewLoaded() {
         super.onViewLoaded();
+        prepareApplicationToLaunch();
+    }
+
+    @Override
+    public void onDropView() {
+        if (mHandler != null) {
+            mHandler.removeCallbacks(mProgressRunnable);
+            mHandler = null;
+        }
+        super.onDropView();
+    }
+
+    // Support methods =============================================================================
+
+    private void prepareApplicationToLaunch() {
+        makeTime()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new BaseDisposableCompletableObserver(mContext) {
+                    @Override
+                    protected void onStart() {
+                        showProgress();
+                    }
+
+                    @Override
+                    protected void onError(int code, String title, String description) {
+                        hideProgress();
+                        showError(code, title, description);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        hideProgress();
+                    }
+                });
+    }
+
+    private Completable makeTime() {
+        return Completable.timer(Constants.SPLASH_DELAY, TimeUnit.MILLISECONDS);
+    }
+
+    private void initProgressBar() {
+        mHandler = new Handler();
+        mHandler.post(mProgressRunnable);
     }
 
 }

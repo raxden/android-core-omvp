@@ -173,7 +173,7 @@ ext {
             commons : [
                     implementation: [
                             "org.modelmapper:modelmapper:${modelmapperVersion}",
-                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}"
+                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
                     ],
                     api : [],
                     annotationProcessor : [],
