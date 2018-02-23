@@ -11,9 +11,8 @@ import dagger.android.AndroidInjectionModule;
 import dagger.android.AndroidInjector;
 
 /**
- * Created by Ángel Gómez on 16/02/2018.
+ * Injects application dependencies.
  */
-
 @Singleton
 @Component(
         modules = {

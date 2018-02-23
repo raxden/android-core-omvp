@@ -8,7 +8,7 @@ import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
 /**
- * Created by rakshakhegde on 26/04/17.
+ * Provides application-wide dependencies.
  */
 @Module
 public abstract class InjectorModule {

@@ -1,7 +1,7 @@
 package com.omvp.app.base.mvp.view;
 
 /**
- * Don´t modify this class under no circumstances, it's a joke modify it if force is with you.
+ * Abstract {@link IView} for all views to extend.
  */
 public interface BaseView extends IView {
 
@@ -12,7 +12,5 @@ public interface BaseView extends IView {
     void showError(int code, String title, String message);
 
     void showMessage(int code, String title, String message);
-
-    void trackView();
 
 }

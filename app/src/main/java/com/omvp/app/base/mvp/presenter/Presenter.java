@@ -3,19 +3,10 @@ package com.omvp.app.base.mvp.presenter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.omvp.app.base.mvp.view.IView;
-
 /**
- * Presenter interface
+ * A presenter that defines its own lifecycle methods.
  */
-public interface Presenter<TView extends IView> {
-
-    /**
-     * Called on every presenter's creation.
-     *
-     * @param savedState
-     */
-    void onCreate(Bundle savedState);
+public interface Presenter {
 
     /**
      * Resumes the presentation. This should be called in the view's (Activity or Fragment)
@@ -34,12 +25,13 @@ public interface Presenter<TView extends IView> {
      * onCreate() or onViewStatedRestored() method respectively.
      *
      * @param savedState the saved instance state that contains state saved in
-     *                           {@link #onSave(Bundle)}
+     * {@link #onSaveView(Bundle)}
      */
-    void onViewStateRestored(@Nullable Bundle savedState);
+    void onViewRestored(@Nullable Bundle savedState);
 
     /**
-     * Called when view has been loaded.
+     * Starts the presentation. This should be called in the view's (Activity or Fragment)
+     * onCreate() or onViewStatedRestored() method respectively.
      *
      */
     void onViewLoaded();
@@ -50,11 +42,11 @@ public interface Presenter<TView extends IView> {
      *
      * @param outState the out state to save instance state
      */
-    void onSave(Bundle outState);
-
+    void onSaveView(Bundle outState);
 
     /**
-     * Called during Activity's onDestroy() or Fragment's onDestroyView(), or during android.view.View#onDetachedFromWindow()
+     * Ends the presentation. This should be called in the view's (Activity or Fragment)
+     * onDestroy() or onDestroyView() method respectively.
      */
     void onDropView();
 

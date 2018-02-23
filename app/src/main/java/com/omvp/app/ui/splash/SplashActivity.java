@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.omvp.app.R;
-import com.omvp.app.base.BaseActivity;
+import com.omvp.app.base.mvp.BaseFragmentActivity;
 import com.omvp.app.ui.splash.view.SplashFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
@@ -15,7 +15,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class SplashActivity extends BaseActivity implements
+public class SplashActivity extends BaseFragmentActivity implements
         SplashFragment.FragmentCallback,
         InjectFragmentInterceptorCallback<SplashFragment> {
 

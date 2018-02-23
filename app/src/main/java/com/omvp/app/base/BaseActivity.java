@@ -1,14 +1,11 @@
 package com.omvp.app.base;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.omvp.app.base.mvp.view.BaseViewFragmentCallback;
 import com.omvp.app.helper.AnimationHelper;
 import com.omvp.app.helper.DialogHelper;
 import com.omvp.app.helper.NavigationHelper;
@@ -29,29 +26,15 @@ import dagger.android.HasFragmentInjector;
 
 /**
  * Abstract Activity for all Activities to extend.
- * <p>
- * <b>DEPENDENCY INJECTION</b>
- * We could extend {@link dagger.android.DaggerActivity} so we can get the boilerplate
- * dagger code for free. However, we want to avoid inheritance (if possible and it is in this case)
- * so that we have to option to inherit from something else later on if needed.
  */
 public abstract class BaseActivity extends SquareActivity implements
         AutoInflateLayoutInterceptorCallback,
-        BaseViewFragmentCallback,
         HasFragmentInjector {
 
     @Inject
     protected Resources mResources;
     @Inject
     protected Bundle mExtras;
-    /**
-     * A reference to the FragmentManager is injected and used instead of the getter method. This
-     * enables ease of mocking and verification in tests (in case Activity needs testing).
-     *
-     * For more details, see https://github.com/vestrel00/android-dagger-butterknife-mvp/pull/52
-     */
-    @Inject
-    protected FragmentManager mFragmentManager;
     @Inject
     protected NavigationHelper mNavigationHelper;
     @Inject
@@ -82,28 +65,6 @@ public abstract class BaseActivity extends SquareActivity implements
         mContentView = view;
     }
 
-    // =============== BaseViewFragmentCallback ====================================================
-
-    @Override
-    public void showProgress(float progress, String message) {
-
-    }
-
-    @Override
-    public void hideProgress() {
-
-    }
-
-    @Override
-    public void showError(int code, String title, String message) {
-
-    }
-
-    @Override
-    public void showMessage(int code, String title, String message) {
-
-    }
-
     // =============== Support methods =============================================================
 
     @Override
@@ -114,12 +75,6 @@ public abstract class BaseActivity extends SquareActivity implements
     @Override
     protected void setupInterceptors(List<Interceptor> interceptorList) {
         interceptorList.add(mAutoInflateLayoutInterceptor);
-    }
-
-    protected final void addFragment(@IdRes int containerViewId, Fragment fragment) {
-        mFragmentManager.beginTransaction()
-                .add(containerViewId, fragment)
-                .commit();
     }
 
 }

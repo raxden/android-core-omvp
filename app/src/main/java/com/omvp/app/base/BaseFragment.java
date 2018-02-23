@@ -132,16 +132,16 @@ public abstract class BaseFragment extends SquareDialogFragment implements
          * onCreateView
          * onViewCreated
          * onActivityCreated
-         * onViewStateRestored
+         * onViewRestored
          * onResume
          *
          * Note that the onCreate (and other lifecycle events) are omitted on purpose. The
          * caveat to this approach is that views, listeners, and resources bound by
          * Butterknife will be null until onViewStatedRestored. Just be careful not to use any
-         * objects bound using Butterknife before onViewStateRestored.
+         * objects bound using Butterknife before onViewRestored.
          *
          * Fragments that do not return a non-null View in onCreateView results in onViewCreated
-         * and onViewStateRestored not being called. This means that Butterknife.bind will not get
+         * and onViewRestored not being called. This means that Butterknife.bind will not get
          * called, which is completely fine because there is no View to bind. Furthermore, there is
          * no need to check if getView() returns null here because this lifecycle method only gets
          * called with a non-null View.

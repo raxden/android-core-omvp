@@ -14,9 +14,8 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 
 /**
- * Created by Angel on 21/02/2018.
+ * The Android {@link MultiDexApplication}.
  */
-
 public abstract class BaseApplication extends MultiDexApplication implements HasActivityInjector {
 
     @Inject

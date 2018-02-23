@@ -1,7 +1,6 @@
 package com.omvp.app.base;
 
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -49,12 +48,6 @@ public abstract class BaseActivityModule {
     @PerActivity
     static Bundle activityExtras(Activity activity) {
         return activity.getIntent() != null && activity.getIntent().getExtras() != null ? activity.getIntent().getExtras() : new Bundle();
-    }
-
-    @Provides
-    @PerActivity
-    static FragmentManager activityFragmentManager(Activity activity) {
-        return activity.getFragmentManager();
     }
 
 }

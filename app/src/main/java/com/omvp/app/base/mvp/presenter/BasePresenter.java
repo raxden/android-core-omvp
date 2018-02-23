@@ -5,17 +5,22 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import com.omvp.app.base.mvp.view.BaseView;
+import com.omvp.app.base.mvp.view.IView;
 
 
 /**
+ * Abstract {@link Presenter} for all presenters to extend.
+ *
  * The presenter is responsible to act as the middle man between view and model. It retrieves data
  * from the model and returns it formatted to the view. But unlike the typical MVC, it also decides
  * what happens when you interact with the view. To access view, use mView.
+ *
+ * @param <TView> the type of the {@link IView}.
  */
-public abstract class BasePresenter<TView extends BaseView> implements Presenter<TView> {
+public abstract class BasePresenter<TView extends BaseView> implements Presenter {
 
-    public final Context mContext;
-    public final TView mView;
+    protected final Context mContext;
+    protected final TView mView;
 
     public BasePresenter(Context context, TView view) {
         mContext = context;
@@ -25,12 +30,7 @@ public abstract class BasePresenter<TView extends BaseView> implements Presenter
     // Presenter life cycle methods ================================================================
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-    }
-
-    @Override
-    public void onViewStateRestored(Bundle savedState) {
+    public void onViewRestored(Bundle savedState) {
 
     }
 
@@ -41,9 +41,7 @@ public abstract class BasePresenter<TView extends BaseView> implements Presenter
 
     @Override
     public void onResume() {
-        if (mView != null) {
-            mView.trackView();
-        }
+
     }
 
     @Override
@@ -57,7 +55,7 @@ public abstract class BasePresenter<TView extends BaseView> implements Presenter
     }
 
     @Override
-    public void onSave(Bundle outState) {
+    public void onSaveView(Bundle outState) {
 
     }
 
