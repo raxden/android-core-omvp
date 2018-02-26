@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.omvp.app.injector.module.HelperModule;
 import com.omvp.app.injector.module.InterceptorActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
+import com.omvp.app.util.DisposableManager;
 
 import dagger.Binds;
 import dagger.Module;
@@ -48,6 +49,12 @@ public abstract class BaseActivityModule {
     @PerActivity
     static Bundle activityExtras(Activity activity) {
         return activity.getIntent() != null && activity.getIntent().getExtras() != null ? activity.getIntent().getExtras() : new Bundle();
+    }
+
+    @Provides
+    @PerActivity
+    static DisposableManager activityDisposableManager() {
+        return new DisposableManager();
     }
 
 }

@@ -7,4 +7,6 @@ import com.omvp.app.base.mvp.view.BaseView;
  */
 public interface SplashView extends BaseView {
 
+    void applicationReadyToLaunch();
+
 }

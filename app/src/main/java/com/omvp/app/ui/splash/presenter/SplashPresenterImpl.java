@@ -1,7 +1,6 @@
 
 package com.omvp.app.ui.splash.presenter;
 
-import android.content.Context;
 import android.os.Handler;
 
 import com.omvp.app.base.mvp.presenter.BasePresenter;
@@ -24,12 +23,12 @@ import io.reactivex.schedulers.Schedulers;
 @PerFragment
 public class SplashPresenterImpl extends BasePresenter<SplashView> implements SplashPresenter {
 
-    private int mProgress;
+    private float mProgress;
     private Handler mHandler;
     private Runnable mProgressRunnable = new Runnable() {
         @Override
         public void run() {
-            if (mProgress < 100) {
+            if (mProgress < 100.0f) {
                 showProgress(mProgress++);
                 mHandler.postDelayed(mProgressRunnable, 50);
             } else {
@@ -39,8 +38,8 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
     };
 
     @Inject
-    SplashPresenterImpl(Context context, SplashView splashView) {
-        super(context, splashView);
+    SplashPresenterImpl(SplashView splashView) {
+        super(splashView);
     }
 
     @Override
@@ -61,12 +60,13 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
     // Support methods =============================================================================
 
     private void prepareApplicationToLaunch() {
-        makeTime()
+        mDisposableManager.add(makeTime()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new BaseDisposableCompletableObserver(mContext) {
                     @Override
                     protected void onStart() {
+                        initProgressBar();
                         showProgress();
                     }
 
@@ -79,8 +79,9 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
                     @Override
                     public void onComplete() {
                         hideProgress();
+                        applicationReadyToLaunch();
                     }
-                });
+                }));
     }
 
     private Completable makeTime() {
@@ -90,6 +91,10 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
     private void initProgressBar() {
         mHandler = new Handler();
         mHandler.post(mProgressRunnable);
+    }
+
+    private void applicationReadyToLaunch() {
+        mView.applicationReadyToLaunch();
     }
 
 }

@@ -1,7 +1,6 @@
 package com.omvp.app.ui.splash;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.omvp.app.R;
@@ -25,11 +24,6 @@ public class SplashActivity extends BaseFragmentActivity implements
     private SplashFragment mSplashFragment;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onLoadFragmentContainer(Bundle savedInstanceState) {
         return findViewById(R.id.content);
     }
@@ -42,6 +36,11 @@ public class SplashActivity extends BaseFragmentActivity implements
     @Override
     public void onFragmentLoaded(SplashFragment fragment) {
         mSplashFragment = fragment;
+    }
+
+    @Override
+    public void onLaunchApplication() {
+        mNavigationHelper.launchHome();
     }
 
     @Override

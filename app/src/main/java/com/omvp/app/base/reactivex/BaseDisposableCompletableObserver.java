@@ -25,6 +25,11 @@ public abstract class BaseDisposableCompletableObserver extends DisposableComple
     }
 
     @Override
+    public void onComplete() {
+
+    }
+
+    @Override
     public void onError(@NonNull Throwable e) {
         Timber.e(e);
         mErrorManager.parseError(e);

@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 
 import com.omvp.app.injector.module.InterceptorFragmentModule;
 import com.omvp.app.injector.scope.PerFragment;
+import com.omvp.app.util.DisposableManager;
 
 import javax.inject.Named;
 
@@ -18,13 +19,21 @@ import dagger.Provides;
 @Module(includes = InterceptorFragmentModule.class)
 public abstract class BaseFragmentModule {
 
-    static final String CHILD_FRAGMENT_MANAGER = "BaseFragmentModule.mChildFragmentManager";
+    public static final String CHILD_FRAGMENT_MANAGER = "BaseFragmentModule.childFragmentManager";
+    public static final String DISPOSABLE_FRAGMENT_MANAGER = "BaseFragmentModule.disposableFragmentManager";
 
     @Provides
     @Named(CHILD_FRAGMENT_MANAGER)
     @PerFragment
     static FragmentManager childFragmentManager(Fragment fragment) {
         return fragment.getChildFragmentManager();
+    }
+
+    @Provides
+    @Named(DISPOSABLE_FRAGMENT_MANAGER)
+    @PerFragment
+    static DisposableManager disposableFragmentManager() {
+        return new DisposableManager();
     }
 
 }

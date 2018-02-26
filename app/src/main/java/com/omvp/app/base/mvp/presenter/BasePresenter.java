@@ -4,13 +4,18 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 
+import com.omvp.app.base.BaseFragmentModule;
 import com.omvp.app.base.mvp.view.BaseView;
 import com.omvp.app.base.mvp.view.IView;
+import com.omvp.app.util.DisposableManager;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 
 /**
  * Abstract {@link Presenter} for all presenters to extend.
- *
+ * <p>
  * The presenter is responsible to act as the middle man between view and model. It retrieves data
  * from the model and returns it formatted to the view. But unlike the typical MVC, it also decides
  * what happens when you interact with the view. To access view, use mView.
@@ -19,15 +24,21 @@ import com.omvp.app.base.mvp.view.IView;
  */
 public abstract class BasePresenter<TView extends BaseView> implements Presenter {
 
-    protected final Context mContext;
-    protected final TView mView;
+    @Inject
+    protected Context mContext;
+    @Inject
+    protected Resources mResources;
+    @Inject
+    @Named(BaseFragmentModule.DISPOSABLE_FRAGMENT_MANAGER)
+    protected DisposableManager mDisposableManager;
 
-    public BasePresenter(Context context, TView view) {
-        mContext = context;
-        mView = view;
-    }
+    protected TView mView;
 
     // Presenter life cycle methods ================================================================
+
+    public BasePresenter(TView mView) {
+        this.mView = mView;
+    }
 
     @Override
     public void onViewRestored(Bundle savedState) {
@@ -70,7 +81,7 @@ public abstract class BasePresenter<TView extends BaseView> implements Presenter
     }
 
     protected void showError(int code, int title, int description) {
-        showError(code, getResources().getString(title), getResources().getString(description));
+        showError(code, mResources.getString(title), mResources.getString(description));
     }
 
     protected void showError(int code, String title, String description) {
@@ -91,8 +102,12 @@ public abstract class BasePresenter<TView extends BaseView> implements Presenter
         showProgress(0, message);
     }
 
+    protected void showProgress(float progress) {
+        showProgress(progress, "");
+    }
+
     protected void showProgress(float progress, int message) {
-        showProgress(progress, getResources().getString(message));
+        showProgress(progress, mResources.getString(message));
     }
 
     protected void showProgress(float progress, String message) {
@@ -105,12 +120,6 @@ public abstract class BasePresenter<TView extends BaseView> implements Presenter
         if (mView != null) {
             mView.hideProgress();
         }
-    }
-
-    // Support BasePresenter methods ===============================================================
-
-    public Resources getResources() {
-        return mContext.getResources();
     }
 
 }

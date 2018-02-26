@@ -12,7 +12,7 @@ import com.omvp.app.ui.splash.presenter.SplashPresenter;
 public class SplashFragment extends BaseViewFragment<SplashPresenter, SplashFragment.FragmentCallback> implements SplashView {
 
     public interface FragmentCallback extends BaseViewFragmentCallback {
-
+        void onLaunchApplication();
     }
 
     public static SplashFragment newInstance(Bundle bundle) {
@@ -23,8 +23,8 @@ public class SplashFragment extends BaseViewFragment<SplashPresenter, SplashFrag
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void applicationReadyToLaunch() {
+        mCallback.onLaunchApplication();
     }
 
 }

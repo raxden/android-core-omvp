@@ -3,6 +3,7 @@ package com.omvp.app.helper;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.splash.SplashActivity;
 import com.raxdenstudios.commons.manager.NavigationManager;
 
@@ -22,6 +23,14 @@ public class NavigationHelper {
                 .launch();
     }
 
+    public void launchHome() {
+        finishAllActivities();
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(HomeActivity.class)
+                .launch();
+    }
+
     private void finishAllActivities() {
 //        Intent intent = new Intent(OperationBroadcastActivityInterceptor.OPERATION_ACTION);
 //        intent.putExtra(OperationBroadcastActivityInterceptor.OPERATION, OperationBroadcastActivityInterceptor.OPERATION_FINISH_ALL);
@@ -29,11 +38,7 @@ public class NavigationHelper {
     }
 
     private Bundle getExtras() {
-        Bundle extras = mActivity.getIntent().getExtras();
-        if (extras == null) {
-            extras = new Bundle();
-        }
-        return extras;
+        return mActivity.getIntent() != null && mActivity.getIntent().getExtras() != null ? mActivity.getIntent().getExtras() : new Bundle();
     }
 
 }

@@ -5,10 +5,12 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 
+import com.omvp.app.util.DisposableManager;
 import com.raxdenstudios.commons.util.SDKUtils;
 import com.raxdenstudios.square.SquareDialogFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
@@ -62,21 +64,24 @@ public abstract class BaseFragment extends SquareDialogFragment implements
      * Activity reference is less safe than just exposing the Context since a lot more can be done
      * with the Activity reference.
      * <p>
-     * For more details, see https://github.com/vestrel00/android-dagger-butterknife-mvp/pull/52
      */
     @Inject
     protected Context mContext;
+    @Inject
+    protected Resources mResources;
 
     /**
      * A reference to the FragmentManager is injected and used instead of the getter method. This
      * enables ease of mocking and verification in tests (in case Fragment needs testing).
      * <p>
-     * For more details, see https://github.com/vestrel00/android-dagger-butterknife-mvp/pull/52
      */
     // Note that this should not be used within a child fragment.
     @Inject
     @Named(BaseFragmentModule.CHILD_FRAGMENT_MANAGER)
     protected FragmentManager mChildFragmentManager;
+    @Inject
+    @Named(BaseFragmentModule.DISPOSABLE_FRAGMENT_MANAGER)
+    protected DisposableManager mDisposableManager;
 
     @Inject
     AutoInflateViewInterceptor mAutoInflateViewInterceptor;
@@ -156,6 +161,12 @@ public abstract class BaseFragment extends SquareDialogFragment implements
             mUnbinder.unbind();
         }
         super.onDestroyView();
+    }
+
+    @Override
+    public void onDestroy() {
+        mDisposableManager.dispose();
+        super.onDestroy();
     }
 
     @Override
