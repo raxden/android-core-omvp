@@ -38,47 +38,93 @@ ext {
 
     // dependencies
 
+    support = [
+            implementation: [
+                    "com.android.support:multidex:${multidexVersion}",
+                    "com.android.support:support-v13:${supportLibraryVersion}",
+                    "com.android.support:appcompat-v7:${supportLibraryVersion}",
+                    "com.android.support:design:${supportLibraryVersion}",
+                    "com.android.support:percent:${supportLibraryVersion}",
+                    "com.android.support:recyclerview-v7:${supportLibraryVersion}",
+                    "com.android.support:cardview-v7:${supportLibraryVersion}",
+                    "com.android.support.constraint:constraint-layout:${constraintsLayoutVersion}"
+            ]
+    ]
+
+    raxden = [
+            implementation: [
+                    "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
+                    "com.github.raxden:android-recycler:${androidRecyclerVersion}@aar",
+                    "com.github.raxden:android-preferences:${androidPreferencesVersion}@aar",
+                    "com.github.raxden.square:square:${androidSquareVersion}@aar",
+                    "com.github.raxden.square:square-commons:${androidSquareVersion}@aar"
+            ]
+    ]
+
+    dagger = [
+            implementation: [
+                    "com.google.dagger:dagger-android-support:${daggerVersion}"
+            ],
+            annotationProcessor: [
+                    "com.google.dagger:dagger-compiler:${daggerVersion}",
+                    "com.google.dagger:dagger-android-processor:${daggerVersion}"
+            ]
+    ]
+
+    playServices = [
+            implementation: [
+                    "com.google.android.gms:play-services-base:${servicesVersion}",
+                    "com.google.android.gms:play-services-analytics:${servicesVersion}"
+            ]
+    ]
+
+    firebase = [
+            implementation: [
+                    "com.google.firebase:firebase-core:${servicesVersion}",
+                    "com.google.firebase:firebase-messaging:${servicesVersion}"
+            ]
+    ]
+
+    retrofit = [
+            implementation: [
+                    "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+                    "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+                    "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+                    "com.squareup.retrofit2:converter-scalars:${retrofitVersion}",
+                    "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+                    "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
+            ]
+    ]
+
+    reactive = [
+            implementation: [
+                    "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",
+                    "io.reactivex.rxjava2:rxjava:${reactiveJavaVersion}"
+            ]
+    ]
+
+    jakewharton = [
+            implementation: [
+                    "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
+                    "com.jakewharton.timber:timber:${timberVersion}",
+                    "com.jakewharton:butterknife:${butterknifeVersion}"
+            ],
+            annotationProcessor: [
+                    "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
+            ]
+    ]
+
     deps = [
             app : [
                     implementation: [
-                            "com.android.support:multidex:${multidexVersion}",
-
-                            "com.android.support:support-v13:${supportLibraryVersion}",
-                            "com.android.support:appcompat-v7:${supportLibraryVersion}",
-                            "com.android.support:design:${supportLibraryVersion}",
-                            "com.android.support:percent:${supportLibraryVersion}",
-                            "com.android.support:recyclerview-v7:${supportLibraryVersion}",
-                            "com.android.support:cardview-v7:${supportLibraryVersion}",
-                            "com.android.support.constraint:constraint-layout:${constraintsLayoutVersion}",
-
-                            "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
-                            "com.github.raxden:android-recycler:${androidRecyclerVersion}@aar",
-                            "com.github.raxden:android-preferences:${androidPreferencesVersion}@aar",
-                            "com.github.raxden.square:square:${androidSquareVersion}@aar",
-                            "com.github.raxden.square:square-commons:${androidSquareVersion}@aar",
-                            "com.github.raxden.square:square-reactive:${androidSquareVersion}@aar",
-
-                            "com.google.android.gms:play-services-base:${servicesVersion}",
-                            "com.google.android.gms:play-services-analytics:${servicesVersion}",
-
-                            "com.google.firebase:firebase-core:${servicesVersion}",
-                            "com.google.firebase:firebase-messaging:${servicesVersion}",
-
-                            "com.google.dagger:dagger-android-support:${daggerVersion}",
-
-                            "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-                            "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
-                            "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-                            "com.squareup.retrofit2:converter-scalars:${retrofitVersion}",
-
-                            "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
-
-                            "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",
-                            "io.reactivex.rxjava2:rxjava:${reactiveJavaVersion}",
-
-                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
-                            "com.jakewharton.timber:timber:${timberVersion}",
-                            "com.jakewharton:butterknife:${butterknifeVersion}",
+                            support.implementation,
+                            raxden.implementation,
+                            playServices.implementation,
+                            firebase.implementation,
+                            dagger.implementation,
+                            retrofit.implementation,
+                            reactive.implementation,
+                            jakewharton.implementation,
 
                             "org.modelmapper:modelmapper:${modelmapperVersion}",
                             "org.parceler:parceler-api:${parcelerVersion}",
@@ -87,9 +133,9 @@ ext {
                             "me.grantland:autofittextview:${autoFitTextViewVersion}"
                     ],
                     annotationProcessor : [
-                            "com.google.dagger:dagger-compiler:${daggerVersion}",
-                            "com.google.dagger:dagger-android-processor:${daggerVersion}",
-                            "com.jakewharton:butterknife-compiler:${butterknifeVersion}",
+                            dagger.annotationProcessor,
+                            jakewharton.annotationProcessor,
+
                             "org.projectlombok:lombok:${lombokVersion}",
                             "com.github.bumptech.glide:compiler:${glideVersion}",
                             "org.parceler:parceler:${parcelerVersion}"
@@ -115,15 +161,12 @@ ext {
                             "com.jakewharton.timber:timber:${timberVersion}",
                             "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
 
-                            "com.google.dagger:dagger-android-support:${daggerVersion}",
-
-                            "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",
-                            "io.reactivex.rxjava2:rxjava:${reactiveJavaVersion}"
+                            dagger.implementation,
+                            reactive.implementation
                     ],
                     api : [],
                     annotationProcessor : [
-                            "com.google.dagger:dagger-compiler:${daggerVersion}",
-                            "com.google.dagger:dagger-android-processor:${daggerVersion}",
+                            dagger.annotationProcessor,
 
                             "org.projectlombok:lombok:${lombokVersion}",
                             "org.parceler:parceler:${parcelerVersion}"
@@ -143,24 +186,16 @@ ext {
                             "com.jakewharton.timber:timber:${timberVersion}",
                             "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
 
-                            "com.google.dagger:dagger-android-support:${daggerVersion}",
-
-                            "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-                            "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
-                            "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-                            "com.squareup.retrofit2:converter-scalars:${retrofitVersion}",
-                            "com.squareup.okhttp3:okhttp:${okHttpVersion}",
-                            "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+                            dagger.implementation,
+                            retrofit.implementation,
 
                             "org.modelmapper:modelmapper:${modelmapperVersion}",
 
-                            "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",
-                            "io.reactivex.rxjava2:rxjava:${reactiveJavaVersion}"
+                            reactive.implementation
                     ],
                     api : [],
                     annotationProcessor : [
-                            "com.google.dagger:dagger-compiler:${daggerVersion}",
-                            "com.google.dagger:dagger-android-processor:${daggerVersion}",
+                            dagger.annotationProcessor,
 
                             "org.projectlombok:lombok:${lombokVersion}"
                     ],
@@ -182,15 +217,11 @@ ext {
             ],
             commons : [
                     implementation: [
-                            "com.google.dagger:dagger-android-support:${daggerVersion}",
                             "org.modelmapper:modelmapper:${modelmapperVersion}",
                             "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}"
                     ],
                     api : [],
-                    annotationProcessor : [
-                            "com.google.dagger:dagger-compiler:${daggerVersion}",
-                            "com.google.dagger:dagger-android-processor:${daggerVersion}"
-                    ],
+                    annotationProcessor : [],
                     compileOnly : [],
                     testImplementation : []
             ],
