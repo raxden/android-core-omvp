@@ -43,7 +43,9 @@
 ============================================= TIPS =================================================
 
     1. All configuration is located in build.gradle
-    2. Dependency configuration is located in buildSystem/dependencies.gradle.
-    3. keystores is located in buildSystem/*
+    2. Library dependency configuration is located in buildSystem/dependencies.gradle.
+    3. keystore's is located in buildSystem/*
+
+============================================= DAGGER ===============================================
 
 
