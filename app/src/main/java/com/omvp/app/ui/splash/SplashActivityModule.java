@@ -54,6 +54,6 @@ public abstract class SplashActivityModule {
      */
     @PerFragment
     @ContributesAndroidInjector(modules = SplashFragmentModule.class)
-    abstract SplashFragment splashFragmentInjector();
+    abstract SplashFragment fragmentInjector();
 
 }

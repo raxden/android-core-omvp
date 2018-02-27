@@ -7,8 +7,9 @@ import com.omvp.app.base.BaseActivityModule;
 import com.omvp.app.base.mvp.BaseFragmentActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.injector.scope.PerFragment;
+import com.omvp.app.ui.home.view.HomeFragment;
+import com.omvp.app.ui.home.view.HomeFragmentModule;
 import com.omvp.app.ui.splash.view.SplashFragment;
-import com.omvp.app.ui.splash.view.SplashFragmentModule;
 
 import dagger.Binds;
 import dagger.Module;
@@ -44,7 +45,7 @@ public abstract class HomeActivityModule {
      */
     @Binds
     @PerActivity
-    abstract SplashFragment.FragmentCallback fragmentCallback(HomeActivity activity);
+    abstract HomeFragment.FragmentCallback fragmentCallback(HomeActivity activity);
 
     // =============================================================================================
 
@@ -53,7 +54,7 @@ public abstract class HomeActivityModule {
      * provided by this activity and application instance (singleton scoped objects).
      */
     @PerFragment
-    @ContributesAndroidInjector(modules = SplashFragmentModule.class)
-    abstract SplashFragment splashFragmentInjector();
+    @ContributesAndroidInjector(modules = HomeFragmentModule.class)
+    abstract HomeFragment fragmentInjector();
 
 }
