@@ -1,11 +1,11 @@
-package com.omvp.app.ui.splash;
+package com.omvp.app.ui.sample;
 
 import android.os.Bundle;
 import android.view.View;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
-import com.omvp.app.ui.splash.view.SplashFragment;
+import com.omvp.app.ui.sample.view.SampleFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;
@@ -14,14 +14,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class SplashActivity extends BaseFragmentActivity implements
-        SplashFragment.FragmentCallback,
-        InjectFragmentInterceptorCallback<SplashFragment> {
+public class SampleActivity extends BaseFragmentActivity implements
+        SampleFragment.FragmentCallback,
+        InjectFragmentInterceptorCallback<SampleFragment> {
 
     @Inject
     InjectFragmentInterceptor mInjectFragmentInterceptor;
 
-    private SplashFragment mFragment;
+    private SampleFragment mFragment;
 
     @Override
     public View onLoadFragmentContainer(Bundle savedInstanceState) {
@@ -29,18 +29,13 @@ public class SplashActivity extends BaseFragmentActivity implements
     }
 
     @Override
-    public SplashFragment onCreateFragment() {
-        return SplashFragment.newInstance(mExtras);
+    public SampleFragment onCreateFragment() {
+        return SampleFragment.newInstance(mExtras);
     }
 
     @Override
-    public void onFragmentLoaded(SplashFragment fragment) {
+    public void onFragmentLoaded(SampleFragment fragment) {
         mFragment = fragment;
-    }
-
-    @Override
-    public void onLaunchApplication() {
-        mNavigationHelper.launchSample();
     }
 
     @Override

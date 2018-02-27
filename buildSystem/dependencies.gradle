@@ -138,6 +138,8 @@ ext {
                             "com.jakewharton.timber:timber:${timberVersion}",
                             "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
 
+                            "com.google.dagger:dagger-android-support:${daggerVersion}",
+
                             "com.squareup.retrofit2:retrofit:${retrofitVersion}",
                             "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
                             "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
@@ -152,6 +154,9 @@ ext {
                     ],
                     api : [],
                     annotationProcessor : [
+                            "com.google.dagger:dagger-compiler:${daggerVersion}",
+                            "com.google.dagger:dagger-android-processor:${daggerVersion}",
+
                             "org.projectlombok:lombok:${lombokVersion}"
                     ],
                     compileOnly : [

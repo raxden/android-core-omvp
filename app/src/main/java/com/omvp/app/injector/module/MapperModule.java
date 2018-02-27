@@ -21,7 +21,7 @@ import dagger.Provides;
 import timber.log.Timber;
 
 @Module
-public abstract class ModelMapperModule {
+public abstract class MapperModule {
 
     @Provides
     @Singleton
@@ -120,7 +120,7 @@ public abstract class ModelMapperModule {
                 return bigDecimal;
             }
         });
-        modelMapper.createTypeMap(String.class, BigDecimal.class);
+        modelMapper.createTypeMap(BigDecimal.class, String.class);
         modelMapper.addConverter(new AbstractConverter<BigDecimal, String>() {
             @Override
             protected String convert(BigDecimal source) {

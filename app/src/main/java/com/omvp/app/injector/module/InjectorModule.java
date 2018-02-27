@@ -3,6 +3,8 @@ package com.omvp.app.injector.module;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.home.HomeActivityModule;
+import com.omvp.app.ui.sample.SampleActivity;
+import com.omvp.app.ui.sample.SampleActivityModule;
 import com.omvp.app.ui.splash.SplashActivity;
 import com.omvp.app.ui.splash.SplashActivityModule;
 
@@ -30,5 +32,13 @@ public abstract class InjectorModule {
 	@PerActivity
 	@ContributesAndroidInjector(modules = {HomeActivityModule.class})
 	abstract HomeActivity homeActivity();
+
+	/**
+	 * Provides the injector for the {@link SampleActivity}, which has access to the dependencies
+	 * provided by this application instance (singleton scoped objects).
+	 */
+	@PerActivity
+	@ContributesAndroidInjector(modules = {SampleActivityModule.class})
+	abstract SampleActivity sampleActivity();
 
 }

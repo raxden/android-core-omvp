@@ -12,11 +12,11 @@ import okhttp3.Request;
 import okhttp3.Response;
 import timber.log.Timber;
 
-public class LocaleInterceptor implements Interceptor {
+public class HttpLocaleInterceptor implements Interceptor {
 
     private final LocaleManager localeManager;
 
-    public LocaleInterceptor(LocaleManager localeManager) {
+    public HttpLocaleInterceptor(LocaleManager localeManager) {
         this.localeManager = localeManager;
     }
 

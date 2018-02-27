@@ -1,4 +1,4 @@
-package com.omvp.app.ui.home.presenter;
+package com.omvp.app.ui.sample.presenter;
 
 import com.omvp.app.base.mvp.presenter.BasePresenterModule;
 import com.omvp.app.injector.scope.PerFragment;
@@ -10,10 +10,10 @@ import dagger.Module;
  * Provides SamplePresenterModule dependencies.
  */
 @Module(includes = BasePresenterModule.class)
-public abstract class HomePresenterModule {
+public abstract class SamplePresenterModule {
 
     @Binds
     @PerFragment
-    abstract HomePresenter presenter(HomePresenterImpl presenter);
+    abstract SamplePresenter presenter(SamplePresenterImpl presenter);
 
 }

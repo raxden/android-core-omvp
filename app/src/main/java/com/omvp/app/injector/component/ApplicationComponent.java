@@ -12,6 +12,34 @@ import dagger.android.AndroidInjector;
 
 /**
  * Injects application dependencies.
+ *
+ *      (*) Generated Classes by Dagger.
+ *       - BaseApplicationModule
+ *       - InjectorModule - Module responsable to inject dependencies to activities used in project
+ *       - AndroidInjectionModule - Dagger module required to use this aproach.
+ *
+ *
+ * ApplicationComponent ----- BaseApplicationModule - InjectorModule - AndroidInjectionModule
+ *         |   |                                            |
+ *         |   |                                      SplashActivity
+ *         |   |                                       SampleActivity
+ *         |   |
+ *         |   |
+ *         |   |                                                    BaseActivityModule
+ *         |   |                                                           |
+ *         |   |                                                BaseFragmentActivityModule
+ *         |   |                                                         |         |
+ *         | *SplashActivitySubComponent ------------------ SplashActivityModule   |
+ *         |                          |                                            |
+ *       *HomeActivitySubComponent ---|----------------------------------- SampleActivityModule
+ *                      |             |
+ *                      |             |
+ *                      |             |                                BaseFragmentModule
+ *                      |             |                                     |    |
+ *                      |  *SplashFragmentSubComponent --- SplashFragmentModule  |
+ *                      |                                                        |
+ *           *HomeFragmentSubcomponent --------------------------------- SampleFragmentModule
+ *
  */
 @Singleton
 @Component(

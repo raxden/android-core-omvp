@@ -7,12 +7,12 @@ import org.modelmapper.ModelMapper;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ModelDataMapper<E, T> {
+public abstract class DataMapper<E, T> {
 
     private Context context;
     private ModelMapper modelMapper;
 
-    public ModelDataMapper(Context context, ModelMapper modelMapper) {
+    public DataMapper(Context context, ModelMapper modelMapper) {
         this.context = context;
         this.modelMapper = modelMapper;
     }

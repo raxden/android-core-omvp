@@ -46,6 +46,4 @@
     2. Library dependency configuration is located in buildSystem/dependencies.gradle.
     3. keystore's is located in buildSystem/*
 
-============================================= DAGGER ===============================================
-
 

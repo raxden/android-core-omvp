@@ -1,10 +1,10 @@
-package com.omvp.app.ui.splash.view;
+package com.omvp.app.ui.sample.view;
 
 import android.app.Fragment;
 
 import com.omvp.app.base.BaseFragmentModule;
 import com.omvp.app.injector.scope.PerFragment;
-import com.omvp.app.ui.splash.presenter.SplashPresenterModule;
+import com.omvp.app.ui.sample.presenter.SamplePresenterModule;
 
 import dagger.Binds;
 import dagger.Module;
@@ -14,9 +14,9 @@ import dagger.Module;
  */
 @Module(includes = {
         BaseFragmentModule.class,
-        SplashPresenterModule.class
+        SamplePresenterModule.class
 })
-public abstract class SplashFragmentModule {
+public abstract class SampleFragmentModule {
 
     /**
      * As per the contract specified in {@link BaseFragmentModule}; "This must be included in all
@@ -27,10 +27,10 @@ public abstract class SplashFragmentModule {
      */
     @Binds
     @PerFragment
-    abstract Fragment fragment(SplashFragment fragment);
+    abstract Fragment fragment(SampleFragment fragment);
 
     @Binds
     @PerFragment
-    abstract SplashView view(SplashFragment fragment);
+    abstract SampleView view(SampleFragment fragment);
 
 }

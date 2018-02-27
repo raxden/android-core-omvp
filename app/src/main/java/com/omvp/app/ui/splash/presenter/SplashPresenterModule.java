@@ -7,7 +7,7 @@ import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides HomePresenterModule dependencies.
+ * Provides SamplePresenterModule dependencies.
  */
 @Module(includes = BasePresenterModule.class)
 public abstract class SplashPresenterModule {

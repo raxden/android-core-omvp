@@ -8,8 +8,9 @@ import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.omvp.app.R;
 import com.omvp.app.injector.module.AnalyticsModule;
+import com.omvp.app.injector.module.CacheModule;
 import com.omvp.app.injector.module.GsonModule;
-import com.omvp.app.injector.module.ModelMapperModule;
+import com.omvp.app.injector.module.MapperModule;
 import com.omvp.app.injector.module.NetworkModule;
 import com.omvp.app.util.TrackerManager;
 import com.omvp.data.manager.CredentialsManager;
@@ -33,8 +34,9 @@ import dagger.Provides;
 @Module(
         includes = {
                 GsonModule.class,
-                ModelMapperModule.class,
+                MapperModule.class,
                 AnalyticsModule.class,
+                CacheModule.class,
                 NetworkModule.class
         }
 )
@@ -51,6 +53,10 @@ public abstract class BaseApplicationModule {
      * at what is being provided in order to understand its scope.
      */
     abstract Application application(BaseApplication application);
+
+    @Binds
+    @Singleton
+    abstract Context applicationContext(Application application);
 
     // =============================================================================================
 

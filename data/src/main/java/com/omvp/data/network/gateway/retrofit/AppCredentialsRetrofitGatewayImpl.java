@@ -2,9 +2,9 @@ package com.omvp.data.network.gateway.retrofit;
 
 import android.content.Context;
 
-import com.omvp.data.network.gateway.retrofit.service.AppRetrofitService;
 import com.omvp.data.entity.SampleEntity;
-import com.omvp.data.network.gateway.AppGateway;
+import com.omvp.data.network.gateway.AppCredentialsGateway;
+import com.omvp.data.network.gateway.retrofit.service.AppCredentialsRetrofitService;
 
 import java.util.List;
 
@@ -12,12 +12,12 @@ import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
 
-public class AppRetrofitGatewayImpl implements AppGateway {
+public class AppCredentialsRetrofitGatewayImpl implements AppCredentialsGateway {
 
     private final Context context;
-    private final AppRetrofitService service;
+    private final AppCredentialsRetrofitService service;
 
-    public AppRetrofitGatewayImpl(Context context, AppRetrofitService service) {
+    public AppCredentialsRetrofitGatewayImpl(Context context, AppCredentialsRetrofitService service) {
         this.context = context;
         this.service = service;
     }

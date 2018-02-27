@@ -1,16 +1,16 @@
 package com.omvp.app.base;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 
 import com.omvp.app.injector.module.HelperModule;
 import com.omvp.app.injector.module.InterceptorActivityModule;
+import com.omvp.app.injector.module.RepositoryModule;
+import com.omvp.app.injector.module.UseCaseModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.util.DisposableManager;
 
-import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 
@@ -20,24 +20,11 @@ import dagger.Provides;
  */
 @Module(includes = {
         InterceptorActivityModule.class,
+        RepositoryModule.class,
+        UseCaseModule.class,
         HelperModule.class
 })
 public abstract class BaseActivityModule {
-
-    @Binds
-    @PerActivity
-    /*
-     * PerActivity annotation isn't necessary since Activity instance is unique but is here for
-     * convention. In general, providing Application, Activity, Fragment, BroadcastReceiver,
-     * etc does not require scoped annotations since they are the components being injected and
-     * their instance is unique.
-     *
-     * However, having a scope annotation makes the module easier to read. We wouldn't have to look
-     * at what is being provided in order to understand its scope.
-     */
-    abstract Context activityContext(Activity activity);
-
-    // =============================================================================================
 
     @Provides
     @PerActivity

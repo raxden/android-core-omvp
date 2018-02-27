@@ -10,7 +10,7 @@ import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides HomeFragment fragment dependencies.
+ * Provides SampleFragment fragment dependencies.
  */
 @Module(includes = {
         BaseFragmentModule.class,
@@ -22,7 +22,7 @@ public abstract class HomeFragmentModule {
      * As per the contract specified in {@link BaseFragmentModule}; "This must be included in all
      * fragment modules, which must provide a concrete implementation of {@link Fragment}.
      *
-     * @param fragment the HomeFragment
+     * @param fragment the SampleFragment
      * @return the fragment
      */
     @Binds

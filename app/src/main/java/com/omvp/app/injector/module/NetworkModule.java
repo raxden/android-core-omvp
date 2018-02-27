@@ -7,12 +7,15 @@ import com.omvp.app.BuildConfig;
 import com.omvp.app.R;
 import com.omvp.data.manager.CredentialsManager;
 import com.omvp.data.manager.LocaleManager;
+import com.omvp.data.network.gateway.AppCredentialsGateway;
 import com.omvp.data.network.gateway.AppGateway;
+import com.omvp.data.network.gateway.retrofit.AppCredentialsRetrofitGatewayImpl;
 import com.omvp.data.network.gateway.retrofit.AppRetrofitGatewayImpl;
 import com.omvp.data.network.gateway.retrofit.callAdapter.RxErrorHandlingCallAdapterFactory;
-import com.omvp.data.network.gateway.retrofit.interceptor.CacheInterceptor;
 import com.omvp.data.network.gateway.retrofit.interceptor.CredentialsInterceptor;
-import com.omvp.data.network.gateway.retrofit.interceptor.LocaleInterceptor;
+import com.omvp.data.network.gateway.retrofit.interceptor.HttpCacheInterceptor;
+import com.omvp.data.network.gateway.retrofit.interceptor.HttpLocaleInterceptor;
+import com.omvp.data.network.gateway.retrofit.service.AppCredentialsRetrofitService;
 import com.omvp.data.network.gateway.retrofit.service.AppRetrofitService;
 
 import java.util.concurrent.TimeUnit;
@@ -33,10 +36,10 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 @Module
 public abstract class NetworkModule {
 
-    private static final int CACHE_MAX_AGE = 60 * 10;               // read from cache for 10 minutes
-    private static final int CACHE_MAX_STALE = 60 * 60 * 24 * 28;   // tolerate 4-weeks stale
-    private static final int TIMEOUT = 35;                          // 30 sec
-    private static final int CONNECTION_TIMEOUT = 15;               // 10 sec
+    private static final int HTTP_CACHE_MAX_AGE = 60 * 10;              // read from cache for 10 minutes
+    private static final int HTTP_CACHE_MAX_STALE = 60 * 60 * 24 * 28;  // tolerate 4-weeks stale
+    private static final int TIMEOUT = 35;                              // 30 sec
+    private static final int CONNECT_TIMEOUT = 15;                      // 10 sec
 
     @Provides
     @Singleton
@@ -52,17 +55,17 @@ public abstract class NetworkModule {
 
     @Provides
     @Singleton
-    static CacheInterceptor cacheInterceptor(Context context) {
-        CacheInterceptor cacheInterceptor = new CacheInterceptor(context);
-        cacheInterceptor.setCacheMaxAge(CACHE_MAX_AGE);
-        cacheInterceptor.setCacheMaxStale(CACHE_MAX_STALE);
-        return cacheInterceptor;
+    static HttpCacheInterceptor cacheInterceptor(Context context) {
+        HttpCacheInterceptor httpCacheInterceptor = new HttpCacheInterceptor(context);
+        httpCacheInterceptor.setCacheMaxAge(HTTP_CACHE_MAX_AGE);
+        httpCacheInterceptor.setCacheMaxStale(HTTP_CACHE_MAX_STALE);
+        return httpCacheInterceptor;
     }
 
     @Provides
     @Singleton
-    static LocaleInterceptor localeInterceptor(LocaleManager localeManager) {
-        return new LocaleInterceptor(localeManager);
+    static HttpLocaleInterceptor localeInterceptor(LocaleManager localeManager) {
+        return new HttpLocaleInterceptor(localeManager);
     }
 
     @Provides
@@ -83,31 +86,31 @@ public abstract class NetworkModule {
 
     @Provides
     @Singleton
-    static OkHttpClient httpClient(HttpLoggingInterceptor loggingInterceptor, LocaleInterceptor localeInterceptor, Cache cache, CacheInterceptor cacheInterceptor) {
+    static OkHttpClient httpClient(HttpLoggingInterceptor loggingInterceptor, HttpCacheInterceptor httpCacheInterceptor, HttpLocaleInterceptor httpLocaleInterceptor, Cache cache) {
         return new OkHttpClient.Builder()
                 .addNetworkInterceptor(loggingInterceptor)
-                .addNetworkInterceptor(cacheInterceptor)
-                .addInterceptor(localeInterceptor)
+                .addNetworkInterceptor(httpCacheInterceptor)
+                .addInterceptor(httpLocaleInterceptor)
                 .cache(cache)
                 .retryOnConnectionFailure(true)
                 .readTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
-                .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
+                .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .build();
     }
 
     @Provides
     @Singleton
     @Named("credentials")
-    static OkHttpClient credentialsHttpClient(HttpLoggingInterceptor loggingInterceptor, CredentialsInterceptor credentialsInterceptor, LocaleInterceptor localeInterceptor) {
+    static OkHttpClient credentialsHttpClient(HttpLoggingInterceptor loggingInterceptor, CredentialsInterceptor credentialsInterceptor, HttpLocaleInterceptor httpLocaleInterceptor) {
         return new OkHttpClient.Builder()
                 .addNetworkInterceptor(loggingInterceptor)
                 .addInterceptor(credentialsInterceptor)
-                .addInterceptor(localeInterceptor)
+                .addInterceptor(httpLocaleInterceptor)
                 .retryOnConnectionFailure(true)
                 .readTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
-                .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
+                .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .build();
     }
 
@@ -148,12 +151,24 @@ public abstract class NetworkModule {
         return retrofit.create(AppRetrofitService.class);
     }
 
+    @Provides
+    @Singleton
+    static AppCredentialsRetrofitService appCredentialsRetrofitService(@Named("credentials") Retrofit retrofit) {
+        return retrofit.create(AppCredentialsRetrofitService.class);
+    }
+    
     // Gateway =====================================================================================
 
     @Provides
     @Singleton
     static AppGateway appGateway(Context context, AppRetrofitService service) {
         return new AppRetrofitGatewayImpl(context, service);
+    }
+
+    @Provides
+    @Singleton
+    static AppCredentialsGateway appCredentialsGateway(Context context, AppCredentialsRetrofitService service) {
+        return new AppCredentialsRetrofitGatewayImpl(context, service);
     }
 
 }

@@ -2,21 +2,20 @@ package com.omvp.data.repository.mapper;
 
 import android.content.Context;
 
-import com.omvp.commons.ModelDataMapper;
+import com.omvp.commons.DataMapper;
 import com.omvp.data.entity.SampleEntity;
 import com.omvp.domain.SampleDomain;
 
 import org.modelmapper.ModelMapper;
 
-/**
- * Created by Angel on 27/09/2017.
- */
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
-//@Singleton
-public class SampleEntityDataMapper extends ModelDataMapper<SampleEntity, SampleDomain> {
+@Singleton
+public class SampleEntityDataMapper extends DataMapper<SampleEntity, SampleDomain> {
 
-//    @Inject
-    public SampleEntityDataMapper(Context context, ModelMapper modelMapper) {
+    @Inject
+    SampleEntityDataMapper(Context context, ModelMapper modelMapper) {
         super(context, modelMapper);
     }
 
@@ -34,4 +33,5 @@ public class SampleEntityDataMapper extends ModelDataMapper<SampleEntity, Sample
     public boolean equals(SampleEntity source, SampleDomain destination) {
         return false;
     }
+
 }

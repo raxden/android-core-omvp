@@ -13,10 +13,6 @@ import io.reactivex.Maybe;
 import io.reactivex.Single;
 import io.reactivex.functions.Function;
 
-/**
- * Created by Angel on 15/02/2018.
- */
-
 public class SampleRepositoryImpl extends BaseRepositoryImpl<SampleEntityDataMapper> implements SampleRepository {
 
     private final AppGateway gateway;
