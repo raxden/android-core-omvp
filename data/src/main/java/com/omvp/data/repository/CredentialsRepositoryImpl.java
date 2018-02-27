@@ -4,6 +4,8 @@ import com.omvp.data.manager.CredentialsManager;
 import com.omvp.domain.Credentials;
 import com.omvp.domain.repository.CredentialsRepository;
 
+import javax.inject.Inject;
+
 import io.reactivex.Completable;
 import io.reactivex.CompletableEmitter;
 import io.reactivex.CompletableOnSubscribe;
@@ -12,15 +14,12 @@ import io.reactivex.SingleEmitter;
 import io.reactivex.SingleOnSubscribe;
 import io.reactivex.annotations.NonNull;
 
-/**
- * Created by Angel on 15/02/2018.
- */
-
 public class CredentialsRepositoryImpl implements CredentialsRepository {
 
     private final CredentialsManager credentialsManager;
 
-    public CredentialsRepositoryImpl(CredentialsManager credentialsManager) {
+    @Inject
+    CredentialsRepositoryImpl(CredentialsManager credentialsManager) {
         this.credentialsManager = credentialsManager;
     }
 

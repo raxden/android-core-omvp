@@ -40,6 +40,8 @@
     7. To use Sonarqube register application in Sonarqube. To launch sonarqube, execute
     "gradlew sonarqube" in console. Configuration is located in build.gradle.
 
+    8. Define what languages will be use the application in locales.xml
+
 ============================================= TIPS =================================================
 
     1. All configuration is located in build.gradle

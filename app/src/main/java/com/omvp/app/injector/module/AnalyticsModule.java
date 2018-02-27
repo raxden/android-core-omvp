@@ -13,7 +13,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public abstract class AnalyticsModule {
+public class AnalyticsModule {
 
     @Provides
     @Singleton

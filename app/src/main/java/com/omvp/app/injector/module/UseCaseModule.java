@@ -3,26 +3,33 @@ package com.omvp.app.injector.module;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.domain.interactor.GetSampleListUseCase;
 import com.omvp.domain.interactor.GetSampleUseCase;
+import com.omvp.domain.interactor.RemoveSampleUseCase;
+import com.omvp.domain.interactor.SaveSampleUseCase;
 import com.omvp.domain.interactor.impl.GetSampleListUseCaseImpl;
 import com.omvp.domain.interactor.impl.GetSampleUseCaseImpl;
-import com.omvp.domain.repository.SampleRepository;
+import com.omvp.domain.interactor.impl.RemoveSampleUseCaseImpl;
+import com.omvp.domain.interactor.impl.SaveSampleUseCaseImpl;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 @Module
 public abstract class UseCaseModule {
 
-    @Provides
+    @Binds
     @PerActivity
-    static GetSampleUseCase getSampleUseCase(SampleRepository repository) {
-        return new GetSampleUseCaseImpl(repository);
-    }
+    abstract GetSampleUseCase getSampleUseCase(GetSampleUseCaseImpl repository);
 
-    @Provides
+    @Binds
     @PerActivity
-    static GetSampleListUseCase getSampleListUseCase(SampleRepository repository) {
-        return new GetSampleListUseCaseImpl(repository);
-    }
+    abstract GetSampleListUseCase getSampleListUseCase(GetSampleListUseCaseImpl repository);
+
+    @Binds
+    @PerActivity
+    abstract RemoveSampleUseCase removeSampleUseCase(RemoveSampleUseCaseImpl repository);
+
+    @Binds
+    @PerActivity
+    abstract SaveSampleUseCase saveSampleUseCase(SaveSampleUseCaseImpl repository);
 
 }

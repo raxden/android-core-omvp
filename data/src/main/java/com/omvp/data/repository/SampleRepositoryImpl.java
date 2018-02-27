@@ -8,6 +8,8 @@ import com.omvp.domain.repository.SampleRepository;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
@@ -17,7 +19,8 @@ public class SampleRepositoryImpl extends BaseRepositoryImpl<SampleEntityDataMap
 
     private final AppGateway gateway;
 
-    public SampleRepositoryImpl(AppGateway gateway, SampleEntityDataMapper entityDataMappger) {
+    @Inject
+    SampleRepositoryImpl(AppGateway gateway, SampleEntityDataMapper entityDataMappger) {
         super(entityDataMappger);
         this.gateway = gateway;
     }

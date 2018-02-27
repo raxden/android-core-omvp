@@ -5,7 +5,6 @@ import android.os.Handler;
 
 import com.omvp.app.base.mvp.presenter.BasePresenter;
 import com.omvp.app.base.reactivex.BaseDisposableCompletableObserver;
-import com.omvp.app.injector.scope.PerFragment;
 import com.omvp.app.ui.splash.view.SplashView;
 import com.omvp.commons.Constants;
 
@@ -17,10 +16,6 @@ import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-/**
- * Created by Angel on 21/02/2018.
- */
-@PerFragment
 public class SplashPresenterImpl extends BasePresenter<SplashView> implements SplashPresenter {
 
     private float mProgress;

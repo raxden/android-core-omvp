@@ -6,6 +6,8 @@ import com.omvp.domain.repository.LocaleRepository;
 import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 import io.reactivex.Completable;
 import io.reactivex.CompletableEmitter;
 import io.reactivex.CompletableOnSubscribe;
@@ -17,15 +19,12 @@ import io.reactivex.SingleEmitter;
 import io.reactivex.SingleOnSubscribe;
 import io.reactivex.annotations.NonNull;
 
-/**
- * Created by Angel on 15/02/2018.
- */
-
 public class LocaleRepositoryImpl implements LocaleRepository {
 
     private final LocaleManager localeManager;
 
-    public LocaleRepositoryImpl(LocaleManager localeManager) {
+    @Inject
+    LocaleRepositoryImpl(LocaleManager localeManager) {
         this.localeManager = localeManager;
     }
 

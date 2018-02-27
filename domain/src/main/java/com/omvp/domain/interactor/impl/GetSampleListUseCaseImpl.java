@@ -6,12 +6,14 @@ import com.omvp.domain.repository.SampleRepository;
 
 import java.util.List;
 
-import io.reactivex.Maybe;
+import javax.inject.Inject;
 
+import io.reactivex.Maybe;
 
 public class GetSampleListUseCaseImpl extends BaseUseCaseImpl<SampleRepository> implements GetSampleListUseCase {
 
-    public GetSampleListUseCaseImpl(SampleRepository repository) {
+    @Inject
+    GetSampleListUseCaseImpl(SampleRepository repository) {
         super(repository);
     }
 

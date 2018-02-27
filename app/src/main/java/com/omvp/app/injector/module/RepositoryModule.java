@@ -1,21 +1,29 @@
 package com.omvp.app.injector.module;
 
 import com.omvp.app.injector.scope.PerActivity;
-import com.omvp.data.network.gateway.AppGateway;
+import com.omvp.data.repository.CredentialsRepositoryImpl;
+import com.omvp.data.repository.LocaleRepositoryImpl;
 import com.omvp.data.repository.SampleRepositoryImpl;
-import com.omvp.data.repository.mapper.SampleEntityDataMapper;
+import com.omvp.domain.repository.CredentialsRepository;
+import com.omvp.domain.repository.LocaleRepository;
 import com.omvp.domain.repository.SampleRepository;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 @Module
 public abstract class RepositoryModule {
 
-    @Provides
+    @Binds
     @PerActivity
-    static SampleRepository sampleRepository(AppGateway gateway, SampleEntityDataMapper entityDataMapper) {
-        return new SampleRepositoryImpl(gateway, entityDataMapper);
-    }
+    abstract SampleRepository sampleRepository(SampleRepositoryImpl repository);
+
+    @Binds
+    @PerActivity
+    abstract LocaleRepository localeRepository(LocaleRepositoryImpl repository);
+
+    @Binds
+    @PerActivity
+    abstract CredentialsRepository credentialsRepository(CredentialsRepositoryImpl repository);
 
 }
