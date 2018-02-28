@@ -58,3 +58,4 @@ String increaseBuildVersion() {
     }
     return versionName
 }
+

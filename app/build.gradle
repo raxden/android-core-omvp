@@ -23,21 +23,8 @@ android {
         testInstrumentationRunner rootProject.ext.testInstrumentationRunner
         testApplicationId rootProject.ext.testApplicationId
 
-        Properties properties = new Properties()
-        if (project.rootProject.file('local.properties').exists()) {
-            properties.load(project.rootProject.file('local.properties').newDataInputStream())
-        }
-        if (!properties.containsKey("dev.username")) {
-            properties.setProperty("dev.username", "")
-        }
-        if (!properties.containsKey("dev.password")) {
-            properties.setProperty("dev.password", "")
-        }
-
-        resValue "string", "dev_username", properties.getProperty("dev.username")
-        resValue "string", "dev_password", properties.getProperty("dev.password")
-
-        setProperty("archivesBaseName", "sample")
+        // property used to generate name apk [name-productFlavor-buildType.apk]
+        setProperty("archivesBaseName", rootProject.ext.androidAppName)
 
         vectorDrawables.useSupportLibrary = true
 
@@ -98,12 +85,24 @@ android {
             dimension "tier"
             applicationIdSuffix ".dev"
             versionNameSuffix "-dev"
-            resValue "string", "app_name", "Sample Dev"
+            resValue "string", "app_name", rootProject.ext.androidAppName+" Dev"
             resConfigs "xxhdpi"
+
+            Properties properties = new Properties()
+            if (project.rootProject.file('local.properties').exists()) {
+                properties.load(project.rootProject.file('local.properties').newDataInputStream())
+                if (!properties.isEmpty()) {
+                    for (String key : properties.keySet()) {
+                        String parsedKey = key.replaceAll("\\.","_").toUpperCase()
+                        String parsedValue = "\""+properties.getProperty(key).replaceAll("\\\\","/")+"\""
+                        buildConfigField "String", parsedKey, parsedValue
+                    }
+                }
+            }
         }
         prod {
             dimension "tier"
-            resValue "string", "app_name", "Sample"
+            resValue "string", "app_name", rootProject.ext.androidAppName
         }
     }
 

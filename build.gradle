@@ -38,6 +38,7 @@ allprojects {
         androidApplicationId = 'com.raxdenstudios.sample'
         androidVersionCode = VERSION_CODE as int
         androidVersionName = VERSION_NAME as String
+        androidAppName = 'omvp'
 
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
         testApplicationId = 'com.raxdenstudios.sample.test'

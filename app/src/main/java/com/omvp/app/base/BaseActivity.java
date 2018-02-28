@@ -64,6 +64,7 @@ public abstract class BaseActivity extends SquareActivity implements
     @Override
     public void onDestroy() {
         super.onDestroy();
+
         mDisposableManager.dispose();
     }
 
