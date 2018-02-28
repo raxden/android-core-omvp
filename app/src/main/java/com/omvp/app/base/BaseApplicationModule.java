@@ -44,7 +44,7 @@ public abstract class BaseApplicationModule {
 
     @Binds
     @Singleton
-        /*
+    /*
      * Singleton annotation isn't necessary since Application instance is unique but is here for
      * convention. In general, providing Activity, Fragment, BroadcastReceiver, etc does not require
      * them to be scoped since they are the components being injected and their instance is unique.

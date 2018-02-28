@@ -1,7 +1,7 @@
 ======================================== HOW IS THAT ===============================================
 
     This project is created like a template to start another projets. It`s based in MVP pattern and
-    Onion arquitecture, besides use Dagger2 to injection dependencies, RX2 to reactive programiming
+    Onion arquitecture, besides use Dagger2 to injection dependencies, RX2 to reactive programing
     and Retrofit2 to http layer. Another libraries used in proyect:
 
     - timber - Library to print logs
@@ -20,19 +20,20 @@
     1. Rename androidApplicationId and testApplicationId in build.gradle.
         com.raxdenstudios.sample -> com.companyname.proyectname
 
-    2. Install lombok plugin in your AndroidStudio.
-
-    3. Register application in Firebase and download|replace google-services.json contained in
+    2. Register application in Firebase and download|replace google-services.json contained in
     app module. Remember that proyect has two diferences configurations, dev and prod.
     Therefore you must register two applications instead of one.
         {androidApplicationId}
         {androidApplicationId}.dev
 
+    3. Install lombok plugin in your AndroidStudio.
+
     4. Create|Replace release.jks keystore
         buildSystem/release.jks
 
-    5. Copy local.properties.sample and rename to local.properties, use this file to custom
-    properties like user and password credentials used in development mode.
+    5. Copy and rename local.properties.sample to local.properties, any property defined in this
+    file is available through BuildConfig.KEY_TO_USE in DEBUG configuration. Use this file to
+    custom properties like user and password credentials used only in development mode.
 
     6. To use Crashlytics, register application in Crashlytics via plugin. To personalize
     configuration like distribution or release notes, modify preferences in build.gradle.

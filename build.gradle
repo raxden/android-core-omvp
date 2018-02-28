@@ -35,21 +35,25 @@ allprojects {
         compileSdkVersion = 26
         buildToolsVersion = '26.0.2'
 
+        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+        testApplicationId = 'com.raxdenstudios.sample.test'
+
+        // ============== App configuration ========================================================
+
         androidApplicationId = 'com.raxdenstudios.sample'
         androidVersionCode = VERSION_CODE as int
         androidVersionName = VERSION_NAME as String
         androidAppName = 'omvp'
 
-        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-        testApplicationId = 'com.raxdenstudios.sample.test'
+        // ============== Sonar configuration ======================================================
 
-        // sonar
         sonarProjectName = "Android Sample"
         sonarHostUrl = "https://sonarcloud.io"
         sonarLogin = ""
         sonarOrganization = ""
 
-        // crashlytics
+        // ============== Crashlytics configuration ================================================
+
         betaDistributionReleaseNotesFilePath = 'release_notes.txt'
         betaDistributionGroupAliasesFilePath = 'group_aliases.txt'
         betaDistributionNotifications = true
