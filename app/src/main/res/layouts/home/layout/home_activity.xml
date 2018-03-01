@@ -6,4 +6,8 @@
 
     <include layout="@layout/content_view" />
 
+    <include layout="@layout/home_toolbar_view"/>
+
+    <include layout="@layout/progress_view" />
+
 </android.support.design.widget.CoordinatorLayout>

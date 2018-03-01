@@ -1,37 +1,38 @@
-package com.omvp.data.entity.mapper;
+package com.omvp.app.model.mapper;
 
 import android.content.Context;
 
+import com.omvp.app.injector.scope.PerFragment;
+import com.omvp.app.model.SampleModel;
 import com.omvp.commons.DataMapper;
-import com.omvp.data.entity.SampleEntity;
 import com.omvp.domain.SampleDomain;
 
 import org.modelmapper.ModelMapper;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
-@Singleton
-public class SampleEntityDataMapper extends DataMapper<SampleEntity, SampleDomain> {
+@PerFragment
+public class SampleModelDataMapper extends DataMapper<SampleDomain, SampleModel> {
 
     @Inject
-    SampleEntityDataMapper(Context context, ModelMapper modelMapper) {
+    SampleModelDataMapper(Context context, ModelMapper modelMapper) {
         super(context, modelMapper);
     }
 
     @Override
-    public SampleDomain transform(SampleEntity source) {
+    public SampleModel transform(SampleDomain source) {
+        return getModelMapper().map(source, SampleModel.class);
+    }
+
+    @Override
+    public SampleDomain inverseTransform(SampleModel source) {
         return getModelMapper().map(source, SampleDomain.class);
     }
 
     @Override
-    public SampleEntity inverseTransform(SampleDomain source) {
-        return getModelMapper().map(source, SampleEntity.class);
-    }
-
-    @Override
-    public boolean equals(SampleEntity source, SampleDomain destination) {
+    public boolean equals(SampleDomain source, SampleModel destination) {
         return false;
     }
 
 }
+

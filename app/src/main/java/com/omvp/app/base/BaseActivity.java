@@ -81,12 +81,14 @@ public abstract class BaseActivity extends SquareActivity implements
         mContentView = view;
     }
 
-    // =============== Support methods =============================================================
+    // =============== HasFragmentInjector =========================================================
 
     @Override
     public AndroidInjector<Fragment> fragmentInjector() {
         return mFragmentInjector;
     }
+
+    // =============== Support methods =============================================================
 
     @Override
     protected void setupInterceptors(List<Interceptor> interceptorList) {

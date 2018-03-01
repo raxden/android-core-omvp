@@ -23,6 +23,15 @@ public class SplashActivity extends BaseFragmentActivity implements
 
     private SplashFragment mFragment;
 
+    // =============== SplashFragment.FragmentCallback =============================================
+
+    @Override
+    public void onLaunchApplication() {
+        mNavigationHelper.launchSample();
+    }
+
+    // =============== InjectFragmentInterceptorCallback ===========================================
+
     @Override
     public View onLoadFragmentContainer(Bundle savedInstanceState) {
         return findViewById(R.id.content);
@@ -38,10 +47,7 @@ public class SplashActivity extends BaseFragmentActivity implements
         mFragment = fragment;
     }
 
-    @Override
-    public void onLaunchApplication() {
-        mNavigationHelper.launchSample();
-    }
+    // =============== Support methods =============================================================
 
     @Override
     protected void setupInterceptors(List<Interceptor> interceptorList) {

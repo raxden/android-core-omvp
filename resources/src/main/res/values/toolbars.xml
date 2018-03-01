@@ -15,7 +15,7 @@
 
     </style>
 
-    <style name="Toolbar.Sample">
+    <style name="Toolbar.Home">
         <item name="navigationIcon">@mipmap/ic_launcher_round</item>
     </style>
 

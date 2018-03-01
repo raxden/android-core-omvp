@@ -23,6 +23,8 @@ public class SampleActivity extends BaseFragmentActivity implements
 
     private SampleFragment mFragment;
 
+    // =============== InjectFragmentInterceptorCallback ===========================================
+
     @Override
     public View onLoadFragmentContainer(Bundle savedInstanceState) {
         return findViewById(R.id.content);
@@ -37,6 +39,8 @@ public class SampleActivity extends BaseFragmentActivity implements
     public void onFragmentLoaded(SampleFragment fragment) {
         mFragment = fragment;
     }
+
+    // =============== Support methods =============================================================
 
     @Override
     protected void setupInterceptors(List<Interceptor> interceptorList) {
