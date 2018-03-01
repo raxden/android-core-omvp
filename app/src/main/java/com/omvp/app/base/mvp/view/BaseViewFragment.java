@@ -45,6 +45,8 @@ public abstract class BaseViewFragment<TPresenter extends Presenter, TCallback e
     @Nullable
     private Unbinder mUnbinder;
 
+    // =============== LifeCycle ===================================================================
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

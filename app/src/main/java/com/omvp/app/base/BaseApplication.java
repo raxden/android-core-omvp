@@ -21,6 +21,8 @@ public abstract class BaseApplication extends MultiDexApplication implements Has
     @Inject
     DispatchingAndroidInjector<Activity> activityInjector;
 
+    // =============== LifeCycle ===================================================================
+
     @Override
     public void onCreate() {
         super.onCreate();

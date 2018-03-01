@@ -77,6 +77,8 @@ public abstract class BaseFragment extends SquareDialogFragment implements
     @Inject
     DispatchingAndroidInjector<Fragment> mChildFragmentInjector;
 
+    // =============== LifeCycle ===================================================================
+
     @Override
     public void onAttach(Activity activity) {
         if (!SDKUtils.hasMarshmallow()) {

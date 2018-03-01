@@ -58,6 +58,8 @@ public abstract class BaseActivity extends SquareActivity implements
 
     protected View mContentView;
 
+    // =============== LifeCycle ===================================================================
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
