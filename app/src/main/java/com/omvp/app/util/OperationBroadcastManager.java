@@ -40,7 +40,7 @@ public class OperationBroadcastManager {
 
     public static void finishAllActivities(Activity activity) {
         Intent intent = new Intent(OPERATION_ACTION);
-        intent.putExtra(OPERATION, OPERATION_ACTIVITY_FINISH);
+        intent.putExtra(OPERATION, OPERATION_ACTIVITY_FINISH_ALL);
         activity.sendBroadcast(intent);
     }
 
