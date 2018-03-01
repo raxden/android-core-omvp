@@ -7,12 +7,7 @@ public class SampleEntity {
 
     private String id;
     private String title;
-    private String entradilla;
-    private String descripcion;
     private String link;
-    private String thumbnail;
-    private String post_type;
-    private String imagen;
-    private int orden;
+    private long pubdate;
 
 }

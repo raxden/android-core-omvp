@@ -11,6 +11,7 @@ import com.omvp.app.helper.DialogHelper;
 import com.omvp.app.helper.NavigationHelper;
 import com.omvp.app.helper.SnackBarHelper;
 import com.omvp.app.util.DisposableManager;
+import com.omvp.app.util.OperationBroadcastManager;
 import com.raxdenstudios.square.SquareActivity;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor;
@@ -46,6 +47,8 @@ public abstract class BaseActivity extends SquareActivity implements
     protected AnimationHelper mAnimationHelper;
     @Inject
     protected DisposableManager mDisposableManager;
+    @Inject
+    protected OperationBroadcastManager mOperationBroadcastManager;
 
     @Inject
     AutoInflateLayoutInterceptor mAutoInflateLayoutInterceptor;
@@ -59,12 +62,15 @@ public abstract class BaseActivity extends SquareActivity implements
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
+
+        mOperationBroadcastManager.register();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
 
+        mOperationBroadcastManager.unregister();
         mDisposableManager.dispose();
     }
 

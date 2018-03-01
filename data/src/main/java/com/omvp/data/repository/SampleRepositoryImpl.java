@@ -1,8 +1,8 @@
 package com.omvp.data.repository;
 
 import com.omvp.data.entity.SampleEntity;
+import com.omvp.data.entity.mapper.SampleEntityDataMapper;
 import com.omvp.data.network.gateway.AppGateway;
-import com.omvp.data.repository.mapper.SampleEntityDataMapper;
 import com.omvp.domain.SampleDomain;
 import com.omvp.domain.repository.SampleRepository;
 
