@@ -21,6 +21,8 @@ public abstract class BaseApplication extends MultiDexApplication implements Has
     @Inject
     DispatchingAndroidInjector<Activity> activityInjector;
 
+    // =============== LifeCycle ===================================================================
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -29,10 +31,14 @@ public abstract class BaseApplication extends MultiDexApplication implements Has
         initDaggerApplicationComponent();
     }
 
+    // =============== HasActivityInjector =========================================================
+
     @Override
     public AndroidInjector<Activity> activityInjector() {
         return activityInjector;
     }
+
+    // =============== Support methods =============================================================
 
     private void initCompatVector() {
         if (!SDKUtils.hasLollipop()) {

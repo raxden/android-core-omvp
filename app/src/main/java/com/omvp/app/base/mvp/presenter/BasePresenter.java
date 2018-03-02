@@ -34,11 +34,11 @@ public abstract class BasePresenter<TView extends BaseView> implements Presenter
 
     protected TView mView;
 
-    // Presenter life cycle methods ================================================================
-
     public BasePresenter(TView mView) {
         this.mView = mView;
     }
+
+    // =============== LifeCycle ===================================================================
 
     @Override
     public void onViewRestored(Bundle savedState) {
@@ -70,7 +70,7 @@ public abstract class BasePresenter<TView extends BaseView> implements Presenter
 
     }
 
-    // Methods to override by presenter childs. ====================================================
+    // =============== Support methods =============================================================
 
     protected void showError(int title, int description) {
         showError(0, title, description);

@@ -10,6 +10,7 @@ import com.omvp.app.injector.module.RepositoryModule;
 import com.omvp.app.injector.module.UseCaseModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.util.DisposableManager;
+import com.omvp.app.util.OperationBroadcastManager;
 
 import dagger.Module;
 import dagger.Provides;
@@ -42,6 +43,12 @@ public abstract class BaseActivityModule {
     @PerActivity
     static DisposableManager activityDisposableManager() {
         return new DisposableManager();
+    }
+
+    @Provides
+    @PerActivity
+    static OperationBroadcastManager operationBroadcastManager(Activity activity) {
+        return new OperationBroadcastManager(activity);
     }
 
 }

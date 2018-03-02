@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.sample.SampleActivity;
 import com.omvp.app.ui.splash.SplashActivity;
+import com.omvp.app.util.OperationBroadcastManager;
 import com.raxdenstudios.commons.manager.NavigationManager;
 
 public class NavigationHelper {
@@ -17,7 +18,7 @@ public class NavigationHelper {
     }
 
     public void launchSplash() {
-        finishAllActivities();
+        OperationBroadcastManager.finishAllActivities(mActivity);
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(SplashActivity.class)
@@ -25,7 +26,7 @@ public class NavigationHelper {
     }
 
     public void launchHomeAndFinishPreviousViews() {
-        finishAllActivities();
+        OperationBroadcastManager.finishAllActivities(mActivity);
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(HomeActivity.class)
@@ -37,12 +38,6 @@ public class NavigationHelper {
                 .putData(getExtras())
                 .navigateTo(SampleActivity.class)
                 .launch();
-    }
-
-    private void finishAllActivities() {
-//        Intent intent = new Intent(OperationBroadcastActivityInterceptor.OPERATION_ACTION);
-//        intent.putExtra(OperationBroadcastActivityInterceptor.OPERATION, OperationBroadcastActivityInterceptor.OPERATION_FINISH_ALL);
-//        mActivity.sendBroadcast(intent);
     }
 
     private Bundle getExtras() {

@@ -6,9 +6,6 @@ import com.omvp.app.base.mvp.view.BaseViewFragment;
 import com.omvp.app.base.mvp.view.BaseViewFragmentCallback;
 import com.omvp.app.ui.sample.presenter.SamplePresenter;
 
-/**
- * Created by Ángel Gómez on 18/02/2018.
- */
 public class SampleFragment extends BaseViewFragment<SamplePresenter, SampleFragment.FragmentCallback> implements SampleView {
 
     public interface FragmentCallback extends BaseViewFragmentCallback {

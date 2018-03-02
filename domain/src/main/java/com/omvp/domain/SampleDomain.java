@@ -3,6 +3,7 @@ package com.omvp.domain;
 import android.net.Uri;
 
 import org.parceler.Parcel;
+import org.threeten.bp.LocalDateTime;
 
 import lombok.Data;
 
@@ -12,15 +13,11 @@ public class SampleDomain {
 
     Long id;
     String title;
-    String subtitle;
-    String descripcion;
     Uri link;
-    Uri thumbnail;
-    Uri image;
-    String section;
-    int order;
+    LocalDateTime pubdate;
 
     public SampleDomain() {
+
     }
 
 }

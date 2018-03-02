@@ -8,22 +8,14 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.annotation.Nullable;
 
 import com.omvp.app.util.DisposableManager;
 import com.raxdenstudios.commons.util.SDKUtils;
 import com.raxdenstudios.square.SquareDialogFragment;
-import com.raxdenstudios.square.interceptor.Interceptor;
-import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewInterceptor;
-import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewInterceptorCallback;
-
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
@@ -53,7 +45,6 @@ import dagger.android.HasFragmentInjector;
  * This fragment handles view bind and unbinding.
  */
 public abstract class BaseFragment extends SquareDialogFragment implements
-        AutoInflateViewInterceptorCallback,
         HasFragmentInjector {
 
     /**
@@ -84,13 +75,9 @@ public abstract class BaseFragment extends SquareDialogFragment implements
     protected DisposableManager mDisposableManager;
 
     @Inject
-    AutoInflateViewInterceptor mAutoInflateViewInterceptor;
-
-    @Inject
     DispatchingAndroidInjector<Fragment> mChildFragmentInjector;
 
-    @Nullable
-    private Unbinder mUnbinder;
+    // =============== LifeCycle ===================================================================
 
     @Override
     public void onAttach(Activity activity) {
@@ -117,67 +104,20 @@ public abstract class BaseFragment extends SquareDialogFragment implements
         setHasOptionsMenu(true);
     }
 
-    @SuppressWarnings("ConstantConditions")
-    @Override
-    public void onViewStateRestored(Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        /*
-         * Bind the views here instead of in onViewCreated so that view state changed listeners
-         * are not invoked automatically without user interaction.
-         *
-         * If we bind before this method (e.g. onViewCreated), then any checked changed
-         * listeners bound by ButterKnife will be invoked during fragment recreation (since
-         * Android itself saves and restores the views' states. Take a look at this gist for a
-         * concrete example: https://gist.github.com/vestrel00/982d585144423f728342787341fa001d
-         *
-         * The lifecycle order is as follows (same if added via xml or java or if retain
-         * instance is true):
-         *
-         * onAttach
-         * onCreateView
-         * onViewCreated
-         * onActivityCreated
-         * onViewRestored
-         * onResume
-         *
-         * Note that the onCreate (and other lifecycle events) are omitted on purpose. The
-         * caveat to this approach is that views, listeners, and resources bound by
-         * Butterknife will be null until onViewStatedRestored. Just be careful not to use any
-         * objects bound using Butterknife before onViewRestored.
-         *
-         * Fragments that do not return a non-null View in onCreateView results in onViewCreated
-         * and onViewRestored not being called. This means that Butterknife.bind will not get
-         * called, which is completely fine because there is no View to bind. Furthermore, there is
-         * no need to check if getView() returns null here because this lifecycle method only gets
-         * called with a non-null View.
-         */
-        mUnbinder = ButterKnife.bind(this, getView());
-    }
-
-    @Override
-    public void onDestroyView() {
-        // This lifecycle method still gets called even if onCreateView returns a null view.
-        if (mUnbinder != null) {
-            mUnbinder.unbind();
-        }
-        super.onDestroyView();
-    }
-
     @Override
     public void onDestroy() {
         mDisposableManager.dispose();
         super.onDestroy();
     }
 
+    // =============== HasFragmentInjector =========================================================
+
     @Override
     public AndroidInjector<Fragment> fragmentInjector() {
         return mChildFragmentInjector;
     }
 
-    @Override
-    protected void setupInterceptors(List<Interceptor> interceptorList) {
-        interceptorList.add(mAutoInflateViewInterceptor);
-    }
+    // =============== Support methods =============================================================
 
     protected final void addChildFragment(@IdRes int containerViewId, Fragment fragment) {
         mChildFragmentManager.beginTransaction()
