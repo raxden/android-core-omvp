@@ -1,8 +1,8 @@
 package com.omvp.data.repository;
 
-import com.omvp.data.manager.CredentialsManager;
 import com.omvp.domain.Credentials;
 import com.omvp.domain.repository.CredentialsRepository;
+import com.raxdenstudios.preferences.AdvancedPreferences;
 
 import javax.inject.Inject;
 
@@ -16,11 +16,11 @@ import io.reactivex.annotations.NonNull;
 
 public class CredentialsRepositoryImpl implements CredentialsRepository {
 
-    private final CredentialsManager credentialsManager;
+    private final AdvancedPreferences preferences;
 
     @Inject
-    CredentialsRepositoryImpl(CredentialsManager credentialsManager) {
-        this.credentialsManager = credentialsManager;
+    CredentialsRepositoryImpl(AdvancedPreferences preferences) {
+        this.preferences = preferences;
     }
 
     @Override
@@ -30,7 +30,8 @@ public class CredentialsRepositoryImpl implements CredentialsRepository {
             public void subscribe(@NonNull CompletableEmitter emitter) throws Exception {
                 try {
                     if (!emitter.isDisposed()) {
-                        credentialsManager.persist(credentials);
+                        preferences.put(Credentials.class.getSimpleName(), credentials);
+                        preferences.commit();
                         emitter.onComplete();
                     }
                 } catch (Exception ex) {
@@ -46,7 +47,8 @@ public class CredentialsRepositoryImpl implements CredentialsRepository {
             @Override
             public void subscribe(@NonNull SingleEmitter<Credentials> emitter) throws Exception {
                 try {
-                    emitter.onSuccess(credentialsManager.retrieve());
+                    Credentials credentials = preferences.get(Credentials.class.getSimpleName(), Credentials.class, new Credentials());
+                    emitter.onSuccess(credentials);
                 } catch (Exception ex) {
                     emitter.onError(ex);
                 }

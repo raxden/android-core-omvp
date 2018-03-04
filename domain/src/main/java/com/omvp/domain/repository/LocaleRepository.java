@@ -9,9 +9,9 @@ import io.reactivex.Single;
 
 public interface LocaleRepository extends Repository {
 
-    Maybe<List<Locale>> retrieveAvailableLocaleList();
+    Maybe<List<Locale>> retrieveList();
 
-    Completable save(final Locale locale);
+    Completable persist(final Locale locale);
 
     Single<Locale> retrieve();
 

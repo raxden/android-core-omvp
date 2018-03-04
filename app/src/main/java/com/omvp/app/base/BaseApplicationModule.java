@@ -6,21 +6,16 @@ import android.content.Context;
 
 import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.omvp.app.R;
 import com.omvp.app.injector.module.AnalyticsModule;
 import com.omvp.app.injector.module.CacheModule;
 import com.omvp.app.injector.module.GsonModule;
+import com.omvp.app.injector.module.LocaleModule;
 import com.omvp.app.injector.module.MapperModule;
 import com.omvp.app.injector.module.NetworkModule;
+import com.omvp.app.injector.module.RepositoryModule;
 import com.omvp.app.util.TrackerManager;
-import com.omvp.data.manager.CredentialsManager;
-import com.omvp.data.manager.LocaleManager;
 import com.raxdenstudios.commons.util.Utils;
 import com.raxdenstudios.preferences.AdvancedPreferences;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.inject.Singleton;
 
@@ -33,10 +28,12 @@ import dagger.Provides;
  */
 @Module(
         includes = {
+                LocaleModule.class,
                 GsonModule.class,
                 MapperModule.class,
                 AnalyticsModule.class,
                 CacheModule.class,
+                RepositoryModule.class,
                 NetworkModule.class
         }
 )
@@ -74,20 +71,7 @@ public abstract class BaseApplicationModule {
 
     @Provides
     @Singleton
-    static LocaleManager localeManager(Application application, AdvancedPreferences advancedPreferences) {
-        Set<String> availableLocaleList = new HashSet<>(Arrays.asList(application.getResources().getStringArray(R.array.available_locale_list)));
-        return new LocaleManager(advancedPreferences, availableLocaleList);
-    }
-
-    @Provides
-    @Singleton
-    static CredentialsManager provideCredentialsManager(AdvancedPreferences advancedPreferences) {
-        return new CredentialsManager(advancedPreferences);
-    }
-
-    @Provides
-    @Singleton
-    static TrackerManager provideTrackerManager(Tracker tracker, FirebaseAnalytics firebaseAnalytics) {
+    static TrackerManager trackerManager(Tracker tracker, FirebaseAnalytics firebaseAnalytics) {
         return new TrackerManager(tracker, firebaseAnalytics);
     }
 

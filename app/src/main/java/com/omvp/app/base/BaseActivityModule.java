@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import com.omvp.app.injector.module.HelperModule;
 import com.omvp.app.injector.module.InterceptorActivityModule;
-import com.omvp.app.injector.module.RepositoryModule;
 import com.omvp.app.injector.module.UseCaseModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.util.DisposableManager;
@@ -21,7 +20,6 @@ import dagger.Provides;
  */
 @Module(includes = {
         InterceptorActivityModule.class,
-        RepositoryModule.class,
         UseCaseModule.class,
         HelperModule.class
 })

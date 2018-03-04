@@ -5,8 +5,6 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.omvp.app.BuildConfig;
 import com.omvp.app.R;
-import com.omvp.data.manager.CredentialsManager;
-import com.omvp.data.manager.LocaleManager;
 import com.omvp.data.network.gateway.AppCredentialsGateway;
 import com.omvp.data.network.gateway.AppGateway;
 import com.omvp.data.network.gateway.retrofit.AppCredentialsRetrofitGatewayImpl;
@@ -17,6 +15,8 @@ import com.omvp.data.network.gateway.retrofit.interceptor.HttpCacheInterceptor;
 import com.omvp.data.network.gateway.retrofit.interceptor.HttpLocaleInterceptor;
 import com.omvp.data.network.gateway.retrofit.service.AppCredentialsRetrofitService;
 import com.omvp.data.network.gateway.retrofit.service.AppRetrofitService;
+import com.omvp.domain.repository.CredentialsRepository;
+import com.omvp.domain.repository.LocaleRepository;
 
 import java.util.concurrent.TimeUnit;
 
@@ -64,8 +64,8 @@ public abstract class NetworkModule {
 
     @Provides
     @Singleton
-    static HttpLocaleInterceptor localeInterceptor(LocaleManager localeManager) {
-        return new HttpLocaleInterceptor(localeManager);
+    static HttpLocaleInterceptor localeInterceptor(LocaleRepository repository) {
+        return new HttpLocaleInterceptor(repository);
     }
 
     @Provides
@@ -78,8 +78,8 @@ public abstract class NetworkModule {
 
     @Provides
     @Singleton
-    static CredentialsInterceptor credentialsInterceptor(CredentialsManager credentialsManager) {
-        return new CredentialsInterceptor(credentialsManager);
+    static CredentialsInterceptor credentialsInterceptor(CredentialsRepository repository) {
+        return new CredentialsInterceptor(repository);
     }
 
     // OKHttpClient ================================================================================
