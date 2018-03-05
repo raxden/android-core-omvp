@@ -1,4 +1,4 @@
-package com.omvp.app.ui.sample.view;
+package com.omvp.app.ui.samples.sample.view;
 
 import com.omvp.app.base.mvp.view.BaseView;
 

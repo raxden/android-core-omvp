@@ -39,7 +39,13 @@
             android:windowSoftInputMode="adjustPan"/>
 
         <activity
-            android:name=".ui.sample.SampleActivity"
+            android:name=".ui.samples.sample.SampleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"/>
+
+        <activity
+            android:name=".ui.samples.sample_list.SampleListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"/>

@@ -3,6 +3,7 @@ package com.omvp.app.injector.module;
 import android.app.Activity;
 
 import com.omvp.app.injector.scope.PerActivity;
+import com.omvp.app.interceptor.ToolbarActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
@@ -12,7 +13,6 @@ import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmen
 import com.raxdenstudios.square.interceptor.commons.network.NetworkActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.network.NetworkInterceptor;
 import com.raxdenstudios.square.interceptor.commons.network.NetworkInterceptorCallback;
-import com.raxdenstudios.square.interceptor.commons.toolbar.ToolbarActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.toolbar.ToolbarInterceptor;
 import com.raxdenstudios.square.interceptor.commons.toolbar.ToolbarInterceptorCallback;
 

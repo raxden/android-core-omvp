@@ -1,11 +1,11 @@
-package com.omvp.app.ui.sample;
+package com.omvp.app.ui.samples.sample;
 
 import android.os.Bundle;
 import android.view.View;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
-import com.omvp.app.ui.sample.view.SampleFragment;
+import com.omvp.app.ui.samples.sample.view.SampleFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;

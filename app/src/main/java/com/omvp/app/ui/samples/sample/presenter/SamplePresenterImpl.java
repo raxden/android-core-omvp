@@ -1,10 +1,10 @@
 
-package com.omvp.app.ui.sample.presenter;
+package com.omvp.app.ui.samples.sample.presenter;
 
 
 import com.omvp.app.base.mvp.presenter.BasePresenter;
 import com.omvp.app.model.mapper.SampleModelDataMapper;
-import com.omvp.app.ui.sample.view.SampleView;
+import com.omvp.app.ui.samples.sample.view.SampleView;
 import com.omvp.domain.SampleDomain;
 import com.omvp.domain.interactor.GetSampleListUseCase;
 import com.omvp.domain.interactor.GetSampleUseCase;

@@ -1,10 +1,10 @@
-package com.omvp.app.ui.sample.view;
+package com.omvp.app.ui.samples.sample.view;
 
 import android.os.Bundle;
 
 import com.omvp.app.base.mvp.view.BaseViewFragment;
 import com.omvp.app.base.mvp.view.BaseViewFragmentCallback;
-import com.omvp.app.ui.sample.presenter.SamplePresenter;
+import com.omvp.app.ui.samples.sample.presenter.SamplePresenter;
 
 public class SampleFragment extends BaseViewFragment<SamplePresenter, SampleFragment.FragmentCallback> implements SampleView {
 
@@ -19,4 +19,14 @@ public class SampleFragment extends BaseViewFragment<SamplePresenter, SampleFrag
         return fragment;
     }
 
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        setupViews();
+    }
+
+    private void setupViews() {
+
+    }
 }

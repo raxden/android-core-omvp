@@ -16,6 +16,14 @@
     </style>
 
     <style name="Toolbar.Home">
+        <item name="android:icon">@mipmap/ic_launcher_round</item>
+    </style>
+
+    <style name="Toolbar.Sample">
+        <item name="navigationIcon">@mipmap/ic_launcher_round</item>
+    </style>
+
+    <style name="Toolbar.SampleList">
         <item name="navigationIcon">@mipmap/ic_launcher_round</item>
     </style>
 

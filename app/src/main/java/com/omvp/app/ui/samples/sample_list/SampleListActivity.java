@@ -1,4 +1,4 @@
-package com.omvp.app.ui.home;
+package com.omvp.app.ui.samples.sample_list;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -6,7 +6,8 @@ import android.view.View;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
-import com.omvp.app.ui.home.view.HomeFragment;
+import com.omvp.app.ui.samples.sample_list.view.SampleListFragment;
+import com.omvp.domain.SampleDomain;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;
@@ -17,11 +18,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-
-public class HomeActivity extends BaseFragmentActivity implements
+public class SampleListActivity extends BaseFragmentActivity implements
+        SampleListFragment.FragmentCallback,
         ToolbarInterceptorCallback,
-        InjectFragmentInterceptorCallback<HomeFragment>,
-        HomeFragment.FragmentCallback {
+        InjectFragmentInterceptorCallback<SampleListFragment> {
 
     @Inject
     ToolbarInterceptor mToolbarInterceptor;
@@ -29,7 +29,7 @@ public class HomeActivity extends BaseFragmentActivity implements
     InjectFragmentInterceptor mInjectFragmentInterceptor;
 
     private Toolbar mToolbar;
-    private HomeFragment mFragment;
+    private SampleListFragment mFragment;
 
     // =============== ToolbarInterceptorCallback ==================================================
 
@@ -51,12 +51,12 @@ public class HomeActivity extends BaseFragmentActivity implements
     }
 
     @Override
-    public HomeFragment onCreateFragment() {
-        return HomeFragment.newInstance(mExtras);
+    public SampleListFragment onCreateFragment() {
+        return SampleListFragment.newInstance(mExtras);
     }
 
     @Override
-    public void onFragmentLoaded(HomeFragment fragment) {
+    public void onFragmentLoaded(SampleListFragment fragment) {
         mFragment = fragment;
     }
 
@@ -70,7 +70,8 @@ public class HomeActivity extends BaseFragmentActivity implements
     }
 
     @Override
-    public void onSampleListSelected() {
-        mNavigationHelper.launchSampleList();
+    public void onSampleItemSelected(SampleDomain sampleDomain) {
+        mNavigationHelper.launchSample(sampleDomain.getId());
     }
+
 }

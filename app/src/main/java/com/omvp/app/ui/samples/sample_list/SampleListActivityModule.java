@@ -1,4 +1,4 @@
-package com.omvp.app.ui.sample;
+package com.omvp.app.ui.samples.sample_list;
 
 import android.app.Activity;
 
@@ -7,9 +7,8 @@ import com.omvp.app.base.BaseActivityModule;
 import com.omvp.app.base.mvp.BaseFragmentActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.injector.scope.PerFragment;
-import com.omvp.app.ui.sample.view.SampleFragment;
-import com.omvp.app.ui.sample.view.SampleFragmentModule;
-import com.omvp.app.ui.splash.view.SplashFragment;
+import com.omvp.app.ui.samples.sample_list.view.SampleListFragment;
+import com.omvp.app.ui.samples.sample_list.view.SampleListFragmentModule;
 
 import dagger.Binds;
 import dagger.Module;
@@ -21,7 +20,7 @@ import dagger.android.ContributesAndroidInjector;
 @Module(includes = {
         BaseFragmentActivityModule.class
 })
-public abstract class SampleActivityModule {
+public abstract class SampleListActivityModule {
 
     /**
      * As per the contract specified in {@link BaseActivityModule}; "This must be included in all
@@ -35,26 +34,26 @@ public abstract class SampleActivityModule {
      */
     @Binds
     @PerActivity
-    abstract Activity activity(SampleActivity activity);
+    abstract Activity activity(SampleListActivity activity);
 
     /**
-     * The main activity listens to the events in the {@link SplashFragment}.
+     * The main activity listens to the events in the {@link SampleListFragment}.
      *
      * @param activity the activity
      * @return the main fragment callback
      */
     @Binds
     @PerActivity
-    abstract SampleFragment.FragmentCallback fragmentCallback(SampleActivity activity);
+    abstract SampleListFragment.FragmentCallback fragmentCallback(SampleListActivity activity);
 
     // =============================================================================================
 
     /**
-     * Provides the injector for the {@link SplashFragment}, which has access to the dependencies
+     * Provides the injector for the {@link SampleListFragment}, which has access to the dependencies
      * provided by this activity and application instance (singleton scoped objects).
      */
     @PerFragment
-    @ContributesAndroidInjector(modules = SampleFragmentModule.class)
-    abstract SampleFragment fragmentInjector();
+    @ContributesAndroidInjector(modules = SampleListFragmentModule.class)
+    abstract SampleListFragment fragmentInjector();
 
 }

@@ -4,7 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.omvp.app.ui.home.HomeActivity;
-import com.omvp.app.ui.sample.SampleActivity;
+import com.omvp.app.ui.samples.sample.SampleActivity;
+import com.omvp.app.ui.samples.sample_list.SampleListActivity;
 import com.omvp.app.ui.splash.SplashActivity;
 import com.omvp.app.util.OperationBroadcastManager;
 import com.raxdenstudios.commons.manager.NavigationManager;
@@ -37,6 +38,22 @@ public class NavigationHelper {
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(SampleActivity.class)
+                .launch();
+    }
+
+    public void launchSample(long sampleItemId) {
+        Bundle extras = getExtras();
+        extras.putLong(Long.class.getSimpleName(), sampleItemId);
+        new NavigationManager.Builder(mActivity)
+                .putData(extras)
+                .navigateTo(SampleActivity.class)
+                .launch();
+    }
+
+    public void launchSampleList() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(SampleListActivity.class)
                 .launch();
     }
 
