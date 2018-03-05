@@ -74,6 +74,7 @@ public abstract class BaseViewFragment<TPresenter extends Presenter, TCallback e
          * onViewCreated
          * onActivityCreated
          * onViewRestored
+         * onStart
          * onResume
          *
          * Note that the onCreate (and other lifecycle events) are omitted on purpose. The
