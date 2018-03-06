@@ -8,7 +8,7 @@ import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
 
-public interface AppCredentialsGateway {
+public interface AppGatewayCredentials {
 
     // Sample Flow
 

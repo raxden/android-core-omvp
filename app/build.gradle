@@ -94,6 +94,13 @@ android {
     }
 
     productFlavors {
+        mock {
+            dimension "tier"
+            applicationIdSuffix ".mock"
+            versionNameSuffix "-mock"
+            resValue "string", "app_name", rootProject.ext.androidAppName+" Mock"
+            resConfigs "xxhdpi"
+        }
         dev {
             dimension "tier"
             applicationIdSuffix ".dev"
