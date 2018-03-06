@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.samples.sample.SampleActivity;
 import com.omvp.app.ui.samples.sample_list.SampleListActivity;
+import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.sample_pager.SamplePagerActivity;
 import com.omvp.app.ui.splash.SplashActivity;
 import com.omvp.app.util.OperationBroadcastManager;
@@ -62,6 +63,13 @@ public class NavigationHelper {
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(SamplePagerActivity.class)
+                .launch();
+    }
+
+    public void launchSampleMap() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(SampleMultipleActivity.class)
                 .launch();
     }
 

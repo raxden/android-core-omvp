@@ -1,36 +1,36 @@
-package com.omvp.app.ui.samples.sample.view;
+package com.omvp.app.ui.samples.sample_multiple.bottom.view;
 
 import android.app.Fragment;
 
 import com.omvp.app.base.BaseFragmentModule;
 import com.omvp.app.injector.scope.PerFragment;
-import com.omvp.app.ui.samples.sample.presenter.SamplePresenterModule;
+import com.omvp.app.ui.samples.sample_multiple.bottom.presenter.SampleBottomPresenterModule;
 
 import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides SampleMapFragment fragment dependencies.
+ * Provides SampleBottomFragment fragment dependencies.
  */
 @Module(includes = {
         BaseFragmentModule.class,
-        SamplePresenterModule.class
+        SampleBottomPresenterModule.class
 })
-public abstract class SampleFragmentModule {
+public abstract class SampleBottomFragmentModule {
 
     /**
      * As per the contract specified in {@link BaseFragmentModule}; "This must be included in all
      * fragment modules, which must provide a concrete implementation of {@link Fragment}.
      *
-     * @param fragment the SampleMapFragment
+     * @param fragment the SampleBottomFragment
      * @return the fragment
      */
     @Binds
     @PerFragment
-    abstract Fragment fragment(SampleFragment fragment);
+    abstract Fragment fragment(SampleBottomFragment fragment);
 
     @Binds
     @PerFragment
-    abstract SampleView view(SampleFragment fragment);
+    abstract SampleBottomView view(SampleBottomFragment fragment);
 
 }

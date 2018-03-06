@@ -1,9 +1,11 @@
 package com.omvp.app.injector.module;
 
 import android.app.Activity;
+import android.app.Fragment;
 
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.interceptor.ToolbarActivityInterceptor;
+import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
@@ -13,6 +15,9 @@ import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.FragmentS
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;
+import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.InjectFragmentListActivityInterceptor;
+import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.InjectFragmentListInterceptor;
+import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.InjectFragmentListInterceptorCallback;
 import com.raxdenstudios.square.interceptor.commons.network.NetworkActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.network.NetworkInterceptor;
 import com.raxdenstudios.square.interceptor.commons.network.NetworkInterceptorCallback;
@@ -69,6 +74,15 @@ public abstract class InterceptorActivityModule {
     static FragmentStatePagerInterceptor fragmentStatePagerInterceptor(Activity activity){
         if (activity instanceof FragmentStatePagerInterceptorCallback){
             return new FragmentStatePagerActivityInterceptor(activity, (FragmentStatePagerInterceptorCallback) activity);
+        }
+        return null;
+    }
+
+    @Provides
+    @PerActivity
+    static InjectFragmentListInterceptor injectFragmentListInterceptor(Activity activity){
+        if (activity instanceof InjectFragmentListInterceptorCallback){
+            return new InjectFragmentListActivityInterceptor(activity, (InjectFragmentListInterceptorCallback) activity);
         }
         return null;
     }
