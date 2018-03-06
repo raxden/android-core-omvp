@@ -10,6 +10,25 @@ android {
 
         vectorDrawables.useSupportLibrary = true
     }
+
+    flavorDimensions "tier"
+
+    productFlavors {
+        dev {
+            dimension "tier"
+        }
+        prod {
+            dimension "tier"
+        }
+        mock {
+            dimension "tier"
+        }
+    }
+
+    sourceSets {
+        prod.java.srcDir 'src/dev/java'
+    }
+
 }
 
 dependencies {
