@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "397718285992",
-    "firebase_url": "https://sample-348d0.firebaseio.com",
-    "project_id": "sample-348d0",
-    "storage_bucket": "sample-348d0.appspot.com"
+    "project_number": "85584673336",
+    "firebase_url": "https://omvp-2518f.firebaseio.com",
+    "project_id": "omvp-2518f",
+    "storage_bucket": "omvp-2518f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:397718285992:android:460e533d633a5006",
+        "mobilesdk_app_id": "1:85584673336:android:56a63729dee3331f",
         "android_client_info": {
-          "package_name": "com.raxdenstudios.sample"
+          "package_name": "com.omvp.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "397718285992-ik91dmberd6ktj346j2b89j5h9euh0ib.apps.googleusercontent.com",
+          "client_id": "85584673336-sb7b0oh3net0u3bopu2erbakv2iscgil.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAYkJIqLO1reTs9omI_J-hovp1cEfw6KWo"
+          "current_key": "AIzaSyB_g4TbyJikz_2XibNtVmv48Nszg9EVMqI"
         }
       ],
       "services": {
@@ -39,20 +39,51 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:397718285992:android:5ae8330275b762a6",
+        "mobilesdk_app_id": "1:85584673336:android:cf8c2c4d4f274279",
         "android_client_info": {
-          "package_name": "com.raxdenstudios.sample.dev"
+          "package_name": "com.omvp.app.dev"
         }
       },
       "oauth_client": [
         {
-          "client_id": "397718285992-ik91dmberd6ktj346j2b89j5h9euh0ib.apps.googleusercontent.com",
+          "client_id": "85584673336-sb7b0oh3net0u3bopu2erbakv2iscgil.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAYkJIqLO1reTs9omI_J-hovp1cEfw6KWo"
+          "current_key": "AIzaSyB_g4TbyJikz_2XibNtVmv48Nszg9EVMqI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85584673336:android:4351b64396dcff4c",
+        "android_client_info": {
+          "package_name": "com.omvp.app.mock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85584673336-sb7b0oh3net0u3bopu2erbakv2iscgil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_g4TbyJikz_2XibNtVmv48Nszg9EVMqI"
         }
       ],
       "services": {

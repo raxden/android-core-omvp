@@ -23,6 +23,19 @@ android {
         testInstrumentationRunner rootProject.ext.testInstrumentationRunner
         testApplicationId rootProject.ext.testApplicationId
 
+        // Load values defined in local.properties to BuildConfig.
+        Properties properties = new Properties()
+        if (project.rootProject.file('local.properties').exists()) {
+            properties.load(project.rootProject.file('local.properties').newDataInputStream())
+            if (!properties.isEmpty()) {
+                for (String key : properties.keySet()) {
+                    String parsedKey = key.replaceAll("\\.","_").toUpperCase()
+                    String parsedValue = "\""+properties.getProperty(key).replaceAll("\\\\","/")+"\""
+                    buildConfigField "String", parsedKey, parsedValue
+                }
+            }
+        }
+
         // property used to generate name apk [name-productFlavor-buildType.apk]
         setProperty("archivesBaseName", rootProject.ext.androidAppName)
 
@@ -83,25 +96,19 @@ android {
     }
 
     productFlavors {
+        mock {
+            dimension "tier"
+            applicationIdSuffix ".mock"
+            versionNameSuffix "-mock"
+            resValue "string", "app_name", rootProject.ext.androidAppName+" Mock"
+            resConfigs "xxhdpi"
+        }
         dev {
             dimension "tier"
             applicationIdSuffix ".dev"
             versionNameSuffix "-dev"
             resValue "string", "app_name", rootProject.ext.androidAppName+" Dev"
             resConfigs "xxhdpi"
-
-            // Load values defined in local.properties to BuildConfig.
-            Properties properties = new Properties()
-            if (project.rootProject.file('local.properties').exists()) {
-                properties.load(project.rootProject.file('local.properties').newDataInputStream())
-                if (!properties.isEmpty()) {
-                    for (String key : properties.keySet()) {
-                        String parsedKey = key.replaceAll("\\.","_").toUpperCase()
-                        String parsedValue = "\""+properties.getProperty(key).replaceAll("\\\\","/")+"\""
-                        buildConfigField "String", parsedKey, parsedValue
-                    }
-                }
-            }
         }
         prod {
             dimension "tier"
