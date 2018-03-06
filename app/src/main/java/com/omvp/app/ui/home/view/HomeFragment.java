@@ -16,6 +16,7 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
         void onSampleViewSelected();
         void onSampleListSelected();
         void onSamplePagerSelected();
+        void onSampleMapSelected();
     }
 
     public static HomeFragment newInstance(Bundle bundle) {
@@ -38,5 +39,10 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
     @OnClick(R.id.button_pager)
     public void onSamplePagerClicked(View view) {
         mCallback.onSamplePagerSelected();
+    }
+
+    @OnClick(R.id.button_map)
+    public void onSampleMapClicked(View view){
+        mCallback.onSampleMapSelected();
     }
 }

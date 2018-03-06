@@ -1,10 +1,10 @@
-package com.omvp.app.ui.samples.sample.view;
+package com.omvp.app.ui.samples.sample_map.view;
 
 import android.app.Fragment;
 
 import com.omvp.app.base.BaseFragmentModule;
 import com.omvp.app.injector.scope.PerFragment;
-import com.omvp.app.ui.samples.sample.presenter.SamplePresenterModule;
+import com.omvp.app.ui.samples.sample_map.presenter.SampleMapPresenterModule;
 
 import dagger.Binds;
 import dagger.Module;
@@ -14,9 +14,9 @@ import dagger.Module;
  */
 @Module(includes = {
         BaseFragmentModule.class,
-        SamplePresenterModule.class
+        SampleMapPresenterModule.class
 })
-public abstract class SampleFragmentModule {
+public abstract class SampleMapFragmentModule {
 
     /**
      * As per the contract specified in {@link BaseFragmentModule}; "This must be included in all
@@ -27,10 +27,10 @@ public abstract class SampleFragmentModule {
      */
     @Binds
     @PerFragment
-    abstract Fragment fragment(SampleFragment fragment);
+    abstract Fragment fragment(SampleMapFragment fragment);
 
     @Binds
     @PerFragment
-    abstract SampleView view(SampleFragment fragment);
+    abstract SampleMapView view(SampleMapFragment fragment);
 
 }

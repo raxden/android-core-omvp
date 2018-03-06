@@ -56,6 +56,11 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"/>
 
+        <activity
+            android:name=".ui.samples.sample_map.SampleMapActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

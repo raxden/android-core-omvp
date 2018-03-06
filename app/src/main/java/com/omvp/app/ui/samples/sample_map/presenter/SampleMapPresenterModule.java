@@ -1,4 +1,4 @@
-package com.omvp.app.ui.samples.sample.presenter;
+package com.omvp.app.ui.samples.sample_map.presenter;
 
 import com.omvp.app.base.mvp.presenter.BasePresenterModule;
 import com.omvp.app.injector.scope.PerFragment;
@@ -10,10 +10,10 @@ import dagger.Module;
  * Provides SampleMapPresenterModule dependencies.
  */
 @Module(includes = BasePresenterModule.class)
-public abstract class SamplePresenterModule {
+public abstract class SampleMapPresenterModule {
 
     @Binds
     @PerFragment
-    abstract SamplePresenter presenter(SamplePresenterImpl presenter);
+    abstract SampleMapPresenter presenter(SampleMapPresenterImpl presenter);
 
 }
