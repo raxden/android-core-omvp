@@ -39,7 +39,7 @@ import dagger.android.AndroidInjector;
  * |                     |             |                                     |    |                |
  * |                     |  *SplashFragmentSubComponent --- SplashFragmentModule  |                |
  * |                     |                                                        |                |
- * |          *HomeFragmentSubcomponent --------------------------------- SampleMapFragmentModule     |
+ * |          *HomeFragmentSubcomponent --------------------------------- SampleFragmentModule     |
  * |                                                                                               |
  * =================================================================================================
  *

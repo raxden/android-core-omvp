@@ -85,7 +85,7 @@ public class HomeActivity extends BaseFragmentActivity implements
     }
 
     @Override
-    public void onSampleMapSelected() {
+    public void onSampleMultipleSelected() {
         mNavigationHelper.launchSampleMap();
     }
 }

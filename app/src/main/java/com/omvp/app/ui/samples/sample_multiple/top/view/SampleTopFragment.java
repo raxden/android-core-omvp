@@ -1,19 +1,19 @@
-package com.omvp.app.ui.samples.sample_map.view;
+package com.omvp.app.ui.samples.sample_multiple.top.view;
 
 import android.os.Bundle;
 
 import com.omvp.app.base.mvp.view.BaseViewFragment;
 import com.omvp.app.base.mvp.view.BaseViewFragmentCallback;
-import com.omvp.app.ui.samples.sample_map.presenter.SampleMapPresenter;
+import com.omvp.app.ui.samples.sample_multiple.top.presenter.SampleTopPresenter;
 
-public class SampleMapFragment extends BaseViewFragment<SampleMapPresenter, SampleMapFragment.FragmentCallback> implements SampleMapView {
+public class SampleTopFragment extends BaseViewFragment<SampleTopPresenter, SampleTopFragment.FragmentCallback> implements SampleTopView {
 
     public interface FragmentCallback extends BaseViewFragmentCallback {
 
     }
 
-    public static SampleMapFragment newInstance(Bundle bundle) {
-        SampleMapFragment fragment = new SampleMapFragment();
+    public static SampleTopFragment newInstance(Bundle bundle) {
+        SampleTopFragment fragment = new SampleTopFragment();
         bundle = bundle == null ? new Bundle() : bundle;
         fragment.setArguments(bundle);
         return fragment;
