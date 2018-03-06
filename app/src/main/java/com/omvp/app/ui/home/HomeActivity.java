@@ -70,7 +70,17 @@ public class HomeActivity extends BaseFragmentActivity implements
     }
 
     @Override
+    public void onSampleViewSelected() {
+        mNavigationHelper.launchSample();
+    }
+
+    @Override
     public void onSampleListSelected() {
         mNavigationHelper.launchSampleList();
+    }
+
+    @Override
+    public void onSamplePagerSelected() {
+        mNavigationHelper.launchSamplePager();
     }
 }

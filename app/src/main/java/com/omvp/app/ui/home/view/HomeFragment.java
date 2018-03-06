@@ -13,7 +13,9 @@ import butterknife.OnClick;
 public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.FragmentCallback> implements HomeView {
 
     public interface FragmentCallback extends BaseViewFragmentCallback {
+        void onSampleViewSelected();
         void onSampleListSelected();
+        void onSamplePagerSelected();
     }
 
     public static HomeFragment newInstance(Bundle bundle) {
@@ -23,8 +25,18 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
         return fragment;
     }
 
-    @OnClick(R.id.button)
+    @OnClick(R.id.button_view)
+    public void onSampleViewClicked(View view) {
+        mCallback.onSampleViewSelected();
+    }
+
+    @OnClick(R.id.button_list)
     public void onSampleListClicked(View view) {
         mCallback.onSampleListSelected();
+    }
+
+    @OnClick(R.id.button_pager)
+    public void onSamplePagerClicked(View view) {
+        mCallback.onSamplePagerSelected();
     }
 }

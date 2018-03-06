@@ -4,6 +4,8 @@ import android.app.Fragment;
 
 import com.omvp.app.base.BaseFragmentModule;
 import com.omvp.app.injector.scope.PerFragment;
+import com.omvp.app.ui.samples.sample_pager.presenter.SamplePagerFirstPresenter;
+import com.omvp.app.ui.samples.sample_pager.presenter.SamplePagerPresenter;
 import com.omvp.app.ui.samples.sample_pager.presenter.SamplePagerPresenterModule;
 
 import dagger.Binds;
@@ -16,7 +18,7 @@ import dagger.Module;
         BaseFragmentModule.class,
         SamplePagerPresenterModule.class
 })
-public abstract class SamplePagerFragmentModule {
+public abstract class SamplePagerFirstFragmentModule {
 
     /**
      * As per the contract specified in {@link BaseFragmentModule}; "This must be included in all
@@ -25,12 +27,12 @@ public abstract class SamplePagerFragmentModule {
      * @param fragment the SamplePagerFragment
      * @return the fragment
      */
-    @Binds
-    @PerFragment
-    abstract Fragment fragment(SamplePagerFragment fragment);
 
     @Binds
     @PerFragment
-    abstract SamplePagerView view(SamplePagerFragment fragment);
+    abstract Fragment firstFragment(SamplePagerFirstFragment fragment);
 
+    @Binds
+    @PerFragment
+    abstract SamplePagerView firstView(SamplePagerFirstFragment fragment);
 }

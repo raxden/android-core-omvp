@@ -38,7 +38,7 @@ public abstract class SampleActivityModule {
     abstract Activity activity(SampleActivity activity);
 
     /**
-     * The main activity listens to the events in the {@link SplashFragment}.
+     * The main activity listens to the events in the {@link SampleFragment}.
      *
      * @param activity the activity
      * @return the main fragment callback

@@ -14,6 +14,9 @@ public abstract class SamplePagerPresenterModule {
 
     @Binds
     @PerFragment
-    abstract SamplePagerPresenter presenter(SamplePagerPresenterImpl presenter);
+    abstract SamplePagerFirstPresenter firstPresenter(SamplePagerFirstPresenterImpl presenter);
 
+    @Binds
+    @PerFragment
+    abstract SamplePagerSecondPresenter secondPresenter(SamplePagerSecondPresenterImpl presenter);
 }

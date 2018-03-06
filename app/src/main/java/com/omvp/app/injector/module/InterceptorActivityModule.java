@@ -7,6 +7,9 @@ import com.omvp.app.interceptor.ToolbarActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
+import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.FragmentStatePagerActivityInterceptor;
+import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.FragmentStatePagerInterceptor;
+import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.FragmentStatePagerInterceptorCallback;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;
@@ -61,4 +64,12 @@ public abstract class InterceptorActivityModule {
         return null;
     }
 
+    @Provides
+    @PerActivity
+    static FragmentStatePagerInterceptor fragmentStatePagerInterceptor(Activity activity){
+        if (activity instanceof FragmentStatePagerInterceptorCallback){
+            return new FragmentStatePagerActivityInterceptor(activity, (FragmentStatePagerInterceptorCallback) activity);
+        }
+        return null;
+    }
 }

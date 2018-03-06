@@ -7,9 +7,10 @@ import com.omvp.app.base.BaseActivityModule;
 import com.omvp.app.base.mvp.BaseFragmentActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.injector.scope.PerFragment;
-import com.omvp.app.ui.samples.sample_pager.view.SamplePagerFragment;
-import com.omvp.app.ui.samples.sample_pager.view.SamplePagerFragmentModule;
-import com.omvp.app.ui.splash.view.SplashFragment;
+import com.omvp.app.ui.samples.sample_pager.view.SamplePagerFirstFragment;
+import com.omvp.app.ui.samples.sample_pager.view.SamplePagerFirstFragmentModule;
+import com.omvp.app.ui.samples.sample_pager.view.SamplePagerSecondFragment;
+import com.omvp.app.ui.samples.sample_pager.view.SamplePagerSecondFragmentModule;
 
 import dagger.Binds;
 import dagger.Module;
@@ -40,11 +41,38 @@ public abstract class SamplePagerActivityModule {
     // =============================================================================================
 
     /**
-     * Provides the injector for the {@link SplashFragment}, which has access to the dependencies
+     * The main activity listens to the events in the {@link SamplePagerFirstFragment}.
+     *
+     * @param activity the activity
+     * @return the main fragment callback
+     */
+    @Binds
+    @PerActivity
+    abstract SamplePagerFirstFragment.SamplePagerFirstFragmentCallback firstFragmentCallback(SamplePagerActivity activity);
+
+    /**
+     * The main activity listens to the events in the {@link SamplePagerSecondFragment}.
+     *
+     * @param activity the activity
+     * @return the main fragment callback
+     */
+    @Binds
+    @PerActivity
+    abstract SamplePagerSecondFragment.SamplePagerSecondFragmentCallback secondFragmentCallback(SamplePagerActivity activity);
+
+    /**
+     * Provides the injector for the {@link SamplePagerFirstFragment}, which has access to the dependencies
      * provided by this activity and application instance (singleton scoped objects).
      */
     @PerFragment
-    @ContributesAndroidInjector(modules = SamplePagerFragmentModule.class)
-    abstract SamplePagerFragment fragmentInjector();
+    @ContributesAndroidInjector(modules = SamplePagerFirstFragmentModule.class)
+    abstract SamplePagerFirstFragment firstFragmentInjector();
 
+    /**
+     * Provides the injector for the {@link SamplePagerSecondFragment}, which has access to the dependencies
+     * provided by this activity and application instance (singleton scoped objects).
+     */
+    @PerFragment
+    @ContributesAndroidInjector(modules = SamplePagerSecondFragmentModule.class)
+    abstract SamplePagerSecondFragment secondFragmentInjector();
 }

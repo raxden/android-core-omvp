@@ -7,6 +7,8 @@ import com.omvp.app.ui.samples.sample.SampleActivity;
 import com.omvp.app.ui.samples.sample.SampleActivityModule;
 import com.omvp.app.ui.samples.sample_list.SampleListActivity;
 import com.omvp.app.ui.samples.sample_list.SampleListActivityModule;
+import com.omvp.app.ui.samples.sample_pager.SamplePagerActivity;
+import com.omvp.app.ui.samples.sample_pager.SamplePagerActivityModule;
 import com.omvp.app.ui.splash.SplashActivity;
 import com.omvp.app.ui.splash.SplashActivityModule;
 
@@ -50,4 +52,12 @@ public abstract class InjectorModule {
     @PerActivity
     @ContributesAndroidInjector(modules = {SampleListActivityModule.class})
     abstract SampleListActivity sampleListActivity();
+
+    /**
+     * Provides the injector for the {@link SamplePagerActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {SamplePagerActivityModule.class})
+    abstract SamplePagerActivity samplePagerActivity();
 }
