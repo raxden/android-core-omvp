@@ -5,9 +5,9 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.omvp.app.BuildConfig;
 import com.omvp.app.R;
-import com.omvp.data.network.gateway.AppCredentialsGateway;
+import com.omvp.data.network.gateway.AppGatewayCredentials;
 import com.omvp.data.network.gateway.AppGateway;
-import com.omvp.data.network.gateway.retrofit.AppCredentialsRetrofitGatewayImpl;
+import com.omvp.data.network.gateway.retrofit.AppRetrofitGatewayCredentialsImpl;
 import com.omvp.data.network.gateway.retrofit.AppRetrofitGatewayImpl;
 import com.omvp.data.network.gateway.retrofit.callAdapter.RxErrorHandlingCallAdapterFactory;
 import com.omvp.data.network.gateway.retrofit.interceptor.CredentialsInterceptor;
@@ -167,8 +167,8 @@ public abstract class NetworkModule {
 
     @Provides
     @Singleton
-    static AppCredentialsGateway appCredentialsGateway(Context context, AppCredentialsRetrofitService service) {
-        return new AppCredentialsRetrofitGatewayImpl(context, service);
+    static AppGatewayCredentials appCredentialsGateway(Context context, AppCredentialsRetrofitService service) {
+        return new AppRetrofitGatewayCredentialsImpl(context, service);
     }
 
 }
