@@ -79,6 +79,7 @@ android {
 
     signingConfigs {
         debug {
+            ext.enableCrashlytics = false
             storeFile file('../buildSystem/debug.keystore')
             storePassword 'android'
             keyAlias 'androiddebugkey'
@@ -115,8 +116,7 @@ android {
 
     buildTypes {
         debug {
-            ext.enableCrashlytics = false       // Disable crashlytics
-            crunchPngs false                    // Disable png compresion
+            crunchPngs false
             minifyEnabled false
             signingConfig signingConfigs.debug
         }
