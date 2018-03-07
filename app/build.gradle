@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
-apply plugin: "org.sonarqube"
 
 android {
 
@@ -48,22 +47,10 @@ android {
         multiDexEnabled true
     }
 
-    sonarqube {
-        properties {
-            property "sonar.projectName", rootProject.ext.sonarProjectName
-            property "sonar.projectVersion", rootProject.ext.androidVersionName
-            property "sonar.sources", "src/main/java"
-            property "sonar.host.url", rootProject.ext.sonarHostUrl
-            property "sonar.login", rootProject.ext.sonarLogin
-            property "sonar.organization", rootProject.ext.sonarOrganization
-            property "sonar.language", "java"
-            property "sonar.sourceEncoding", "UTF-8"
-        }
-    }
-
     flavorDimensions "tier"
 
     sourceSets {
+        mock.res.srcDir 'src/dev/res'
         main {
             res.srcDirs =
                     [
