@@ -11,6 +11,7 @@ import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.util.DisposableManager;
 import com.omvp.app.util.OperationBroadcastManager;
 
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 
