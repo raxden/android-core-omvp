@@ -1,11 +1,20 @@
 package com.omvp.app.injector.module;
 
 import android.app.Activity;
-import android.app.Fragment;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.location.LocationRequest;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.interceptor.ToolbarActivityInterceptor;
-import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+import com.omvp.app.interceptor.google.GoogleApiClientActivityInterceptor;
+import com.omvp.app.interceptor.google.GoogleApiClientInterceptor;
+import com.omvp.app.interceptor.google.GoogleApiClientInterceptorCallback;
+import com.omvp.app.interceptor.location.LocationActivityInterceptor;
+import com.omvp.app.interceptor.location.LocationInterceptor;
+import com.omvp.app.interceptor.location.LocationInterceptorCallback;
+import com.omvp.app.interceptor.permission.PermissionActivityInterceptor;
+import com.omvp.app.interceptor.permission.PermissionInterceptor;
+import com.omvp.app.interceptor.permission.PermissionInterceptorCallback;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
@@ -86,4 +95,36 @@ public abstract class InterceptorActivityModule {
         }
         return null;
     }
+
+
+    @Provides
+    @PerActivity
+    static LocationInterceptor provideLocationInterceptor(Activity activity, LocationRequest locationRequest) {
+        if (activity instanceof LocationInterceptorCallback) {
+            return new LocationActivityInterceptor(activity, locationRequest, (LocationInterceptorCallback) activity);
+        } else {
+            return null;
+        }
+    }
+
+    @Provides
+    @PerActivity
+    static PermissionInterceptor providePermissionInterceptor(Activity activity) {
+        if (activity instanceof PermissionInterceptorCallback) {
+            return new PermissionActivityInterceptor(activity, (PermissionInterceptorCallback) activity);
+        } else {
+            return null;
+        }
+    }
+
+    @Provides
+    @PerActivity
+    static GoogleApiClientInterceptor provideGoogleApiClientInterceptor(Activity activity, GoogleSignInOptions googleSignInOptions) {
+        if (activity instanceof GoogleApiClientInterceptorCallback) {
+            return new GoogleApiClientActivityInterceptor(activity, googleSignInOptions, (GoogleApiClientInterceptorCallback) activity);
+        } else {
+            return null;
+        }
+    }
+
 }

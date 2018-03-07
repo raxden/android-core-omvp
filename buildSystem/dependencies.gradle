@@ -74,7 +74,11 @@ ext {
     playServices = [
             implementation: [
                     "com.google.android.gms:play-services-base:${servicesVersion}",
-                    "com.google.android.gms:play-services-analytics:${servicesVersion}"
+                    "com.google.android.gms:play-services-analytics:${servicesVersion}",
+                    "com.google.android.gms:play-services-location:${servicesVersion}",
+                    "com.google.android.gms:play-services-auth:${servicesVersion}",
+                    "com.google.android.gms:play-services-places:${servicesVersion}",
+                    "com.google.android.gms:play-services-gcm:${servicesVersion}"
             ]
     ]
 

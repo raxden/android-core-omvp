@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.samples.sample.SampleActivity;
 import com.omvp.app.ui.samples.sample_list.SampleListActivity;
+import com.omvp.app.ui.samples.sample_location.SampleLocationActivity;
 import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.sample_pager.SamplePagerActivity;
 import com.omvp.app.ui.splash.SplashActivity;
@@ -73,8 +74,16 @@ public class NavigationHelper {
                 .launch();
     }
 
+    public void launchSampleLocation() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(SampleLocationActivity.class)
+                .launch();
+    }
+
     private Bundle getExtras() {
         return mActivity.getIntent() != null && mActivity.getIntent().getExtras() != null ? mActivity.getIntent().getExtras() : new Bundle();
     }
+
 
 }

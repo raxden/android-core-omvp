@@ -7,6 +7,8 @@ import com.omvp.app.ui.samples.sample.SampleActivity;
 import com.omvp.app.ui.samples.sample.SampleActivityModule;
 import com.omvp.app.ui.samples.sample_list.SampleListActivity;
 import com.omvp.app.ui.samples.sample_list.SampleListActivityModule;
+import com.omvp.app.ui.samples.sample_location.SampleLocationActivity;
+import com.omvp.app.ui.samples.sample_location.SampleLocationActivityModule;
 import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivityModule;
 import com.omvp.app.ui.samples.sample_pager.SamplePagerActivity;
@@ -70,4 +72,12 @@ public abstract class InjectorModule {
     @PerActivity
     @ContributesAndroidInjector(modules = {SampleMultipleActivityModule.class})
     abstract SampleMultipleActivity sampleMapActivity();
+
+    /**
+     * Provides the injector for the {@link SampleLocationActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {SampleLocationActivityModule.class})
+    abstract SampleLocationActivity sampleLocationActivity();
 }
