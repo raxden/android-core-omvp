@@ -6,7 +6,6 @@ import android.os.Bundle;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.sample.SampleActivity;
 import com.omvp.app.ui.splash.SplashActivity;
-import com.omvp.app.util.OperationBroadcastManager;
 import com.raxdenstudios.commons.manager.NavigationManager;
 
 public class NavigationHelper {
