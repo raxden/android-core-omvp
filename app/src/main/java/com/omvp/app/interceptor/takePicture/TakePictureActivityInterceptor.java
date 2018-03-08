@@ -165,4 +165,5 @@ public class TakePictureActivityInterceptor extends ActivityInterceptor<TakePict
         });
     }
 
+    
 }
