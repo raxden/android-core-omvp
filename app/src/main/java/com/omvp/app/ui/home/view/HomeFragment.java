@@ -18,6 +18,7 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
         void onSamplePagerSelected();
         void onSampleMultipleSelected();
         void onSampleLocationSelected ();
+        void onSampleTakePictureSelected();
     }
 
     public static HomeFragment newInstance(Bundle bundle) {
@@ -51,4 +52,10 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
     public void onSampleLocationClicked(View view){
         mCallback.onSampleLocationSelected();
     }
+
+    @OnClick (R.id.button_take_picture)
+    public void onSampleTakePictureClicked(View view){
+        mCallback.onSampleTakePictureSelected();
+    }
+
 }

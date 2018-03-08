@@ -15,6 +15,9 @@ import com.omvp.app.interceptor.location.LocationInterceptorCallback;
 import com.omvp.app.interceptor.permission.PermissionActivityInterceptor;
 import com.omvp.app.interceptor.permission.PermissionInterceptor;
 import com.omvp.app.interceptor.permission.PermissionInterceptorCallback;
+import com.omvp.app.interceptor.takePicture.TakePictureActivityInterceptor;
+import com.omvp.app.interceptor.takePicture.TakePictureInterceptor;
+import com.omvp.app.interceptor.takePicture.TakePictureInterceptorCallback;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
@@ -122,6 +125,16 @@ public abstract class InterceptorActivityModule {
     static GoogleApiClientInterceptor provideGoogleApiClientInterceptor(Activity activity, GoogleSignInOptions googleSignInOptions) {
         if (activity instanceof GoogleApiClientInterceptorCallback) {
             return new GoogleApiClientActivityInterceptor(activity, googleSignInOptions, (GoogleApiClientInterceptorCallback) activity);
+        } else {
+            return null;
+        }
+    }
+
+    @Provides
+    @PerActivity
+    static TakePictureInterceptor provideGalleryInterceptor(Activity activity) {
+        if (activity instanceof TakePictureInterceptorCallback) {
+            return new TakePictureActivityInterceptor(activity, (TakePictureInterceptorCallback) activity);
         } else {
             return null;
         }

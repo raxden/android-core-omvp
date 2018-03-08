@@ -13,6 +13,8 @@ import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivityModule;
 import com.omvp.app.ui.samples.sample_pager.SamplePagerActivity;
 import com.omvp.app.ui.samples.sample_pager.SamplePagerActivityModule;
+import com.omvp.app.ui.samples.sample_take_picture.SampleTakePictureActivity;
+import com.omvp.app.ui.samples.sample_take_picture.SampleTakePictureActivityModule;
 import com.omvp.app.ui.splash.SplashActivity;
 import com.omvp.app.ui.splash.SplashActivityModule;
 
@@ -80,4 +82,12 @@ public abstract class InjectorModule {
     @PerActivity
     @ContributesAndroidInjector(modules = {SampleLocationActivityModule.class})
     abstract SampleLocationActivity sampleLocationActivity();
+
+    /**
+     * Provides the injector for the {@link SampleLocationActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {SampleTakePictureActivityModule.class})
+    abstract SampleTakePictureActivity sampleTakePictureActivity();
 }

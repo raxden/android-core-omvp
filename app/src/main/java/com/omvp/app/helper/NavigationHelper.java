@@ -9,6 +9,7 @@ import com.omvp.app.ui.samples.sample_list.SampleListActivity;
 import com.omvp.app.ui.samples.sample_location.SampleLocationActivity;
 import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.sample_pager.SamplePagerActivity;
+import com.omvp.app.ui.samples.sample_take_picture.SampleTakePictureActivity;
 import com.omvp.app.ui.splash.SplashActivity;
 import com.omvp.app.util.OperationBroadcastManager;
 import com.raxdenstudios.commons.manager.NavigationManager;
@@ -78,6 +79,14 @@ public class NavigationHelper {
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(SampleLocationActivity.class)
+                .launch();
+    }
+
+
+    public void launchSampleTakePicture() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(SampleTakePictureActivity.class)
                 .launch();
     }
 

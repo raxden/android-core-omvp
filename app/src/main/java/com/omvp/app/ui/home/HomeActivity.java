@@ -93,4 +93,9 @@ public class HomeActivity extends BaseFragmentActivity implements
     public void onSampleLocationSelected() {
         mNavigationHelper.launchSampleLocation();
     }
+
+    @Override
+    public void onSampleTakePictureSelected() {
+        mNavigationHelper.launchSampleTakePicture();
+    }
 }
