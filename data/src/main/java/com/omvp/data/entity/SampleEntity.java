@@ -1,8 +1,11 @@
 package com.omvp.data.entity;
 
+import com.omvp.commons.DontObfuscate;
+
 import lombok.Data;
 
 @Data
+@DontObfuscate
 public class SampleEntity {
 
     private String id;
