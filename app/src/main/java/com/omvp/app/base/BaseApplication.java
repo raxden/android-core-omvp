@@ -16,7 +16,7 @@ import dagger.android.HasActivityInjector;
 /**
  * The Android {@link MultiDexApplication}.
  */
-public abstract class BaseApplication extends MultiDexApplication implements HasActivityInjector {
+public class BaseApplication extends MultiDexApplication implements HasActivityInjector {
 
     @Inject
     DispatchingAndroidInjector<Activity> activityInjector;
@@ -46,7 +46,7 @@ public abstract class BaseApplication extends MultiDexApplication implements Has
         }
     }
 
-    private void initDaggerApplicationComponent() {
+    protected void initDaggerApplicationComponent() {
         DaggerApplicationComponent.builder().create(this).inject(this);
     }
 

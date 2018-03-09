@@ -11,7 +11,7 @@ public class SampleBottomPresenterImpl extends BasePresenter<SampleBottomView> i
 
 
     @Inject
-    SampleBottomPresenterImpl(SampleBottomView sampleBottomView) {
+    public SampleBottomPresenterImpl(SampleBottomView sampleBottomView) {
         super(sampleBottomView);
     }
 

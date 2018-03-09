@@ -16,7 +16,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
@@ -31,7 +30,7 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
     private List<SampleDomain> mSampleDomainList;
 
     @Inject
-    SampleListPresenterImpl(SampleListView sampleListView) {
+    public SampleListPresenterImpl(SampleListView sampleListView) {
         super(sampleListView);
     }
 

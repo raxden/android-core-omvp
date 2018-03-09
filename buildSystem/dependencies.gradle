@@ -148,13 +148,17 @@ ext {
                             "org.projectlombok:lombok:${lombokVersion}"
                     ],
                     testImplementation : [
+                            dagger.implementation,
+
                             "junit:junit:${jUnitVersion}",
                             "org.assertj:assertj-core:${assertJVersion}",
                             "org.mockito:mockito-core:${mockitoVersion}",
                             "org.robolectric:robolectric:${robolectricVersion}",
-                            "org.robolectric:shadows-multidex:${robolectricVersion}"
+                            "org.robolectric:shadows-multidex:${robolectricVersion}",
                     ],
-                    testAnnotationProcessor : []
+                    testAnnotationProcessor : [
+                            dagger.annotationProcessor
+                    ]
             ],
             domain : [
                     implementation: [

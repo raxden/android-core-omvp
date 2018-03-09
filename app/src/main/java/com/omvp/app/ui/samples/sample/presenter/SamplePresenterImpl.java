@@ -29,7 +29,7 @@ public class SamplePresenterImpl extends BasePresenter<SampleView> implements Sa
     SampleModelDataMapper mSampleModelDataMapper;
 
     @Inject
-    SamplePresenterImpl(SampleView sampleView) {
+    public SamplePresenterImpl(SampleView sampleView) {
         super(sampleView);
     }
 

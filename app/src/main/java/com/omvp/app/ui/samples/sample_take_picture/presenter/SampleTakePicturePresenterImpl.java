@@ -11,7 +11,7 @@ public class SampleTakePicturePresenterImpl extends BasePresenter<SampleTakePict
 
 
     @Inject
-    SampleTakePicturePresenterImpl(SampleTakePictureView sampleView) {
+    public SampleTakePicturePresenterImpl(SampleTakePictureView sampleView) {
         super(sampleView);
     }
 

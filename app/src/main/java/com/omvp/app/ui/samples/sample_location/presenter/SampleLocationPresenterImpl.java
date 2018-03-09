@@ -14,7 +14,7 @@ public class SampleLocationPresenterImpl extends BasePresenter<SampleLocationVie
     private Location mCurrentLocation;
 
     @Inject
-    SampleLocationPresenterImpl(SampleLocationView sampleView) {
+    public SampleLocationPresenterImpl(SampleLocationView sampleView) {
         super(sampleView);
     }
 

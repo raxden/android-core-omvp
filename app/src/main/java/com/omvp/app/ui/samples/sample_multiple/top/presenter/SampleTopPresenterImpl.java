@@ -11,7 +11,7 @@ public class SampleTopPresenterImpl extends BasePresenter<SampleTopView> impleme
 
 
     @Inject
-    SampleTopPresenterImpl(SampleTopView sampleTopView) {
+    public SampleTopPresenterImpl(SampleTopView sampleTopView) {
         super(sampleTopView);
     }
 
