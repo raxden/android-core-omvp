@@ -1,15 +1,12 @@
 package com.omvp.app.ui.samples.sample_take_picture;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
-import com.omvp.app.interceptor.permission.PermissionActivityInterceptor;
 import com.omvp.app.interceptor.takePicture.TakePictureInterceptor;
-import com.omvp.app.interceptor.takePicture.TakePictureInterceptorCallback;
 import com.omvp.app.ui.samples.sample_take_picture.view.SampleTakePictureFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
@@ -24,7 +21,6 @@ import javax.inject.Inject;
 public class SampleTakePictureActivity extends BaseFragmentActivity implements
         SampleTakePictureFragment.FragmentCallback,
         ToolbarInterceptorCallback,
-        TakePictureInterceptorCallback,
         InjectFragmentInterceptorCallback<SampleTakePictureFragment> {
 
     @Inject
@@ -76,45 +72,4 @@ public class SampleTakePictureActivity extends BaseFragmentActivity implements
         interceptorList.add(mTakePictureInterceptor);
     }
 
-    // ========= PermissionInterceptorCallback =====================================================
-    @Override
-    public void onPermissionGranted(PermissionActivityInterceptor.Permission permission) {
-        super.onPermissionGranted(permission);
-        if (permission == PermissionActivityInterceptor.Permission.CAMERA) {
-            mTakePictureInterceptor.takePicture(getResources().getString(R.string.select_a_picture));
-        }
-    }
-
-    @Override
-    public void onPermissionAlreadyGranted(PermissionActivityInterceptor.Permission permission) {
-        super.onPermissionAlreadyGranted(permission);
-        if (permission == PermissionActivityInterceptor.Permission.CAMERA) {
-            mTakePictureInterceptor.takePicture(getResources().getString(R.string.select_a_picture));
-        }
-    }
-
-
-    // ========= TakePictureInterceptorCallback ====================================================
-    @Override
-    public void onWorkingPictureProgress(boolean workingProgress) {
-        if (workingProgress) {
-            showProgress(0,"");
-        } else {
-            hideProgress();
-        }
-    }
-
-    @Override
-    public void onPictureRetrieved(Uri uri) {
-        mFragment.pictureRetrieved(uri);
-    }
-
-    @Override
-    public void onGalleryImageRequested() {
-        if (mPermissionInterceptor.hasPermission(PermissionActivityInterceptor.Permission.CAMERA)) {
-            mTakePictureInterceptor.takePicture(getResources().getString(R.string.select_a_picture));
-        } else {
-            mPermissionInterceptor.requestPermission(PermissionActivityInterceptor.Permission.CAMERA);
-        }
-    }
 }

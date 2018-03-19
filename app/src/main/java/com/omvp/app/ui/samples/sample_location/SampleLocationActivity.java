@@ -1,17 +1,16 @@
 package com.omvp.app.ui.samples.sample_location;
 
-import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
+import com.omvp.app.interceptor.google.GoogleApiClientInterceptor;
+import com.omvp.app.interceptor.google.GoogleApiClientInterceptorCallback;
 import com.omvp.app.interceptor.location.LocationInterceptor;
-import com.omvp.app.interceptor.location.LocationInterceptorCallback;
-import com.omvp.app.interceptor.permission.PermissionActivityInterceptor;
 import com.omvp.app.ui.samples.sample_location.view.SampleLocationFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
@@ -28,7 +27,7 @@ import timber.log.Timber;
 public class SampleLocationActivity extends BaseFragmentActivity implements
         SampleLocationFragment.FragmentCallback,
         ToolbarInterceptorCallback,
-        LocationInterceptorCallback,
+        GoogleApiClientInterceptorCallback,
         InjectFragmentInterceptorCallback<SampleLocationFragment> {
 
     @Inject
@@ -37,17 +36,11 @@ public class SampleLocationActivity extends BaseFragmentActivity implements
     InjectFragmentInterceptor mInjectFragmentInterceptor;
     @Inject
     LocationInterceptor mLocationInterceptor;
-
+    @Inject
+    GoogleApiClientInterceptor mGoogleApiClientInterceptor;
 
     private Toolbar mToolbar;
     private SampleLocationFragment mFragment;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestLocationPermission();
-    }
-
 
     // =============== ToolbarInterceptorCallback ==================================================
 
@@ -85,26 +78,9 @@ public class SampleLocationActivity extends BaseFragmentActivity implements
         super.setupInterceptors(interceptorList);
         interceptorList.add(mToolbarInterceptor);
         interceptorList.add(mInjectFragmentInterceptor);
+        interceptorList.add(mGoogleApiClientInterceptor);
         interceptorList.add(mLocationInterceptor);
-
     }
-
-
-    // =============== LocationInterceptorCallback =================================================
-
-
-    @Override
-    public void onLocationError(int status) {
-        Timber.d("onLocationError %d", status);
-        locationChanged(null);
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        Timber.d("onLocationChanged %s", location.toString());
-        locationChanged(location);
-    }
-
 
     // ========= GoogleApiClientInterceptorCallback ================================================
 
@@ -113,20 +89,14 @@ public class SampleLocationActivity extends BaseFragmentActivity implements
         mLocationInterceptor.setGoogleApiClient(googleApiClient);
     }
 
-    // =============== PermissionInterceptorCallback ===============================================
-
     @Override
-    public void onPermissionGranted(PermissionActivityInterceptor.Permission permission) {
-        mLocationInterceptor.requestLocationUpdates();
+    public void onGoogleApiClientConnectionSuspended(int i) {
+        Timber.d("onGoogleApiClientConnectionSuspended %d", i);
     }
 
     @Override
-    public void onPermissionAlreadyGranted(PermissionActivityInterceptor.Permission permission) {
-        mLocationInterceptor.requestLocationUpdates();
+    public void onGoogleApiClientConnectionFailed(ConnectionResult connectionResult) {
+        Timber.d("onGoogleApiClientConnectionFailed %s", connectionResult != null ? connectionResult.toString() : "");
     }
 
-
-    private void locationChanged(Location location) {
-        mFragment.locationChanged(location);
-    }
 }

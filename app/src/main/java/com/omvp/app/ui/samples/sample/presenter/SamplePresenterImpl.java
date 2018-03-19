@@ -37,7 +37,7 @@ public class SamplePresenterImpl extends BasePresenter<SampleView> implements Sa
     public void onViewLoaded() {
         super.onViewLoaded();
 
-        mGetSampleListUseCase.execute()
+        mDisposableManager.add(mGetSampleListUseCase.execute()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribeWith(new DisposableMaybeObserver<List<SampleDomain>>() {
@@ -55,7 +55,7 @@ public class SamplePresenterImpl extends BasePresenter<SampleView> implements Sa
                     public void onComplete() {
 
                     }
-                });
+                }));
     }
 
 }

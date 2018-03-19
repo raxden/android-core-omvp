@@ -4,6 +4,6 @@ import com.raxdenstudios.square.interceptor.Interceptor;
 
 public interface TakePictureInterceptor extends Interceptor {
 
-    void takePicture(final String chooserTitle);
+    void takePicture(final String chooserTitle, final TakePictureListener listener);
 
 }

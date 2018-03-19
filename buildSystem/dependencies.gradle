@@ -29,6 +29,7 @@ ext {
     autoFitTextViewVersion = '0.2.+'        // https://github.com/grantland/android-autofittextview
     modelmapperVersion = '1.1.0'            // https://github.com/modelmapper/modelmapper
     constraintsLayoutVersion = '1.0.2'      // https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html
+    rxPermissionsVersion = '0.9.5'          // https://github.com/tbruyelle/RxPermissions
 
     // Testing
     jUnitVersion = '4.12'
@@ -130,6 +131,7 @@ ext {
                             reactive.implementation,
                             jakewharton.implementation,
 
+                            "com.tbruyelle.rxpermissions2:rxpermissions:${rxPermissionsVersion}@aar",
                             "org.modelmapper:modelmapper:${modelmapperVersion}",
                             "org.parceler:parceler-api:${parcelerVersion}",
                             "com.github.bumptech.glide:glide:${glideVersion}",

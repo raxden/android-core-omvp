@@ -1,12 +1,17 @@
 package com.omvp.app.interceptor.takePicture;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.omvp.app.R;
 import com.omvp.app.base.reactivex.BaseDisposableSingleObserver;
 import com.omvp.app.util.ImagePickerUtil;
-import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+import com.raxdenstudios.square.interceptor.ActivitySimpleInterceptor;
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import io.reactivex.Single;
 import io.reactivex.SingleEmitter;
@@ -14,43 +19,47 @@ import io.reactivex.SingleOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 
 /**
  * Remember to add to the AndroidManifest.xml the FileProvider info into Application tag
- *   <application ...>
- *
- *       <provider
- *           android:name="android.support.v4.content.FileProvider"
- *           android:authorities="${applicationId}.fileprovider"
- *           android:exported="false"
- *           android:grantUriPermissions="true">
- *           <meta-data
- *               android:name="android.support.FILE_PROVIDER_PATHS"
- *               android:resource="@xml/provider_paths" />
- *       </provider>
- *
- *   </application>
- *
- *  And remember to add the provider_paths.xml into a xml file and stored into res/xml
- *
- *       <?xml version="1.0" encoding="utf-8"?>
- *       <paths xmlns:android="http://schemas.android.com/apk/res/android">
- *              <external-path name="external_files" path="." />
- *       </paths>
- *
-*/
+ * <application ...>
+ * <p>
+ * <provider
+ * android:name="android.support.v4.content.FileProvider"
+ * android:authorities="${applicationId}.fileprovider"
+ * android:exported="false"
+ * android:grantUriPermissions="true">
+ * <meta-data
+ * android:name="android.support.FILE_PROVIDER_PATHS"
+ * android:resource="@xml/provider_paths" />
+ * </provider>
+ * <p>
+ * </application>
+ * <p>
+ * And remember to add the provider_paths.xml into a xml file and stored into res/xml
+ * <p>
+ * <?xml version="1.0" encoding="utf-8"?>
+ * <paths xmlns:android="http://schemas.android.com/apk/res/android">
+ * <external-path name="external_files" path="." />
+ * </paths>
+ */
 
-public class TakePictureActivityInterceptor extends ActivityInterceptor<TakePictureInterceptorCallback> implements TakePictureInterceptor {
+public class TakePictureActivityInterceptor extends ActivitySimpleInterceptor implements TakePictureInterceptor {
 
     private static final int REQUEST_IMAGE_CAPTURE = 10023;
 
+    private RxPermissions mRxPermissions;
+    private TakePictureListener mListener;
     private CompositeDisposable mCompositeDisposable;
 
-    public TakePictureActivityInterceptor(Activity activity, TakePictureInterceptorCallback callback) {
-        super(activity, callback);
+    public TakePictureActivityInterceptor(Activity activity) {
+        super(activity);
+        mRxPermissions = new RxPermissions(activity);
         mCompositeDisposable = new CompositeDisposable();
     }
 
@@ -73,31 +82,60 @@ public class TakePictureActivityInterceptor extends ActivityInterceptor<TakePict
         }
     }
 
-    public void takePicture(final String chooserTitle) {
-        Disposable d = processTakePictureIntent(chooserTitle)
+    public void takePicture(final String chooserTitle, final TakePictureListener listener) {
+        mCompositeDisposable.add(mRxPermissions.requestEach(Manifest.permission.CAMERA)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new BaseDisposableSingleObserver<Intent>(mActivity) {
-                    @Override
-                    protected void onError(int code, String title, String description) {
-                        workingPictureProgress(false);
-                    }
-
+                .subscribeWith(new DisposableObserver<Permission>() {
                     @Override
                     protected void onStart() {
+                        mListener = listener;
                         workingPictureProgress(true);
                     }
 
                     @Override
-                    public void onSuccess(@NonNull Intent intent) {
-                        launchActivityForResult(intent);
+                    public void onNext(Permission permission) {
+                        if (permission.granted) {
+                            mCompositeDisposable.add(processTakePictureIntent(chooserTitle)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribeWith(new DisposableSingleObserver<Intent>() {
+                                        @Override
+                                        public void onSuccess(Intent intent) {
+                                            workingPictureProgress(false);
+                                            launchActivityForResult(intent);
+                                        }
+
+                                        @Override
+                                        public void onError(Throwable e) {
+                                            workingPictureProgress(false);
+                                            Timber.e(e);
+                                        }
+                                    }));
+                        } else if (permission.shouldShowRequestPermissionRationale) {
+                            new AlertDialog.Builder(mActivity)
+                                    .setTitle(R.string.camera_permission_title)
+                                    .setMessage(R.string.camera_permission_description)
+                                    .setPositiveButton(R.string.camera_permission_positive_button, null)
+                                    .create()
+                                    .show();
+                        }
                     }
-                });
-        mCompositeDisposable.add(d);
+
+                    @Override
+                    public void onError(Throwable e) {
+                        workingPictureProgress(false);
+                        Timber.e(e);
+                    }
+
+                    @Override
+                    public void onComplete() {}
+
+                }));
     }
 
     private void retrieveImageFromResult(final int requestCode, final int resultCode, final Intent data) {
-        Disposable d = processImageFromResult(requestCode, resultCode, data)
+        mCompositeDisposable.add(processImageFromResult(requestCode, resultCode, data)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new BaseDisposableSingleObserver<Uri>(mActivity) {
@@ -111,8 +149,7 @@ public class TakePictureActivityInterceptor extends ActivityInterceptor<TakePict
                         workingPictureProgress(false);
                         pictureRetrieved(uri);
                     }
-                });
-        mCompositeDisposable.add(d);
+                }));
     }
 
     private void launchActivityForResult(Intent intent) {
@@ -122,14 +159,14 @@ public class TakePictureActivityInterceptor extends ActivityInterceptor<TakePict
     }
 
     private void pictureRetrieved(Uri uri) {
-        if (mCallback != null) {
-            mCallback.onPictureRetrieved(uri);
+        if (mListener != null) {
+            mListener.onPictureRetrieved(uri);
         }
     }
 
     private void workingPictureProgress(boolean workingProgress) {
-        if (mCallback != null) {
-            mCallback.onWorkingPictureProgress(workingProgress);
+        if (mListener != null) {
+            mListener.onWorkingPictureProgress(workingProgress);
         }
     }
 
@@ -165,5 +202,5 @@ public class TakePictureActivityInterceptor extends ActivityInterceptor<TakePict
         });
     }
 
-    
+
 }

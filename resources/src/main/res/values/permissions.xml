@@ -1,0 +1,8 @@
+<resources>
+    <string name="camera_permission_title">¿Porqué necesitamos que autorices el acceso a la cámara?</string>
+    <string name="camera_permission_description">Para poder cambiar tu foto a través de la cámara necesitamos poder acceder a ella.</string>
+    <string name="camera_permission_positive_button">¡Entendido!</string>
+    <string name="location_permission_title">¿Porqué necesitamos que autorices la geolocalización?</string>
+    <string name="location_permission_description">Para poder mostrarte los servicios cercanos a tu posición necesitamos saber donde estas.</string>
+    <string name="location_permission_positive_button">¡Entendido!</string>
+</resources>

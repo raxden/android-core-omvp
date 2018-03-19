@@ -1,6 +1,5 @@
 package com.omvp.app.ui.samples.sample_location.view;
 
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
 
@@ -15,7 +14,6 @@ public class SampleLocationFragment extends BaseViewFragment<SampleLocationPrese
 
     @BindView(R.id.longitude_value)
     AppCompatTextView mLongitude;
-
     @BindView(R.id.latitude_value)
     AppCompatTextView mLatitude;
 
@@ -41,13 +39,10 @@ public class SampleLocationFragment extends BaseViewFragment<SampleLocationPrese
 
     }
 
-    public void locationChanged(Location location) {
-        mPresenter.locationChanged(location);
-    }
-
     @Override
     public void drawLocation(String latitude, String longitude) {
         mLongitude.setText(longitude);
         mLatitude.setText(latitude);
     }
+
 }

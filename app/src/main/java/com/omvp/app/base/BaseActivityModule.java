@@ -6,12 +6,14 @@ import android.os.Bundle;
 
 import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.omvp.app.BuildConfig;
 import com.omvp.app.injector.module.HelperModule;
 import com.omvp.app.injector.module.InterceptorActivityModule;
 import com.omvp.app.injector.module.UseCaseModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.util.DisposableManager;
 import com.omvp.app.util.TrackerManager;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import dagger.Module;
 import dagger.Provides;
@@ -37,6 +39,14 @@ public abstract class BaseActivityModule {
     @PerActivity
     static Bundle activityExtras(Activity activity) {
         return activity.getIntent() != null && activity.getIntent().getExtras() != null ? activity.getIntent().getExtras() : new Bundle();
+    }
+
+    @Provides
+    @PerActivity
+    static RxPermissions rxPermission(Activity activity) {
+        RxPermissions rxPermissions = new RxPermissions(activity);
+        rxPermissions.setLogging(BuildConfig.DEBUG);
+        return rxPermissions;
     }
 
     @Provides

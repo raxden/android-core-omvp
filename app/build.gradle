@@ -50,7 +50,6 @@ android {
     flavorDimensions "tier"
 
     sourceSets {
-        mock.res.srcDir 'src/dev/res'
         main {
             res.srcDirs =
                     [

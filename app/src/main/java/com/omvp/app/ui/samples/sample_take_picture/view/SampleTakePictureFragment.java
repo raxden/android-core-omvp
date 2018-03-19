@@ -16,12 +16,11 @@ import butterknife.OnClick;
 
 public class SampleTakePictureFragment extends BaseViewFragment<SampleTakePicturePresenter, SampleTakePictureFragment.FragmentCallback> implements SampleTakePictureView {
 
-
     @BindView(R.id.take_picture_image)
     AppCompatImageView mTakePictureImg;
 
     public interface FragmentCallback extends BaseViewFragmentCallback {
-        void onGalleryImageRequested();
+
     }
 
     public static SampleTakePictureFragment newInstance(Bundle bundle) {
@@ -31,23 +30,14 @@ public class SampleTakePictureFragment extends BaseViewFragment<SampleTakePictur
         return fragment;
     }
 
-    @Override
-    public void onViewStateRestored(Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-
-        setupViews();
-    }
-
-    private void setupViews() {
-
-    }
-
     @OnClick(R.id.take_picture_image)
     public void onTakePictureImagePressed(View view) {
-        mCallback.onGalleryImageRequested();
+        mPresenter.takePictureImage();
     }
 
-    public void pictureRetrieved(Uri uri) {
-        ImageHelper.loadImageUser(getActivity(), uri, mTakePictureImg, null);
+    @Override
+    public void pictureRetrieved(Uri picture) {
+        ImageHelper.loadImageUser(getActivity(), picture, mTakePictureImg, null);
     }
+
 }

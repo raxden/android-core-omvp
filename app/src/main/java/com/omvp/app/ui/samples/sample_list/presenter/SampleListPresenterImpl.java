@@ -60,7 +60,6 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
                 .subscribeWith(new BaseDisposableMaybeObserver<List<SampleModel>>(mContext) {
                     @Override
                     protected void onStart() {
-                        super.onStart();
                         showProgress();
                     }
 
@@ -101,4 +100,5 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
             mView.onSampleItemSelected(sampleDomain);
         }
     }
+
 }

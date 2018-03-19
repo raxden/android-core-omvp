@@ -1,0 +1,5 @@
+<resources>
+    <string name="gps_provider_service_title">Activa tu GPS</string>
+    <string name="gps_provider_service_description">Actualmente tienes el GPS desactivado, actívalo para poder obtener resultados de calidad.</string>
+    <string name="gps_provider_service_positive_button">¡Entendido!</string>
+</resources>
