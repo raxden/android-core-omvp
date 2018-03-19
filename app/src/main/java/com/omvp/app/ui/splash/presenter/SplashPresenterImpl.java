@@ -33,7 +33,7 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
     };
 
     @Inject
-    SplashPresenterImpl(SplashView splashView) {
+    public SplashPresenterImpl(SplashView splashView) {
         super(splashView);
     }
 

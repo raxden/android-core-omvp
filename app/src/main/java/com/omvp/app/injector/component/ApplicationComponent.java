@@ -15,8 +15,8 @@ import dagger.android.AndroidInjector;
  *
  *       - (*) Generated Classes by Dagger.
  *       - BaseApplicationModule - Module that contains all dependencies that the project will use.
- *       - InjectorModule - Module responsable to inject dependencies to activities used in project
- *       - AndroidInjectionModule - Dagger module required to use this aproach.
+ *       - InjectorModule - Module responsible to inject dependencies to activities used in project
+ *       - AndroidInjectionModule - Dagger module required to use this approach.
  *
  * =================================================================================================
  * |                                                                                               |
@@ -47,7 +47,7 @@ import dagger.android.AndroidInjector;
  *
  *      - @Inject - base annotation whereby the "dependency is requested".
  *      - @Module - classes which methods "provide dependencies".
- *      - @Provide - methods inside @Module, which "tell Daggger how we waht to build and present a
+ *      - @Provide - methods inside @Module, which "tell Dagger how we what to build and present a
  *      dependency".
  *      - @Component - bridge between @Inject and @Module.
  *      - @Scope - enables to create global and local singletons.

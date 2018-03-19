@@ -6,8 +6,10 @@ import android.content.Context;
 
 import com.omvp.app.injector.module.AnalyticsModule;
 import com.omvp.app.injector.module.CacheModule;
+import com.omvp.app.injector.module.GoogleModule;
 import com.omvp.app.injector.module.GsonModule;
 import com.omvp.app.injector.module.LocaleModule;
+import com.omvp.app.injector.module.LocationModule;
 import com.omvp.app.injector.module.MapperModule;
 import com.omvp.app.injector.module.NetworkModule;
 import com.omvp.app.injector.module.RepositoryModule;
@@ -31,6 +33,8 @@ import dagger.Provides;
                 AnalyticsModule.class,
                 CacheModule.class,
                 RepositoryModule.class,
+                LocationModule.class,
+                GoogleModule.class,
                 NetworkModule.class
         }
 )

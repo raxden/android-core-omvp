@@ -10,7 +10,7 @@ import javax.inject.Inject;
 public class HomePresenterImpl extends BasePresenter<HomeView> implements HomePresenter {
 
     @Inject
-    HomePresenterImpl(HomeView homeView) {
+    public HomePresenterImpl(HomeView homeView) {
         super(homeView);
     }
 

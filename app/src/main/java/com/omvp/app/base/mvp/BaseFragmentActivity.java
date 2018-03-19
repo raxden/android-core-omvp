@@ -12,7 +12,7 @@ import javax.inject.Inject;
 /**
  * Abstract Activity for all Activities to extend.
  */
-public class BaseFragmentActivity extends BaseActivity implements BaseViewFragmentCallback {
+public abstract class BaseFragmentActivity extends BaseActivity implements BaseViewFragmentCallback {
 
     /**
      * A reference to the FragmentManager is injected and used instead of the getter method. This

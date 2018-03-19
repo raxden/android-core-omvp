@@ -69,4 +69,33 @@ public class HomeActivity extends BaseFragmentActivity implements
         interceptorList.add(mInjectFragmentInterceptor);
     }
 
+    @Override
+    public void onSampleViewSelected() {
+        mNavigationHelper.launchSample();
+    }
+
+    @Override
+    public void onSampleListSelected() {
+        mNavigationHelper.launchSampleList();
+    }
+
+    @Override
+    public void onSamplePagerSelected() {
+        mNavigationHelper.launchSamplePager();
+    }
+
+    @Override
+    public void onSampleMultipleSelected() {
+        mNavigationHelper.launchSampleMap();
+    }
+
+    @Override
+    public void onSampleLocationSelected() {
+        mNavigationHelper.launchSampleLocation();
+    }
+
+    @Override
+    public void onSampleTakePictureSelected() {
+        mNavigationHelper.launchSampleTakePicture();
+    }
 }
