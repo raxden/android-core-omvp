@@ -3,6 +3,7 @@ package com.omvp.app.helper;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.omvp.app.interceptor.operation.OperationBroadcastActivityInterceptor;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.sample.SampleActivity;
 import com.omvp.app.ui.splash.SplashActivity;
@@ -17,7 +18,7 @@ public class NavigationHelper {
     }
 
     public void launchSplash() {
-        OperationBroadcastManager.finishAllActivities(mActivity);
+        OperationBroadcastActivityInterceptor.finishAllActivities(mActivity);
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(SplashActivity.class)
@@ -25,7 +26,7 @@ public class NavigationHelper {
     }
 
     public void launchHomeAndFinishPreviousViews() {
-        OperationBroadcastManager.finishAllActivities(mActivity);
+        OperationBroadcastActivityInterceptor.finishAllActivities(mActivity);
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(HomeActivity.class)

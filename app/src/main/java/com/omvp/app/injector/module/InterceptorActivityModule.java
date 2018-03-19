@@ -5,7 +5,6 @@ import android.app.Activity;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.interceptor.operation.OperationBroadcastActivityInterceptor;
 import com.omvp.app.interceptor.operation.OperationBroadcastInterceptor;
-import com.omvp.app.interceptor.operation.OperationBroadcastInterceptorCallback;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
@@ -67,10 +66,7 @@ public abstract class InterceptorActivityModule {
     @Provides
     @PerActivity
     static OperationBroadcastInterceptor operationBroadcastInterceptor(Activity activity) {
-        if (activity instanceof OperationBroadcastInterceptorCallback) {
-            return new OperationBroadcastActivityInterceptor(activity, (OperationBroadcastInterceptorCallback) activity);
-        }
-        return null;
+        return new OperationBroadcastActivityInterceptor(activity);
     }
 
 }

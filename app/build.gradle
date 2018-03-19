@@ -108,7 +108,7 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            minifyEnabled false
+            minifyEnabled true                          // disable to deactivate proguard
             shrinkResources false
             signingConfig signingConfigs.release
 

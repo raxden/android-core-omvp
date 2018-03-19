@@ -1,5 +1,7 @@
 package com.omvp.app.util;
 
+import javax.inject.Inject;
+
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -10,6 +12,7 @@ public class DisposableManager {
 
     private CompositeDisposable mCompositeDisposable;
 
+    @Inject
     public DisposableManager() {
         mCompositeDisposable = new CompositeDisposable();
     }

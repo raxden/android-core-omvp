@@ -27,7 +27,7 @@ public class SplashActivity extends BaseFragmentActivity implements
 
     @Override
     public void onLaunchApplication() {
-        mNavigationHelper.launchSample();
+        mNavigationHelper.launchHomeAndFinishPreviousViews();
     }
 
     // =============== InjectFragmentInterceptorCallback ===========================================

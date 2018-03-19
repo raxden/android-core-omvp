@@ -4,8 +4,6 @@ import android.app.Application;
 import android.content.ContentResolver;
 import android.content.Context;
 
-import com.google.android.gms.analytics.Tracker;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.omvp.app.injector.module.AnalyticsModule;
 import com.omvp.app.injector.module.CacheModule;
 import com.omvp.app.injector.module.GsonModule;
@@ -13,7 +11,6 @@ import com.omvp.app.injector.module.LocaleModule;
 import com.omvp.app.injector.module.MapperModule;
 import com.omvp.app.injector.module.NetworkModule;
 import com.omvp.app.injector.module.RepositoryModule;
-import com.omvp.app.util.TrackerManager;
 import com.raxdenstudios.commons.util.Utils;
 import com.raxdenstudios.preferences.AdvancedPreferences;
 
@@ -67,12 +64,6 @@ public abstract class BaseApplicationModule {
     @Singleton
     static AdvancedPreferences advancedPreferences(Application application) {
         return new AdvancedPreferences(application, Utils.getPackageName(application), Context.MODE_PRIVATE);
-    }
-
-    @Provides
-    @Singleton
-    static TrackerManager trackerManager(Tracker tracker, FirebaseAnalytics firebaseAnalytics) {
-        return new TrackerManager(tracker, firebaseAnalytics);
     }
 
 }

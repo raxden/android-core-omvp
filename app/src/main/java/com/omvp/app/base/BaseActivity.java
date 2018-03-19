@@ -11,10 +11,10 @@ import com.omvp.app.helper.DialogHelper;
 import com.omvp.app.helper.NavigationHelper;
 import com.omvp.app.helper.SnackBarHelper;
 import com.omvp.app.interceptor.operation.OperationBroadcastInterceptor;
-import com.omvp.app.interceptor.operation.OperationBroadcastInterceptorCallback;
 import com.omvp.app.util.DisposableManager;
 import com.raxdenstudios.square.SquareActivity;
 import com.raxdenstudios.square.interceptor.Interceptor;
+import com.raxdenstudios.square.interceptor.InterceptorCallback;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
 
@@ -32,8 +32,7 @@ import dagger.android.HasFragmentInjector;
  */
 public abstract class BaseActivity extends SquareActivity implements
         AutoInflateLayoutInterceptorCallback,
-        OperationBroadcastInterceptorCallback,
-        HasFragmentInjector {
+        HasFragmentInjector, InterceptorCallback {
 
     @Inject
     protected Resources mResources;

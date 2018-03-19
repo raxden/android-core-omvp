@@ -1,10 +1,13 @@
 package com.omvp.app.util;
 
+import android.app.Activity;
 import android.app.Fragment;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.omvp.app.ui.home.view.HomeFragment;
+import com.omvp.app.ui.splash.view.SplashFragment;
 import com.raxdenstudios.commons.util.Utils;
 
 import java.util.HashMap;
@@ -14,12 +17,14 @@ import timber.log.Timber;
 
 public class TrackerManager {
 
+    private Activity mActivity;
     private Tracker mTracker;
     private FirebaseAnalytics mFirebaseAnalytics;
 
     private Map<String, String> mScreenNames = new HashMap<>();
 
-    public TrackerManager(Tracker tracker, FirebaseAnalytics firebaseAnalytics) {
+    public TrackerManager(Activity activity, Tracker tracker, FirebaseAnalytics firebaseAnalytics) {
+        mActivity = activity;
         mTracker = tracker;
         mFirebaseAnalytics = firebaseAnalytics;
         initScreenNames();
@@ -41,6 +46,9 @@ public class TrackerManager {
             mTracker.setScreenName(screenName);
             mTracker.send(new HitBuilders.ScreenViewBuilder().build());
         }
+        if (mFirebaseAnalytics != null) {
+            mFirebaseAnalytics.setCurrentScreen(mActivity, screenName,null);
+        }
     }
 
     public void trackEvent(String category, String action, String label) {
@@ -55,7 +63,9 @@ public class TrackerManager {
     }
 
     private void initScreenNames() {
-//        mScreenNames.put(SplashFragment.class.getName(), "sample");
+        mScreenNames.put(SplashFragment.class.getName(), "Splash view");
+        mScreenNames.put(HomeFragment.class.getName(), "Home view");
+        // TODO
     }
 
 }

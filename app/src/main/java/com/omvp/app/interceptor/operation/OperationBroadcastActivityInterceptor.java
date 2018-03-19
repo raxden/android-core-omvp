@@ -9,7 +9,7 @@ import android.os.Bundle;
 
 import com.omvp.app.BuildConfig;
 import com.raxdenstudios.commons.util.StringUtils;
-import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+import com.raxdenstudios.square.interceptor.ActivitySimpleInterceptor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,8 +19,7 @@ import java.util.List;
  * Created by Angel on 10/08/2017.
  */
 
-public class OperationBroadcastActivityInterceptor extends ActivityInterceptor<OperationBroadcastInterceptorCallback> implements
-        OperationBroadcastInterceptor {
+public class OperationBroadcastActivityInterceptor extends ActivitySimpleInterceptor implements OperationBroadcastInterceptor {
 
     private static final String OPERATION_ACTION = BuildConfig.APPLICATION_ID + ".OPERATION_ACTION";
     private static final String OPERATION = "OPERATION";
@@ -51,10 +50,6 @@ public class OperationBroadcastActivityInterceptor extends ActivityInterceptor<O
 
     public OperationBroadcastActivityInterceptor(Activity activity) {
         super(activity);
-    }
-
-    public OperationBroadcastActivityInterceptor(Activity activity, OperationBroadcastInterceptorCallback callback) {
-        super(activity, callback);
     }
 
     @Override

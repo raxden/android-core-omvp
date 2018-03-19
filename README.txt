@@ -18,7 +18,7 @@
 ================================== STEPS TO CONFIGURE PROJECT ======================================
 
     1. Rename androidApplicationId and testApplicationId in build.gradle.
-        com.raxdenstudios.sample -> com.companyname.proyectname
+        com.omvp.app -> com.companyname.proyectname
 
     2. Register application in Firebase and download|replace google-services.json contained in
     app module. Remember that proyect has two diferences configurations, dev and prod.
@@ -35,17 +35,23 @@
     file is available through BuildConfig.KEY_TO_USE in DEBUG configuration. Use this file to
     custom properties like user and password credentials used only in development mode.
 
-    6. To use Crashlytics, register application in Crashlytics via plugin. To personalize
-    configuration like distribution or release notes, modify preferences in build.gradle.
+    6. To use Crashlytics, configure app/fabric.properties. To personalize configuration like
+    distribution or release notes, modify preferences in build.gradle.
 
-    7. To use Sonarqube register application in Sonarqube. To launch sonarqube, execute
-    "gradlew sonarqube" in console. Configuration is located in build.gradle.
+    7. Define what languages will be use the application in
+    com.omvp.app.injector.module.LocaleModule
 
-    8. Define what languages will be use the application in locales.xml
+    8. Defines path to store pictures in device in: (Replace package com.omvp.app by yours)
+        + dev/res/xml/provider_paths.xml
+        + prod/res/xml/provider_paths.xml
+
+    9. Put analytics code in:
+        + dev/res/xml/app_tracker.xml
+        + prod/res/xml/app_tracker.xml
 
 ============================================= TIPS =================================================
 
-    1. All configuration is located in build.gradle
+    1. All project configuration is located in build.gradle
     2. Library dependency configuration is located in buildSystem/dependencies.gradle.
     3. keystore's is located in buildSystem/*
 
