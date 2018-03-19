@@ -1,19 +1,25 @@
-package com.omvp.app.util;
+package com.omvp.app.interceptor.operation;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 
 import com.omvp.app.BuildConfig;
 import com.raxdenstudios.commons.util.StringUtils;
+import com.raxdenstudios.square.interceptor.ActivitySimpleInterceptor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class OperationBroadcastManager {
+/**
+ * Created by Angel on 10/08/2017.
+ */
+
+public class OperationBroadcastActivityInterceptor extends ActivitySimpleInterceptor implements OperationBroadcastInterceptor {
 
     private static final String OPERATION_ACTION = BuildConfig.APPLICATION_ID + ".OPERATION_ACTION";
     private static final String OPERATION = "OPERATION";
@@ -21,8 +27,6 @@ public class OperationBroadcastManager {
 
     private static final int OPERATION_ACTIVITY_FINISH = 1;
     private static final int OPERATION_ACTIVITY_FINISH_ALL = 2;
-
-    private final Activity mActivity;
 
     public static void finishActivity(Activity activity, Class<Activity> className) {
         Intent intent = new Intent(OPERATION_ACTION);
@@ -44,15 +48,19 @@ public class OperationBroadcastManager {
         activity.sendBroadcast(intent);
     }
 
-    public OperationBroadcastManager(Activity activity) {
-        mActivity = activity;
+    public OperationBroadcastActivityInterceptor(Activity activity) {
+        super(activity);
     }
 
-    public void register() {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         registerOperationReceiver();
     }
 
-    public void unregister() {
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
         unregisterOperationReceiver();
     }
 

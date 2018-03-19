@@ -18,6 +18,8 @@ import com.omvp.app.interceptor.permission.PermissionInterceptorCallback;
 import com.omvp.app.interceptor.takePicture.TakePictureActivityInterceptor;
 import com.omvp.app.interceptor.takePicture.TakePictureInterceptor;
 import com.omvp.app.interceptor.takePicture.TakePictureInterceptorCallback;
+import com.omvp.app.interceptor.operation.OperationBroadcastActivityInterceptor;
+import com.omvp.app.interceptor.operation.OperationBroadcastInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
@@ -138,6 +140,12 @@ public abstract class InterceptorActivityModule {
         } else {
             return null;
         }
+    }
+  
+    @Provides
+    @PerActivity
+    static OperationBroadcastInterceptor operationBroadcastInterceptor(Activity activity) {
+        return new OperationBroadcastActivityInterceptor(activity);
     }
 
 }

@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
 
+import com.google.android.gms.analytics.Tracker;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.omvp.app.injector.module.HelperModule;
 import com.omvp.app.injector.module.InterceptorActivityModule;
 import com.omvp.app.injector.module.UseCaseModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.util.DisposableManager;
-import com.omvp.app.util.OperationBroadcastManager;
+import com.omvp.app.util.TrackerManager;
 
 import dagger.Module;
 import dagger.Provides;
@@ -45,8 +47,8 @@ public abstract class BaseActivityModule {
 
     @Provides
     @PerActivity
-    static OperationBroadcastManager operationBroadcastManager(Activity activity) {
-        return new OperationBroadcastManager(activity);
+    static TrackerManager trackerManager(Activity activity, Tracker tracker, FirebaseAnalytics firebaseAnalytics) {
+        return new TrackerManager(activity, tracker, firebaseAnalytics);
     }
 
 }

@@ -17,10 +17,11 @@ import com.omvp.app.interceptor.google.GoogleApiClientInterceptorCallback;
 import com.omvp.app.interceptor.permission.PermissionActivityInterceptor;
 import com.omvp.app.interceptor.permission.PermissionInterceptor;
 import com.omvp.app.interceptor.permission.PermissionInterceptorCallback;
+import com.omvp.app.interceptor.operation.OperationBroadcastInterceptor;
 import com.omvp.app.util.DisposableManager;
-import com.omvp.app.util.OperationBroadcastManager;
 import com.raxdenstudios.square.SquareActivity;
 import com.raxdenstudios.square.interceptor.Interceptor;
+import com.raxdenstudios.square.interceptor.InterceptorCallback;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
 
@@ -41,7 +42,8 @@ public abstract class BaseActivity extends SquareActivity implements
         AutoInflateLayoutInterceptorCallback,
         PermissionInterceptorCallback,
         GoogleApiClientInterceptorCallback,
-        HasFragmentInjector {
+        HasFragmentInjector, 
+        InterceptorCallback {
 
     @Inject
     protected Resources mResources;
@@ -63,7 +65,8 @@ public abstract class BaseActivity extends SquareActivity implements
     protected PermissionInterceptor mPermissionInterceptor;
     @Inject
     protected GoogleApiClientInterceptor mGoogleApiClientInterceptor;
-
+    @Inject
+    OperationBroadcastInterceptor mOperationBroadcastInterceptor;
     @Inject
     AutoInflateLayoutInterceptor mAutoInflateLayoutInterceptor;
 
@@ -78,15 +81,12 @@ public abstract class BaseActivity extends SquareActivity implements
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-
-        mOperationBroadcastManager.register();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
 
-        mOperationBroadcastManager.unregister();
         mDisposableManager.dispose();
     }
 
@@ -110,6 +110,7 @@ public abstract class BaseActivity extends SquareActivity implements
     protected void setupInterceptors(List<Interceptor> interceptorList) {
         interceptorList.add(mAutoInflateLayoutInterceptor);
         interceptorList.add(mPermissionInterceptor);
+        interceptorList.add(mOperationBroadcastInterceptor);
         interceptorList.add(mGoogleApiClientInterceptor);
     }
 

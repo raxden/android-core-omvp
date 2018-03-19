@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keepnames class com.omvp.** extends android.app.Activity
+-keepnames class com.omvp.** extends android.app.Fragment
+
+-keep interface com.omvp.commons.DontObfuscate
+-keep @com.omvp.commons.DontObfuscate class * { *; }

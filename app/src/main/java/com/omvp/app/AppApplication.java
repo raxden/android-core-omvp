@@ -1,6 +1,7 @@
 package com.omvp.app;
 
 import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.core.CrashlyticsCore;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.omvp.app.base.BaseApplication;
 import com.omvp.app.util.CrashReportingTree;
@@ -26,7 +27,11 @@ public class AppApplication extends BaseApplication {
     }
 
     private void initFabric() {
-        Fabric.with(this, new Crashlytics());
+        // Initializes Fabric for builds that don't use the debug build type.
+        Crashlytics crashlyticsKit = new Crashlytics.Builder()
+                .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
+                .build();
+        Fabric.with(this, crashlyticsKit);
     }
 
     private void initTimber() {

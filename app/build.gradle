@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
-apply plugin: "org.sonarqube"
 
 android {
 
@@ -48,22 +47,10 @@ android {
         multiDexEnabled true
     }
 
-    sonarqube {
-        properties {
-            property "sonar.projectName", rootProject.ext.sonarProjectName
-            property "sonar.projectVersion", rootProject.ext.androidVersionName
-            property "sonar.sources", "src/main/java"
-            property "sonar.host.url", rootProject.ext.sonarHostUrl
-            property "sonar.login", rootProject.ext.sonarLogin
-            property "sonar.organization", rootProject.ext.sonarOrganization
-            property "sonar.language", "java"
-            property "sonar.sourceEncoding", "UTF-8"
-        }
-    }
-
     flavorDimensions "tier"
 
     sourceSets {
+        mock.res.srcDir 'src/dev/res'
         main {
             res.srcDirs =
                     [
@@ -121,13 +108,34 @@ android {
 
     buildTypes {
         debug {
+            crunchPngs false
             minifyEnabled false
             signingConfig signingConfigs.debug
         }
         release {
-            minifyEnabled false
+            minifyEnabled true                          // disable to deactivate proguard
             shrinkResources false
             signingConfig signingConfigs.release
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    'proguard-rules.pro',
+                    './proguard/proguard-android.pro',
+                    './proguard/proguard-butterknife.pro',
+                    './proguard/proguard-crashlytics.pro',
+                    './proguard/proguard-firebase.pro',
+                    './proguard/proguard-fspay.pro',
+                    './proguard/proguard-glide.pro',
+                    './proguard/proguard-google-analytics.pro',
+                    './proguard/proguard-google-play-services.pro',
+                    './proguard/proguard-gson.pro',
+                    './proguard/proguard-modelmapper.pro',
+                    './proguard/proguard-parceler.pro',
+                    './proguard/proguard-square-okhttp3.pro',
+                    './proguard/proguard-square-okio.pro',
+                    './proguard/proguard-square-retrofit2.pro',
+                    './proguard/proguard-support.pro',
+                    './proguard/proguard-support-design.pro',
+                    './proguard/proguard-timber.pro'
         }
     }
 

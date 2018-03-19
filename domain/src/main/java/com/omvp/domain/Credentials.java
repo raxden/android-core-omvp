@@ -1,5 +1,7 @@
 package com.omvp.domain;
 
+import com.omvp.commons.DontObfuscate;
+
 import org.parceler.Parcel;
 
 import lombok.Data;
@@ -9,6 +11,7 @@ import lombok.Data;
  */
 @Parcel
 @Data
+@DontObfuscate
 public class Credentials {
 
     String accessToken;
