@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 
+import com.omvp.app.helper.DialogHelper;
 import com.omvp.app.util.DisposableManager;
 import com.raxdenstudios.commons.util.SDKUtils;
 import com.raxdenstudios.square.SquareDialogFragment;
@@ -70,6 +71,9 @@ public abstract class BaseFragment extends SquareDialogFragment implements
     @Inject
     @Named(BaseFragmentModule.CHILD_FRAGMENT_MANAGER)
     protected FragmentManager mChildFragmentManager;
+    @Inject
+    @Named(BaseFragmentModule.CHILD_FRAGMENT_MANAGER)
+    protected DialogHelper mDialogHelper;
     @Inject
     @Named(BaseFragmentModule.DISPOSABLE_FRAGMENT_MANAGER)
     protected DisposableManager mDisposableManager;

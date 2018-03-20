@@ -94,34 +94,4 @@ public abstract class BaseActivity extends SquareActivity implements
         interceptorList.add(mOperationBroadcastInterceptor);
     }
 
-    // ========= PermissionInterceptorCallback =====================================================
-
-//    protected void requestLocationPermission() {
-//        mPermissionInterceptor.requestPermission(PermissionActivityInterceptor.Permission.LOCATION);
-//    }
-//
-//    protected boolean hasLocationPermission() {
-//        return mPermissionInterceptor.hasPermission(PermissionActivityInterceptor.Permission.LOCATION);
-//    }
-//
-//    @Override
-//    public void onPermissionGranted(PermissionActivityInterceptor.Permission permission) {
-//        Timber.d("onPermissionGranted %s", permission != null ? permission.toString() : "");
-//    }
-//
-//    @Override
-//    public void onPermissionAlreadyGranted(PermissionActivityInterceptor.Permission permission) {
-//        Timber.d("onPermissionAlreadyGranted %s", permission != null ? permission.toString() : "");
-//    }
-//
-//    @Override
-//    public void onPermissionDenied(PermissionActivityInterceptor.Permission permission) {
-//        Timber.d("onPermissionDenied %s", permission != null ? permission.toString() : "");
-//    }
-//
-//    @Override
-//    public void onPermissionDeniedForEver(PermissionActivityInterceptor.Permission permission) {
-//        Timber.d("onPermissionDeniedForEver %s", permission != null ? permission.toString() : "");
-//    }
-
 }

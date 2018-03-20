@@ -16,11 +16,11 @@
     </style>
 
     <style name="Toolbar.Home">
-        <item name="android:icon">@mipmap/ic_launcher_round</item>
+
     </style>
 
     <style name="Toolbar.Sample">
-        <item name="navigationIcon">@mipmap/ic_launcher_round</item>
+        <item name="navigationIcon">@drawable/ic_arrow_back_white_24dp</item>
     </style>
 
 </resources>

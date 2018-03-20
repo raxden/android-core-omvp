@@ -2,6 +2,7 @@ package com.omvp.app.helper;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -10,16 +11,20 @@ import timber.log.Timber;
 
 public class DialogHelper {
 
-    private final Activity mActivity;
     private final Resources mResources;
     private final FragmentManager mFragmentManager;
     private final Bundle mExtras;
 
     public DialogHelper(Activity activity, FragmentManager fragmentManager) {
-        mActivity = activity;
         mResources = activity.getResources();
         mFragmentManager = fragmentManager;
-        mExtras = mActivity.getIntent().getExtras();
+        mExtras = activity.getIntent().getExtras();
+    }
+
+    public DialogHelper(Fragment fragment, FragmentManager fragmentManager) {
+        mResources = fragment.getResources();
+        mFragmentManager = fragmentManager;
+        mExtras = fragment.getArguments();
     }
 
 //    public NoticeDialogFragment showLocationPermission() {

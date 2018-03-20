@@ -65,43 +65,43 @@
         <activity
             android:name=".ui.home.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.Home"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".ui.samples.sample.SampleActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".ui.samples.sample_list.SampleListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".ui.samples.sample_pager.SamplePagerActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".ui.samples.sample_multiple.SampleMultipleActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".ui.samples.sample_location.SampleLocationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".ui.samples.sample_take_picture.SampleTakePictureActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan" />
 
     </application>

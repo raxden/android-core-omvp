@@ -3,6 +3,7 @@ package com.omvp.app.base;
 import android.app.Fragment;
 import android.app.FragmentManager;
 
+import com.omvp.app.helper.DialogHelper;
 import com.omvp.app.injector.module.InterceptorFragmentModule;
 import com.omvp.app.injector.scope.PerFragment;
 import com.omvp.app.util.DisposableManager;
@@ -34,6 +35,13 @@ public abstract class BaseFragmentModule {
     @PerFragment
     static DisposableManager disposableFragmentManager() {
         return new DisposableManager();
+    }
+
+    @Provides
+    @Named(CHILD_FRAGMENT_MANAGER)
+    @PerFragment
+    static DialogHelper dialogHelper(Fragment fragment, @Named(CHILD_FRAGMENT_MANAGER) FragmentManager fragmentManager) {
+        return new DialogHelper(fragment, fragmentManager);
     }
 
 }
