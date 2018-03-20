@@ -4,12 +4,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
-import com.omvp.app.interceptor.google.GoogleApiClientInterceptor;
-import com.omvp.app.interceptor.google.GoogleApiClientInterceptorCallback;
 import com.omvp.app.interceptor.location.LocationInterceptor;
 import com.omvp.app.ui.samples.sample_location.view.SampleLocationFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
@@ -22,12 +18,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import timber.log.Timber;
-
 public class SampleLocationActivity extends BaseFragmentActivity implements
         SampleLocationFragment.FragmentCallback,
         ToolbarInterceptorCallback,
-        GoogleApiClientInterceptorCallback,
         InjectFragmentInterceptorCallback<SampleLocationFragment> {
 
     @Inject
@@ -36,8 +29,6 @@ public class SampleLocationActivity extends BaseFragmentActivity implements
     InjectFragmentInterceptor mInjectFragmentInterceptor;
     @Inject
     LocationInterceptor mLocationInterceptor;
-    @Inject
-    GoogleApiClientInterceptor mGoogleApiClientInterceptor;
 
     private Toolbar mToolbar;
     private SampleLocationFragment mFragment;
@@ -78,25 +69,7 @@ public class SampleLocationActivity extends BaseFragmentActivity implements
         super.setupInterceptors(interceptorList);
         interceptorList.add(mToolbarInterceptor);
         interceptorList.add(mInjectFragmentInterceptor);
-        interceptorList.add(mGoogleApiClientInterceptor);
         interceptorList.add(mLocationInterceptor);
-    }
-
-    // ========= GoogleApiClientInterceptorCallback ================================================
-
-    @Override
-    public void onGoogleApiClientConnected(Bundle bundle, GoogleApiClient googleApiClient) {
-        mLocationInterceptor.setGoogleApiClient(googleApiClient);
-    }
-
-    @Override
-    public void onGoogleApiClientConnectionSuspended(int i) {
-        Timber.d("onGoogleApiClientConnectionSuspended %d", i);
-    }
-
-    @Override
-    public void onGoogleApiClientConnectionFailed(ConnectionResult connectionResult) {
-        Timber.d("onGoogleApiClientConnectionFailed %s", connectionResult != null ? connectionResult.toString() : "");
     }
 
 }

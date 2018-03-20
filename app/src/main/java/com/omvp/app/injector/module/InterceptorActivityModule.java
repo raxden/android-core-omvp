@@ -2,7 +2,7 @@ package com.omvp.app.injector.module;
 
 import android.app.Activity;
 
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.interceptor.ToolbarActivityInterceptor;
@@ -105,9 +105,9 @@ public abstract class InterceptorActivityModule {
 
     @Provides
     @PerActivity
-    static GoogleApiClientInterceptor googleApiClientInterceptor(Activity activity, GoogleSignInOptions googleSignInOptions) {
+    static GoogleApiClientInterceptor googleApiClientInterceptor(Activity activity, GoogleApiClient.Builder builder) {
         if (activity instanceof GoogleApiClientInterceptorCallback) {
-            return new GoogleApiClientActivityInterceptor(activity, googleSignInOptions, (GoogleApiClientInterceptorCallback) activity);
+            return new GoogleApiClientActivityInterceptor(activity, builder, (GoogleApiClientInterceptorCallback) activity);
         } else {
             return null;
         }

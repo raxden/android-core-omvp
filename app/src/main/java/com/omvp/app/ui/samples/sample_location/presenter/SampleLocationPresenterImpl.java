@@ -24,6 +24,7 @@ public class SampleLocationPresenterImpl extends BasePresenter<SampleLocationVie
     @Override
     public void onViewLoaded() {
         super.onViewLoaded();
+        mLocationInterceptor.startLocationUpdates();
         mLocationInterceptor.addLocationListener(new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {

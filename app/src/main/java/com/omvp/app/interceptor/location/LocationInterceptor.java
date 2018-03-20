@@ -7,11 +7,11 @@ import com.raxdenstudios.square.interceptor.Interceptor;
 
 public interface LocationInterceptor extends Interceptor {
 
-    enum LocationError {LOCATE_PERMISSION_FAILED, GOOGLE_API_CLIENT_FAILED, LOCATE_PROVIDER_FAILED}
+    Location getCurrentLocation();
 
-    Location getLastLocation();
+    void startLocationUpdates();
 
-    void requestLocationUpdates();
+    void stopLocationUpdates();
 
     void addLocationListener(LocationListener locationListener);
 
