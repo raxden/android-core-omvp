@@ -26,7 +26,6 @@ ext {
     calligraphyVersion = '2.3.0'            // https://github.com/chrisjenx/Calligraphy
     daggerVersion = '2.14.1'                // https://github.com/square/dagger
     androidThreeTenVersion = '1.0.5'        // https://github.com/JakeWharton/ThreeTenABP
-    autoFitTextViewVersion = '0.2.+'        // https://github.com/grantland/android-autofittextview
     modelmapperVersion = '1.1.0'            // https://github.com/modelmapper/modelmapper
     constraintsLayoutVersion = '1.0.2'      // https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html
     rxPermissionsVersion = '0.9.5'          // https://github.com/tbruyelle/RxPermissions
@@ -45,7 +44,6 @@ ext {
                     "com.android.support:support-v13:${supportLibraryVersion}",
                     "com.android.support:appcompat-v7:${supportLibraryVersion}",
                     "com.android.support:design:${supportLibraryVersion}",
-                    "com.android.support:percent:${supportLibraryVersion}",
                     "com.android.support:recyclerview-v7:${supportLibraryVersion}",
                     "com.android.support:cardview-v7:${supportLibraryVersion}",
                     "com.android.support.constraint:constraint-layout:${constraintsLayoutVersion}"
@@ -63,7 +61,7 @@ ext {
     ]
 
     dagger = [
-            implementation: [
+            implementation     : [
                     "com.google.dagger:dagger-android-support:${daggerVersion}"
             ],
             annotationProcessor: [
@@ -109,7 +107,7 @@ ext {
     ]
 
     jakewharton = [
-            implementation: [
+            implementation     : [
                     "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
                     "com.jakewharton.timber:timber:${timberVersion}",
                     "com.jakewharton:butterknife:${butterknifeVersion}"
@@ -119,9 +117,54 @@ ext {
             ]
     ]
 
+    lombok = [
+            annotationProcessor: [
+                    "org.projectlombok:lombok:${lombokVersion}"
+            ],
+            compileOnly        : [
+                    "org.projectlombok:lombok:${lombokVersion}"
+            ]
+    ]
+
+    parceler = [
+            implementation     : [
+                    "org.parceler:parceler-api:${parcelerVersion}"
+            ],
+            annotationProcessor: [
+                    "org.parceler:parceler:${parcelerVersion}"
+            ]
+    ]
+
+    glide = [
+            implementation     : [
+                    "com.github.bumptech.glide:glide:${glideVersion}"
+            ],
+            annotationProcessor: [
+                    "com.github.bumptech.glide:compiler:${glideVersion}"
+            ]
+    ]
+
+    modelmapper = [
+            implementation: [
+                    "org.modelmapper:modelmapper:${modelmapperVersion}"
+            ]
+    ]
+
+    calligraphy = [
+            implementation: [
+                    "uk.co.chrisjenx:calligraphy:${calligraphyVersion}"
+            ]
+    ]
+
+    rxPermissions = [
+            implementation: [
+                    "com.tbruyelle.rxpermissions2:rxpermissions:${rxPermissionsVersion}@aar"
+            ]
+    ]
+
     deps = [
-            app : [
-                    implementation: [
+            app       : [
+                    implementation         : [
                             support.implementation,
                             raxden.implementation,
                             playServices.implementation,
@@ -130,120 +173,100 @@ ext {
                             retrofit.implementation,
                             reactive.implementation,
                             jakewharton.implementation,
-
-                            "com.tbruyelle.rxpermissions2:rxpermissions:${rxPermissionsVersion}@aar",
-                            "org.modelmapper:modelmapper:${modelmapperVersion}",
-                            "org.parceler:parceler-api:${parcelerVersion}",
-                            "com.github.bumptech.glide:glide:${glideVersion}",
-                            "uk.co.chrisjenx:calligraphy:${calligraphyVersion}",
-                            "me.grantland:autofittextview:${autoFitTextViewVersion}"
+                            parceler.implementation,
+                            glide.implementation,
+                            rxPermissions.implementation,
+                            modelmapper.implementation,
+                            calligraphy.implementation
                     ],
-                    annotationProcessor : [
+                    annotationProcessor    : [
                             dagger.annotationProcessor,
                             jakewharton.annotationProcessor,
-
-                            "org.projectlombok:lombok:${lombokVersion}",
-                            "com.github.bumptech.glide:compiler:${glideVersion}",
-                            "org.parceler:parceler:${parcelerVersion}"
+                            lombok.annotationProcessor,
+                            parceler.annotationProcessor,
+                            glide.annotationProcessor
                     ],
-                    compileOnly : [
-                            "org.projectlombok:lombok:${lombokVersion}"
+                    compileOnly            : [
+                            lombok.compileOnly
                     ],
-                    testImplementation : [
+                    testImplementation     : [
                             dagger.implementation,
-
                             "junit:junit:${jUnitVersion}",
                             "org.assertj:assertj-core:${assertJVersion}",
                             "org.mockito:mockito-core:${mockitoVersion}",
                             "org.robolectric:robolectric:${robolectricVersion}",
                             "org.robolectric:shadows-multidex:${robolectricVersion}",
                     ],
-                    testAnnotationProcessor : [
+                    testAnnotationProcessor: [
                             dagger.annotationProcessor
                     ]
             ],
-            domain : [
-                    implementation: [
-                            "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
-
-                            "org.parceler:parceler-api:${parcelerVersion}",
-
-                            "com.jakewharton.timber:timber:${timberVersion}",
-                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
-
+            domain    : [
+                    implementation     : [
+                            raxden.implementation,
+                            parceler.implementation,
+                            jakewharton.implementation,
                             dagger.implementation,
                             reactive.implementation
                     ],
-                    api : [],
-                    annotationProcessor : [
+                    api                : [],
+                    annotationProcessor: [
                             dagger.annotationProcessor,
-
-                            "org.projectlombok:lombok:${lombokVersion}",
-                            "org.parceler:parceler:${parcelerVersion}"
+                            lombok.annotationProcessor,
+                            parceler.annotationProcessor
                     ],
-                    compileOnly : [
-                            "org.projectlombok:lombok:${lombokVersion}"
+                    compileOnly        : [
+                            lombok.compileOnly
                     ],
                     testImplementation : []
             ],
-            data : [
-                    implementation: [
-                            "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
-                            "com.github.raxden:android-preferences:${androidPreferencesVersion}@aar",
-
-                            "com.google.firebase:firebase-messaging:${servicesVersion}",
-
-                            "com.jakewharton.timber:timber:${timberVersion}",
-                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}",
-
+            data      : [
+                    implementation     : [
+                            raxden.implementation,
+                            jakewharton.implementation,
                             dagger.implementation,
                             retrofit.implementation,
-
-                            "org.modelmapper:modelmapper:${modelmapperVersion}",
-
+                            modelmapper.implementation,
                             reactive.implementation
                     ],
-                    api : [],
-                    annotationProcessor : [
+                    api                : [],
+                    annotationProcessor: [
                             dagger.annotationProcessor,
-
-                            "org.projectlombok:lombok:${lombokVersion}"
+                            lombok.annotationProcessor
                     ],
-                    compileOnly : [
-                            "org.projectlombok:lombok:${lombokVersion}"
+                    compileOnly        : [
+                            lombok.compileOnly
                     ],
                     testImplementation : []
             ],
-            components : [
-                    implementation: [
-                            "com.android.support:design:${supportLibraryVersion}",
-                            "me.grantland:autofittextview:${autoFitTextViewVersion}",
-                            "com.jakewharton.timber:timber:${timberVersion}"
+            components: [
+                    implementation     : [
+                            support.implementation,
+                            jakewharton.implementation
                     ],
-                    api : [],
-                    annotationProcessor : [],
-                    compileOnly : [],
+                    api                : [],
+                    annotationProcessor: [],
+                    compileOnly        : [],
                     testImplementation : []
             ],
-            commons : [
-                    implementation: [
-                            "org.modelmapper:modelmapper:${modelmapperVersion}",
-                            "com.jakewharton.threetenabp:threetenabp:${androidThreeTenVersion}"
+            commons   : [
+                    implementation     : [
+                            modelmapper.implementation,
+                            jakewharton.implementation
                     ],
-                    api : [],
-                    annotationProcessor : [],
-                    compileOnly : [],
+                    api                : [],
+                    annotationProcessor: [],
+                    compileOnly        : [],
                     testImplementation : []
             ],
             resources : [
-                    implementation: [
-                            "com.android.support:design:${supportLibraryVersion}",
-                            "me.grantland:autofittextview:${autoFitTextViewVersion}",
-                            "uk.co.chrisjenx:calligraphy:${calligraphyVersion}"
+                    implementation     : [
+                            support.implementation,
+                            calligraphy.implementation
                     ],
-                    api : [],
-                    annotationProcessor : [],
-                    compileOnly : [],
+                    api                : [],
+                    annotationProcessor: [],
+                    compileOnly        : [],
                     testImplementation : []
             ]
     ]

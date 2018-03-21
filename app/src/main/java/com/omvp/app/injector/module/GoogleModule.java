@@ -5,8 +5,6 @@ import android.content.Context;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.places.Places;
 import com.omvp.app.R;
 
 import javax.inject.Singleton;
@@ -32,10 +30,7 @@ public class GoogleModule {
     GoogleApiClient.Builder googleApiClientBuilder(Context context, GoogleSignInOptions googleSignInOptions) {
         return new GoogleApiClient
                 .Builder(context)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
-                .addApi(LocationServices.API)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API);
+                .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions);
     }
 
 }

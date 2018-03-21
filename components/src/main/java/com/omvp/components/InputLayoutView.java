@@ -23,7 +23,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.grantland.widget.AutofitTextView;
 import timber.log.Timber;
 
 /**
@@ -45,7 +44,7 @@ public class InputLayoutView extends BaseComponentView {
     private TextAdvancedInputLayout mTextInputLayout;
     private TextInputEditText mTextInputEditText;
 
-    private AutofitTextView mHintFixedToLeftText;
+    private TextView mHintFixedToLeftText;
 
     private String mText;
     private String mHint;

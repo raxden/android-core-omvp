@@ -21,10 +21,11 @@
         com.omvp.app -> com.companyname.proyectname
 
     2. Register application in Firebase and download|replace google-services.json contained in
-    app module. Remember that proyect has two diferences configurations, dev and prod.
-    Therefore you must register two applications instead of one.
+    app module. Remember that proyect has n(flavours) diferences configurations, dev and prod.
+    Therefore you must register n(flavours) applications instead of one.
         {androidApplicationId}
         {androidApplicationId}.dev
+        {androidApplicationId}.mock
 
     3. Install lombok plugin in your AndroidStudio.
 

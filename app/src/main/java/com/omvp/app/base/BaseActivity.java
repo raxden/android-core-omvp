@@ -1,6 +1,7 @@
 package com.omvp.app.base;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -72,6 +73,7 @@ public abstract class BaseActivity extends SquareActivity implements
         mDisposableManager.dispose();
     }
 
+
     // ========= AutoInflateLayoutInterceptorCallback ==============================================
 
     @Override
@@ -92,6 +94,22 @@ public abstract class BaseActivity extends SquareActivity implements
     protected void setupInterceptors(List<Interceptor> interceptorList) {
         interceptorList.add(mAutoInflateLayoutInterceptor);
         interceptorList.add(mOperationBroadcastInterceptor);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    public void finishWithResultOK() {
+        setResult(RESULT_OK);
+        finish();
+    }
+
+    public void finishWithResultOK(Intent data) {
+        setResult(RESULT_OK, data);
+        finish();
     }
 
 }

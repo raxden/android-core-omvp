@@ -19,7 +19,7 @@
 
     </com.seat.mobile.components.TextAdvancedInputLayout>
 
-    <me.grantland.widget.AutofitTextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/hint_fixed_to_left"
         style="@style/CodeFont.Small.Black"
         android:layout_width="wrap_content"
